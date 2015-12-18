@@ -1,0 +1,1575 @@
+# Copyright (C) 2015 Slocum Studio
+# This file is distributed under the GPL2+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Baton 1.0.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/theme/baton\n"
+"POT-Creation-Date: 2015-12-17 22:28:18+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: 404.php:21
+msgid "404 Error"
+msgstr ""
+
+#: 404.php:27
+msgid "We apologize but something when wrong while trying to find what you were looking for. Please use the navigation below to navigate to your destination."
+msgstr ""
+
+#: 404.php:30
+msgid "Search:"
+msgstr ""
+
+#: comments.php:25
+msgid "One comment on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s comments on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:53
+msgid "Older Comments"
+msgstr ""
+
+#: comments.php:57
+msgid "Newer Comments"
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:67
+msgctxt "label applied to <sup> tag within Customizer section title for Baton Conductor"
+msgid "by Conductor"
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:97
+#: theme/class-baton-conductor.php:83
+msgid "Title"
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:111
+msgid "Content Settings"
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:123
+msgctxt "Beginning of number of posts per page to display label; before <input> element"
+msgid "Show"
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:124
+#: customizer/class-baton-customizer-conductor-control.php:382
+msgctxt "placeholder for number input elements"
+msgid "#"
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:125
+msgctxt "End of number of posts per page to display label; after <input> element"
+msgid "posts per page."
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:136
+msgid "Category"
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:145
+msgid "All Categories"
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:168
+msgid "Display Settings"
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:178
+msgid "Number of Columns"
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:183
+msgid "Specify the number of columns used when outputting widget content."
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:194
+msgid "Adjust Output Elements"
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:245
+msgid "Enter custom label..."
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:261
+msgid "Content"
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:262
+#: theme/class-baton-conductor.php:92
+msgid "Excerpt"
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:309
+msgid "Adjust the order of elements output on the front-end display."
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:320
+msgid "Advanced Settings"
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:331
+msgid "Featured Image Size"
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:334
+msgid "&mdash; Select &mdash;"
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:368
+msgid "Adjust the displayed featured image size on the front-end."
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:381
+msgctxt "Beginning of content limit label; before <input> element"
+msgid "Limit excerpt to"
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:383
+msgctxt "End of content limit label; after <input> element"
+msgid "words."
+msgstr ""
+
+#: customizer/class-baton-customizer-conductor-control.php:387
+msgid "This setting only applies when \"Excerpt\" is selected for the content display output element."
+msgstr ""
+
+#: default-widget-note-baton-features-1.php:5
+msgid "A Multipurpose &amp; easy to use theme"
+msgstr ""
+
+#: default-widget-note-baton-features-1.php:6
+msgid "Building a custom website doesn't get any easier or smarter than this."
+msgstr ""
+
+#: default-widget-note-baton-features-1.php:12
+msgid "Easy Setup"
+msgstr ""
+
+#: default-widget-note-baton-features-1.php:13
+msgid "Building a homepage should take minutes, not weeks. Use our Note plugin to drag and drop your homepage layout with ease."
+msgstr ""
+
+#: default-widget-note-baton-features-1.php:14
+#: default-widget-note-baton-features-1.php:22
+#: default-widget-note-baton-features-1.php:30
+#: default-widget-note-baton-features-1.php:38 theme/class-baton.php:885
+#: theme/class-baton.php:896 theme/class-baton.php:906
+#: theme/class-baton.php:916 theme/class-baton.php:926
+msgid "Read More"
+msgstr ""
+
+#: default-widget-note-baton-features-1.php:20
+msgid "Multi-Purpose"
+msgstr ""
+
+#: default-widget-note-baton-features-1.php:21
+msgid "Baton is a theme for innovators. Change the layout, colors, fonts, and hero images to suit the needs of your website."
+msgstr ""
+
+#: default-widget-note-baton-features-1.php:28
+msgid "Well-Coded"
+msgstr ""
+
+#: default-widget-note-baton-features-1.php:29
+msgid "A bloat free theme that streamlines options and features to WordPress development standards. Fast &amp; efficient code is our advantage."
+msgstr ""
+
+#: default-widget-note-baton-features-1.php:36
+msgid "Supported"
+msgstr ""
+
+#: default-widget-note-baton-features-1.php:37
+msgid "Enjoy a 30-day return policy and our 24/7 helpdesk support from WordPress professionals that care about seeing you succeed."
+msgstr ""
+
+#: default-widget-note-baton-hero-1.php:6
+msgid "A beautiful website building experience"
+msgstr ""
+
+#: default-widget-note-baton-hero-1.php:7
+msgid "Baton, a multipurpose WordPress theme."
+msgstr ""
+
+#: default-widget-note-baton-hero-1.php:9
+#: default-widget-note-baton-hero-2.php:8 theme/class-baton.php:762
+#: theme/class-baton.php:799 theme/class-baton.php:834
+msgid "Button"
+msgstr ""
+
+#: default-widget-note-baton-hero-2.php:6
+msgid "Try the demo"
+msgstr ""
+
+#: default-widget-note-baton-hero-2.php:7
+msgid "Don't take our word for it, try the free demo. Once activated, enjoy building a site in our sandbox."
+msgstr ""
+
+#: footer.php:40
+msgid "Baton"
+msgstr ""
+
+#: functions.php:25 includes/theme-functions.php:1128
+msgid "Facebook"
+msgstr ""
+
+#: functions.php:29 includes/theme-functions.php:1156
+msgid "Twitter"
+msgstr ""
+
+#: functions.php:33 includes/theme-functions.php:1184
+msgid "LinkedIn"
+msgstr ""
+
+#: functions.php:37 includes/theme-functions.php:1212
+msgid "Google+"
+msgstr ""
+
+#: functions.php:41 includes/theme-functions.php:1240
+msgid "YouTube"
+msgstr ""
+
+#: functions.php:45 includes/theme-functions.php:1268
+msgid "Vimeo"
+msgstr ""
+
+#: functions.php:49 includes/theme-functions.php:1324
+msgid "Pinterest"
+msgstr ""
+
+#: functions.php:53 includes/theme-functions.php:1296
+msgid "Instagram"
+msgstr ""
+
+#: functions.php:57 includes/theme-functions.php:1352
+msgid "Flickr"
+msgstr ""
+
+#: functions.php:61 includes/theme-functions.php:1380
+msgid "Foursquare"
+msgstr ""
+
+#: functions.php:65
+msgid "RSS"
+msgstr ""
+
+#: functions.php:175
+msgid "Previous Post"
+msgstr ""
+
+#: functions.php:181
+msgid "Next Post"
+msgstr ""
+
+#: functions.php:218 functions.php:220 functions.php:503
+#: includes/customizer/class-sds-theme-options-customize-web-font-control.php:59
+msgid "Default"
+msgstr ""
+
+#: functions.php:224
+msgid "Full Width"
+msgstr ""
+
+#: functions.php:228
+msgid "Content Left"
+msgstr ""
+
+#: functions.php:232
+msgid "Content Right"
+msgstr ""
+
+#: functions.php:314 functions.php:319
+msgid "Continue Reading"
+msgstr ""
+
+#: functions.php:352 includes/theme-functions.php:535
+msgid "Pingback:"
+msgstr ""
+
+#: functions.php:372
+msgid "<a href=\"%1$s\"><time datetime=\"%2$s\">%3$s</time></a>"
+msgstr ""
+
+#: functions.php:375 includes/theme-functions.php:555
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: functions.php:379 includes/theme-functions.php:559
+msgid "Edit"
+msgstr ""
+
+#: functions.php:388 includes/theme-functions.php:567
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: functions.php:399 includes/theme-functions.php:578
+msgid "Reply"
+msgstr ""
+
+#: functions.php:512
+msgid "Blue"
+msgstr ""
+
+#: functions.php:521
+msgid "Green"
+msgstr ""
+
+#: functions.php:530
+msgid "Red"
+msgstr ""
+
+#: functions.php:563
+msgid "Upgrade to Baton Pro!"
+msgstr ""
+
+#: functions.php:565
+msgid "Priority Ticketing Support"
+msgstr ""
+
+#: functions.php:566
+msgid "More Color Schemes"
+msgstr ""
+
+#: functions.php:567
+msgid "More Web Fonts"
+msgstr ""
+
+#: functions.php:568
+msgid "Adjust Featured Image Sizes"
+msgstr ""
+
+#: functions.php:569
+msgid "Easily Add Custom Scripts/Styles"
+msgstr ""
+
+#: functions.php:570
+msgid "and More!"
+msgstr ""
+
+#: functions.php:573 theme/class-baton.php:645
+msgid "Upgrade Now!"
+msgstr ""
+
+#: functions.php:579
+msgid "Introducing Conductor Plugin"
+msgstr ""
+
+#: functions.php:581
+msgid "Custom Layouts"
+msgstr ""
+
+#: functions.php:582
+msgid "Custom Content Displays"
+msgstr ""
+
+#: functions.php:583
+msgid "No Code Required!"
+msgstr ""
+
+#: functions.php:586
+msgid "Get Conductor!"
+msgstr ""
+
+#: functions.php:591
+msgid "Please rate <strong>Baton</strong> <a href=\"%1$s\" target=\"_blank\">&#9733;&#9733;&#9733;&#9733;&#9733;</a> on <a href=\"%1$s\" target=\"_blank\">WordPress.org</a>."
+msgstr ""
+
+#: functions.php:605
+msgid "<a href=\"%1$s\">%2$s by Slocum Studio</a>"
+msgstr ""
+
+#: functions.php:635
+msgid "Individual Color Customization"
+msgstr ""
+
+#: functions.php:636
+msgid "Customize various individual colors to fine-tune your design."
+msgstr ""
+
+#: functions.php:652
+msgid "Font Families and Sizes"
+msgstr ""
+
+#: functions.php:653
+msgid "Choose the perfect font families and sizes."
+msgstr ""
+
+#: functions.php:669 theme/class-baton.php:639
+msgid "Header Alignment"
+msgstr ""
+
+#: functions.php:670
+msgid "Choose the perfect alignment for the header areas in Baton Pro."
+msgstr ""
+
+#: header.php:26 header.php:95
+msgid "Toggle Navigation"
+msgstr ""
+
+#: header.php:36 header.php:105
+msgid "Navigation"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:333
+msgid "Install Required Plugins"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:334
+msgid "Install Plugins"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:335
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:336
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:337
+msgid "This theme requires the following plugin: %1$s."
+msgid_plural "This theme requires the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-tgm-plugin-activation.php:342
+msgid "This theme recommends the following plugin: %1$s."
+msgid_plural "This theme recommends the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-tgm-plugin-activation.php:347
+msgid "Sorry, but you do not have the correct permissions to install the %1$s plugin."
+msgid_plural "Sorry, but you do not have the correct permissions to install the %1$s plugins."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-tgm-plugin-activation.php:352
+msgid "The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s."
+msgid_plural "The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-tgm-plugin-activation.php:357
+msgid "There is an update available for: %1$s."
+msgid_plural "There are updates available for the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-tgm-plugin-activation.php:362
+msgid "Sorry, but you do not have the correct permissions to update the %1$s plugin."
+msgid_plural "Sorry, but you do not have the correct permissions to update the %1$s plugins."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-tgm-plugin-activation.php:367
+msgid "The following required plugin is currently inactive: %1$s."
+msgid_plural "The following required plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-tgm-plugin-activation.php:372
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgid_plural "The following recommended plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-tgm-plugin-activation.php:377
+msgid "Sorry, but you do not have the correct permissions to activate the %1$s plugin."
+msgid_plural "Sorry, but you do not have the correct permissions to activate the %1$s plugins."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-tgm-plugin-activation.php:382
+msgid "Begin installing plugin"
+msgid_plural "Begin installing plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-tgm-plugin-activation.php:387
+msgid "Begin updating plugin"
+msgid_plural "Begin updating plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-tgm-plugin-activation.php:392
+msgid "Begin activating plugin"
+msgid_plural "Begin activating plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-tgm-plugin-activation.php:397
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:398
+msgid "Return to the dashboard"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:399
+#: includes/class-tgm-plugin-activation.php:3027
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:400
+#: includes/class-tgm-plugin-activation.php:2830
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:401
+msgid "No action taken. Plugin %1$s was already active."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:402
+msgid "Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:403
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:404
+msgid "Dismiss this notice"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:405
+msgid "Please contact the administrator of this site for help."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:520
+msgid "This plugin needs to be updated to be compatible with your theme."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:521
+msgid "Update Required"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:635
+msgid "Set the parent_slug config variable instead."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:826
+#: includes/class-tgm-plugin-activation.php:3436
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:933
+msgid "The remote plugin package does not contain a folder with the desired slug and renaming did not work."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:933
+#: includes/class-tgm-plugin-activation.php:936
+msgid "Please contact the plugin provider and ask them to package their plugin according to the WordPress guidelines."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:936
+msgid "The remote plugin package consists of more than one file, but the files are not packaged in a folder."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:1114
+#: includes/class-tgm-plugin-activation.php:2826
+msgctxt "plugin A *and* plugin B"
+msgid "and"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:1879
+msgctxt "%s = version number"
+msgid "TGMPA v%s"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2165
+msgid "Required"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2168
+msgid "Recommended"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2184
+msgid "WordPress Repository"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2187
+msgid "External Source"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2190
+msgid "Pre-Packaged"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2207
+msgid "Not Installed"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2211
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2213
+msgid "Active"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2219
+msgid "Required Update not Available"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2222
+msgid "Requires Update"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2225
+msgid "Update recommended"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2233
+msgctxt "%1$s = install status, %2$s = update status"
+msgid "%1$s, %2$s"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2278
+msgctxt "plugins"
+msgid "All <span class=\"count\">(%s)</span>"
+msgid_plural "All <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-tgm-plugin-activation.php:2281
+msgid "To Install <span class=\"count\">(%s)</span>"
+msgid_plural "To Install <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-tgm-plugin-activation.php:2284
+msgid "Update Available <span class=\"count\">(%s)</span>"
+msgid_plural "Update Available <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-tgm-plugin-activation.php:2287
+msgid "To Activate <span class=\"count\">(%s)</span>"
+msgid_plural "To Activate <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-tgm-plugin-activation.php:2369
+msgctxt "as in: \"version nr unknown\""
+msgid "unknown"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2377
+msgid "Installed version:"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2385
+msgid "Minimum required version:"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2397
+msgid "Available version:"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2420
+msgid "No plugins to install, update or activate. <a href=\"%1$s\">Return to the Dashboard</a>"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2434
+msgid "Plugin"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2435
+msgid "Source"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2436
+msgid "Type"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2440
+msgid "Version"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2441
+msgid "Status"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2489
+msgctxt "%2$s = plugin name in screen reader markup"
+msgid "Install %2$s"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2493
+msgctxt "%2$s = plugin name in screen reader markup"
+msgid "Update %2$s"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2498
+msgctxt "%2$s = plugin name in screen reader markup"
+msgid "Activate %2$s"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2568
+msgid "Upgrade message from the plugin author:"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2601
+msgid "Install"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2607
+msgid "Update"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2610
+msgid "Activate"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2641
+msgid "No plugins were selected to be installed. No action taken."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2643
+msgid "No plugins were selected to be updated. No action taken."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2679
+msgid "No plugins are available to be installed at this time."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2681
+msgid "No plugins are available to be updated at this time."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2786
+msgid "No plugins were selected to be activated. No action taken."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:2812
+msgid "No plugins are available to be activated at this time."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:3026
+msgid "Plugin activation failed."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:3360
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:3362
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:3363
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:3367
+msgid "The installation and activation process is starting. This process may take a while on some hosts, so please be patient."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:3368
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:3368
+#: includes/class-tgm-plugin-activation.php:3374
+msgid "Show Details"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:3368
+#: includes/class-tgm-plugin-activation.php:3374
+msgid "Hide Details"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:3369
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:3370
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:3373
+msgid "The installation process is starting. This process may take a while on some hosts, so please be patient."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:3374
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:3375
+msgid "All installations have been completed."
+msgstr ""
+
+#: includes/class-tgm-plugin-activation.php:3376
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: includes/customizer/class-sds-theme-options-customize-checkbox-control.php:48
+msgid "Show"
+msgstr ""
+
+#: includes/customizer/class-sds-theme-options-customize-checkbox-control.php:49
+msgid "Hide"
+msgstr ""
+
+#: includes/customizer/class-sds-theme-options-customize-content-layout-control.php:68
+msgctxt "Content layout description; describes where the content layout will be applied"
+msgid "%1$s"
+msgstr ""
+
+#: includes/customizer/class-sds-theme-options-customize-logo-control.php:43
+msgid "Upload a logo to to replace the site name. Recommended dimensions: %1$s."
+msgstr ""
+
+#: includes/customizer/class-sds-theme-options-customize-logo-control.php:47
+msgid "Current Logo:"
+msgstr ""
+
+#: includes/customizer/class-sds-theme-options-customize-logo-control.php:54
+msgid "No logo selected."
+msgstr ""
+
+#: includes/customizer/class-sds-theme-options-customize-logo-control.php:59
+msgid "Choose Logo"
+msgstr ""
+
+#: includes/customizer/class-sds-theme-options-customize-logo-control.php:60
+msgid "Remove Logo"
+msgstr ""
+
+#: includes/customizer/class-sds-theme-options-customize-web-font-control.php:72
+msgid "Grumpy wizards make toxic brew for the evil Queen and Jack."
+msgstr ""
+
+#: includes/theme-functions.php:172
+msgid "Pages"
+msgstr ""
+
+#: includes/theme-functions.php:181
+msgid "Monthly Archives"
+msgstr ""
+
+#: includes/theme-functions.php:190
+msgid "Blog Categories"
+msgstr ""
+
+#: includes/theme-functions.php:283 includes/theme-functions.php:284
+msgid "Author Archive:"
+msgstr ""
+
+#: includes/theme-functions.php:290 includes/theme-functions.php:291
+msgid "Category Archive: "
+msgstr ""
+
+#: includes/theme-functions.php:297 includes/theme-functions.php:298
+msgid "Tag Archive: "
+msgstr ""
+
+#: includes/theme-functions.php:305 includes/theme-functions.php:306
+msgid "Daily Archives:"
+msgstr ""
+
+#: includes/theme-functions.php:313 includes/theme-functions.php:314
+msgid "Monthly Archives:"
+msgstr ""
+
+#: includes/theme-functions.php:321 includes/theme-functions.php:322
+msgid "Yearly Archives:"
+msgstr ""
+
+#: includes/theme-functions.php:337
+msgid "We were not able to find any posts. Please try again."
+msgstr ""
+
+#: includes/theme-functions.php:369
+msgid "&laquo; Previous Image"
+msgstr ""
+
+#: includes/theme-functions.php:372
+msgid "Next Image &raquo;"
+msgstr ""
+
+#: includes/theme-functions.php:386
+msgid "Copyright &copy; %1$s <a href=\"%2$s\">%3$s</a>. All Rights Reserved."
+msgstr ""
+
+#: includes/theme-functions.php:389
+msgid "<a href=\"%1$s\" target=\"_blank\">%2$s by Slocum Studio</a>"
+msgstr ""
+
+#: includes/theme-functions.php:461
+msgid "This entry was posted in %1$s and tagged in %2$s."
+msgstr ""
+
+#: includes/theme-functions.php:472
+msgid "This entry was posted in %1$s."
+msgstr ""
+
+#: includes/theme-functions.php:482
+msgid "This entry was tagged in %1$s."
+msgstr ""
+
+#: includes/theme-functions.php:505 theme/class-baton-conductor-query.php:411
+msgid "Next &#8594;"
+msgstr ""
+
+#: includes/theme-functions.php:506 theme/class-baton-conductor-query.php:412
+msgid "&#8592; Previous"
+msgstr ""
+
+#: includes/theme-functions.php:552
+msgid "<a href=\"%1$s\"><time datetime=\"%2$s\" itemprop=\"commentTime\">%3$s</time></a>"
+msgstr ""
+
+#: includes/theme-functions.php:629
+msgid "Logo/Site Title & Tagline"
+msgstr ""
+
+#: includes/theme-functions.php:637
+msgid "Logo"
+msgstr ""
+
+#: includes/theme-functions.php:652
+msgid "Show or Hide Tagline"
+msgstr ""
+
+#: includes/theme-functions.php:653
+msgid "Use this option to show or hide the tagline on your site."
+msgstr ""
+
+#: includes/theme-functions.php:676
+msgid "Tagline"
+msgstr ""
+
+#: includes/theme-functions.php:709 theme/class-baton-customizer.php:270
+msgid "Color Scheme"
+msgstr ""
+
+#: includes/theme-functions.php:710
+msgid "Select a color scheme to use on your site."
+msgstr ""
+
+#: includes/theme-functions.php:743
+msgid "Content Color"
+msgstr ""
+
+#: includes/theme-functions.php:765
+msgid "Fonts"
+msgstr ""
+
+#: includes/theme-functions.php:785 includes/theme-options.php:243
+msgid "Web Fonts"
+msgstr ""
+
+#: includes/theme-functions.php:786
+msgid "Select a web font to use on your site."
+msgstr ""
+
+#: includes/theme-functions.php:804 includes/theme-options.php:305
+msgid "Content Layouts"
+msgstr ""
+
+#: includes/theme-functions.php:805
+msgid "Control the layout of the content on your site here. Choose a global layout scheme to be used across your entire site or specify individual content type layout schemes by adjusting the options below."
+msgstr ""
+
+#: includes/theme-functions.php:829
+msgid "Global Content Layout"
+msgstr ""
+
+#: includes/theme-functions.php:830
+msgid "Select a content layout that will be applied globally on your site. Select more specific content layouts below."
+msgstr ""
+
+#: includes/theme-functions.php:861
+msgid "Front Page Content Layout"
+msgstr ""
+
+#: includes/theme-functions.php:862
+msgid "Select a content layout that will be applied to the front page on your site (if selected in Settings &gt; Reading)."
+msgstr ""
+
+#: includes/theme-functions.php:894
+msgid "Home Content Layout"
+msgstr ""
+
+#: includes/theme-functions.php:895
+msgid "Select a content layout that will be applied to the blog on your site."
+msgstr ""
+
+#: includes/theme-functions.php:926
+msgid "Single Post Content Layout"
+msgstr ""
+
+#: includes/theme-functions.php:927
+msgid "Select a content layout that will be applied to single posts on your site."
+msgstr ""
+
+#: includes/theme-functions.php:958
+msgid "Single Page Content Layout"
+msgstr ""
+
+#: includes/theme-functions.php:959
+msgid "Select a content layout that will be applied to single pages on your site."
+msgstr ""
+
+#: includes/theme-functions.php:990
+msgid "Archive Content Layout"
+msgstr ""
+
+#: includes/theme-functions.php:991
+msgid "Select a content layout that will be applied to archives on your site."
+msgstr ""
+
+#: includes/theme-functions.php:1022
+msgid "Category Archive Content Layout"
+msgstr ""
+
+#: includes/theme-functions.php:1023
+msgid "Select a content layout that will be applied to category archives on your site."
+msgstr ""
+
+#: includes/theme-functions.php:1054
+msgid "Tag Archive Content Layout"
+msgstr ""
+
+#: includes/theme-functions.php:1055
+msgid "Select a content layout that will be applied to tag archives on your site."
+msgstr ""
+
+#: includes/theme-functions.php:1086
+msgid "404 Error Content Layout"
+msgstr ""
+
+#: includes/theme-functions.php:1087
+msgid "Select a content layout that will be applied to the 404 error page on your site. <strong>Please Note: The Customizer does not allow for previewing of 404 error pages.</strong>"
+msgstr ""
+
+#: includes/theme-functions.php:1104
+msgid "Social Media"
+msgstr ""
+
+#: includes/theme-functions.php:1105
+msgid "Enter your social media links here. This section is used throughout the site to display social media links to visitors. Some themes display social media links automatically, and some only display them within the Social Media widget."
+msgstr ""
+
+#: includes/theme-functions.php:1408
+msgid "RSS - Use Site RSS Feed"
+msgstr ""
+
+#: includes/theme-functions.php:1409
+msgid "When \"yes\" is displayed, the RSS feed for your site will be used. Otherwise, you can enter a custom RSS URL to use instead."
+msgstr ""
+
+#: includes/theme-functions.php:1416
+#: theme/class-baton-conductor-customizer.php:165
+msgid "Yes"
+msgstr ""
+
+#: includes/theme-functions.php:1417
+#: theme/class-baton-conductor-customizer.php:166
+msgid "No"
+msgstr ""
+
+#: includes/theme-functions.php:1447
+msgid "RSS - Custom RSS Feed"
+msgstr ""
+
+#: includes/theme-functions.php:1743
+msgid "Top Navigation"
+msgstr ""
+
+#: includes/theme-functions.php:1744
+msgid "Primary Navigation"
+msgstr ""
+
+#: includes/theme-functions.php:1745
+msgid "Footer Navigation"
+msgstr ""
+
+#: includes/theme-functions.php:1760
+msgid "Primary Sidebar"
+msgstr ""
+
+#: includes/theme-functions.php:1762
+msgid "This widget area is the primary widget area."
+msgstr ""
+
+#: includes/theme-functions.php:1771
+msgid "Secondary Sidebar"
+msgstr ""
+
+#: includes/theme-functions.php:1773
+msgid "This widget area is the secondary widget area."
+msgstr ""
+
+#: includes/theme-functions.php:1782
+msgid "Front Page Slider"
+msgstr ""
+
+#: includes/theme-functions.php:1784
+msgid "*This widget area is only displayed if a Front Page is selected via Settings &gt; Reading in the Dashboard.* This widget area is displayed above the content on the Front Page."
+msgstr ""
+
+#: includes/theme-functions.php:1793
+msgid "Front Page"
+msgstr ""
+
+#: includes/theme-functions.php:1795
+msgid "*This widget area is only displayed if a Front Page is selected via Settings &gt; Reading in the Dashboard.* This widget area is displayed below the Front Page Slider on the Front Page and will replace the Front Page content."
+msgstr ""
+
+#: includes/theme-functions.php:1804
+msgid "Header Call To Action"
+msgstr ""
+
+#: includes/theme-functions.php:1806
+msgid "This widget area is used to display a call to action in the header."
+msgstr ""
+
+#: includes/theme-functions.php:1815
+msgid "After Posts"
+msgstr ""
+
+#: includes/theme-functions.php:1817
+msgid "This widget area is displayed below the content on single posts only."
+msgstr ""
+
+#: includes/theme-functions.php:1826
+msgid "Footer"
+msgstr ""
+
+#: includes/theme-functions.php:1828
+msgid "This widget area is displayed in the footer of all pages."
+msgstr ""
+
+#: includes/theme-functions.php:1837
+msgid "Copyright Area"
+msgstr ""
+
+#: includes/theme-functions.php:1839
+msgid "This widget area is designed for small text blurbs or disclaimers at the bottom of the website."
+msgstr ""
+
+#: includes/theme-options.php:93
+msgid "About %1$s"
+msgstr ""
+
+#: includes/theme-options.php:102 includes/theme-options.php:119
+msgid "Welcome to %1$s"
+msgstr ""
+
+#: includes/theme-options.php:103
+msgid "Learn more about %1$s on this page."
+msgstr ""
+
+#: includes/theme-options.php:106
+msgid "Getting Started"
+msgstr ""
+
+#: includes/theme-options.php:107 includes/theme-options.php:153
+msgid "Free vs. Pro"
+msgstr ""
+
+#: includes/theme-options.php:120
+msgid "Thanks for choosing Slocum Themes. We've created this page to help guide you through setting up your website. We hope that you enjoy our themes."
+msgstr ""
+
+#: includes/theme-options.php:124
+msgid "Get Started in the Customizer"
+msgstr ""
+
+#: includes/theme-options.php:125
+msgid "%1$s utilizes the WordPress Customizer. This means that you can customize everything in one place! Visit the <a href=\"%2$s\">Customizer</a> to get started."
+msgstr ""
+
+#: includes/theme-options.php:127
+msgid "Launch Customizer"
+msgstr ""
+
+#: includes/theme-options.php:132
+msgid "General Documentation"
+msgstr ""
+
+#: includes/theme-options.php:133
+msgid "Be sure to have a look at our <a href=\"%1$s\" target=\"_blank\">General Documentation</a> for helpful guides."
+msgstr ""
+
+#: includes/theme-options.php:137
+msgid "Build the Perfect WordPress Website Course"
+msgstr ""
+
+#: includes/theme-options.php:138
+msgid "We created free a 9-part course that will help you build the perfect WordPress website. We cover topics such as: security, lead generation, backups, and more."
+msgstr ""
+
+#: includes/theme-options.php:140
+msgid "Enroll in the free course"
+msgstr ""
+
+#: includes/theme-options.php:154
+msgid "Use the table below to determine if the Pro version of %1$s is right for you."
+msgstr ""
+
+#: includes/theme-options.php:160
+msgid "%1$s Pro"
+msgstr ""
+
+#: includes/theme-options.php:181
+msgid "Color Schemes"
+msgstr ""
+
+#: includes/theme-options.php:186
+msgid "Both %1$s and %1$s Pro have color schemes."
+msgstr ""
+
+#: includes/theme-options.php:189
+msgid "%1$s Pro has color schemes."
+msgstr ""
+
+#: includes/theme-options.php:192
+msgid "%1$s has color schemes."
+msgstr ""
+
+#: includes/theme-options.php:196
+msgid " %1$s Pro offers more color schemes for you to choose from."
+msgstr ""
+
+#: includes/theme-options.php:205 includes/theme-options.php:216
+msgid "%1$s Color Scheme"
+msgid_plural "%1$s Color Schemes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/theme-options.php:208 includes/theme-options.php:219
+msgid "No Color Schemes"
+msgstr ""
+
+#: includes/theme-options.php:248
+msgid "Both %1$s and %1$s Pro have web fonts."
+msgstr ""
+
+#: includes/theme-options.php:251
+msgid "%1$s Pro has web fonts."
+msgstr ""
+
+#: includes/theme-options.php:254
+msgid "%1$s has web fonts."
+msgstr ""
+
+#: includes/theme-options.php:258
+msgid " %1$s Pro offers more web fonts for you to choose from."
+msgstr ""
+
+#: includes/theme-options.php:267 includes/theme-options.php:278
+msgid "%1$s Web Font"
+msgid_plural "%1$s Web Fonts"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/theme-options.php:270 includes/theme-options.php:281
+msgid "No Web Fonts"
+msgstr ""
+
+#: includes/theme-options.php:310
+msgid "Both %1$s and %1$s Pro have content layouts."
+msgstr ""
+
+#: includes/theme-options.php:313
+msgid "%1$s Pro has content layouts."
+msgstr ""
+
+#: includes/theme-options.php:316
+msgid "%1$s has content layouts."
+msgstr ""
+
+#: includes/theme-options.php:320
+msgid " %1$s Pro offers more content layouts for you to choose from."
+msgstr ""
+
+#: includes/theme-options.php:329 includes/theme-options.php:340
+msgid "%1$s Content Layout"
+msgid_plural "%1$s Content Layouts"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/theme-options.php:332 includes/theme-options.php:343
+msgid "No Content Layouts"
+msgstr ""
+
+#: includes/theme-options.php:356 theme/class-baton.php:635
+msgid "Priority Support"
+msgstr ""
+
+#: includes/theme-options.php:357
+msgid "Get priority helpdesk support by upgrading to %1$s Pro."
+msgstr ""
+
+#: includes/theme-options.php:374
+msgid "Footer Copyright &amp; Branding"
+msgstr ""
+
+#: includes/theme-options.php:375
+msgid "Adjust footer copyright &amp branding messages in the Customizer."
+msgstr ""
+
+#: includes/theme-options.php:392 theme/class-baton.php:636
+msgid "Custom Scripts and Styles"
+msgstr ""
+
+#: includes/theme-options.php:393
+msgid "Add custom scripts and custom CSS styles to your site."
+msgstr ""
+
+#: includes/theme-options.php:409
+msgid "Upgrade to %1$s Pro!"
+msgstr ""
+
+#: includes/theme-options.php:424
+msgid "Brought to you by <a href=\"%1$s\" target=\"_blank\">Slocum Themes</a>"
+msgstr ""
+
+#: includes/widget-social-media.php:20
+msgid "Display social media icons linking to your networks specified in Theme Options."
+msgstr ""
+
+#: includes/widget-social-media.php:21
+msgid "Social Media Widget"
+msgstr ""
+
+#: includes/widget-social-media.php:31
+msgid "Title:"
+msgstr ""
+
+#: loop-author.php:27
+msgid "View more posts from this author"
+msgstr ""
+
+#: loop-image.php:87
+msgid "Edit Image"
+msgstr ""
+
+#: loop-page-full-width.php:42 loop-single.php:43 loop.php:43
+msgid "Edit Post"
+msgstr ""
+
+#: loop-page.php:42
+msgid "Edit Page"
+msgstr ""
+
+#: loop-search.php:12
+msgid "Search results for \"%s\""
+msgstr ""
+
+#: loop-search.php:73
+msgid "No results for \"%s\""
+msgstr ""
+
+#: loop-search.php:83
+msgid "Would you like to search again?"
+msgstr ""
+
+#: searchform.php:8
+msgctxt "label"
+msgid "Search for:"
+msgstr ""
+
+#: searchform.php:9
+msgid "Search..."
+msgstr ""
+
+#: searchform.php:10
+msgid "Search"
+msgstr ""
+
+#: theme/class-baton-conductor-customizer.php:66
+msgid "Blog Display"
+msgstr ""
+
+#: theme/class-baton-conductor-customizer.php:67
+msgid "This is a preview of our Conductor Widget. <a href=\"%1$s\" target=\"_blank\">Install our Conductor plugin</a> for even better ways to control your content."
+msgstr ""
+
+#: theme/class-baton-conductor-customizer.php:158
+msgid "Enable"
+msgstr ""
+
+#: theme/class-baton-conductor-customizer.php:181
+msgid "Conductor"
+msgstr ""
+
+#: theme/class-baton-conductor-query.php:700
+msgid "Posted by <a href=\"%1$s\">%2$s</a> on %3$s"
+msgstr ""
+
+#: theme/class-baton-conductor.php:62
+msgid "Recent News"
+msgstr ""
+
+#: theme/class-baton-conductor.php:74
+msgid "Featured Image"
+msgstr ""
+
+#: theme/class-baton-conductor.php:110
+msgid "Author Byline"
+msgstr ""
+
+#: theme/class-baton-customizer.php:141
+msgid "General Settings"
+msgstr ""
+
+#: theme/class-baton-customizer.php:181
+msgid "Site Layout"
+msgstr ""
+
+#: theme/class-baton-customizer.php:205
+msgid "Maximum Width"
+msgstr ""
+
+#: theme/class-baton-customizer.php:206
+msgid "The default width is 1272px."
+msgstr ""
+
+#: theme/class-baton-customizer.php:219
+msgctxt "title attribute for max width Customizer control"
+msgid "pixels"
+msgstr ""
+
+#: theme/class-baton-customizer.php:246
+msgid "Background Color &amp; Image"
+msgstr ""
+
+#: theme/class-baton-customizer.php:282
+msgid "More Link"
+msgstr ""
+
+#: theme/class-baton-customizer.php:304
+msgid "Button Label"
+msgstr ""
+
+#: theme/class-baton.php:154
+msgid "Secondary Navigation"
+msgstr ""
+
+#: theme/class-baton.php:180
+msgid "<div class=\"updated\"><p>Welcome to Baton! Get started by visiting the <a href=\"%1$s\">Customizer</a>!</p></div>"
+msgstr ""
+
+#: theme/class-baton.php:233
+msgid "*This widget area is only displayed if a Front Page is selected via Settings &gt; Reading in the Dashboard.* This widget area is displayed on the Front Page and will replace the Front Page content."
+msgstr ""
+
+#: theme/class-baton.php:597
+msgid "Upgrade Baton"
+msgstr ""
+
+#: theme/class-baton.php:616
+msgid "Receive <strong>premium support</strong>, individual Customizer options for colors and fonts, and more! %1$s. %2$s %3$s %4$s"
+msgstr ""
+
+#: theme/class-baton.php:620
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: theme/class-baton.php:624
+msgid "Upgrade to Baton Pro to add the following features:"
+msgstr ""
+
+#: theme/class-baton.php:637
+msgid "Individual Color Customisation"
+msgstr ""
+
+#: theme/class-baton.php:638
+msgid "Individual Font Families and Sizes"
+msgstr ""
+
+#: theme/class-baton.php:640
+msgid "\"Features 2\" Baton Note Widget Display"
+msgstr ""
+
+#: theme/class-baton.php:698
+msgid "Baton Hero"
+msgstr ""
+
+#: theme/class-baton.php:702
+msgid "Baton Features"
+msgstr ""
+
+#: theme/class-baton.php:769
+msgid "Button Alternate"
+msgstr ""
+
+#: theme/class-baton.php:791
+msgid "Baton Hero 1"
+msgstr ""
+
+#: theme/class-baton.php:797
+msgid "Hero 1"
+msgstr ""
+
+#: theme/class-baton.php:798 theme/class-baton.php:833
+#: theme/class-baton.php:867 theme/class-baton.php:884
+#: theme/class-baton.php:895 theme/class-baton.php:905
+#: theme/class-baton.php:915 theme/class-baton.php:925
+msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eros tortor, molestie eget tortor sit amet, feugiat semper ante. Aliquam a pellentesque purus, quis vulputate lacus."
+msgstr ""
+
+#: theme/class-baton.php:827
+msgid "Baton Hero 2"
+msgstr ""
+
+#: theme/class-baton.php:832
+msgid "Hero 2"
+msgstr ""
+
+#: theme/class-baton.php:862
+msgid "Baton Features 1"
+msgstr ""
+
+#: theme/class-baton.php:866
+msgid "Features"
+msgstr ""
+
+#: theme/class-baton.php:883 theme/class-baton.php:894
+#: theme/class-baton.php:904 theme/class-baton.php:914
+#: theme/class-baton.php:924
+msgid "Feature"
+msgstr ""
+
+#: theme/class-baton.php:1040
+msgctxt "\"read more\" label for Conductor widgets"
+msgid "Continue Reading"
+msgstr ""
+#. Theme Name of the plugin/theme
+msgid "Baton"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid "https://slocumthemes.com/wordpress-themes/baton/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A fast, clean, and beautiful website building experience. Baton is a multipurpose theme with an intuitive drag-and-drop homepage layout builder for a wide range of website designs. Create your layouts using our live edit front-end widgets to perfectly match your design and content together. Baton is compatible with popular plugins like Jetpack, Yoast SEO, Gravity Forms and more."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Slocum Studio"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://slocumthemes.com/"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Full Width"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Landing Page"
+msgstr ""

@@ -1,0 +1,406 @@
+/**
+ * Baton Conductor Admin Stylesheet
+ */
+
+/* General */
+.wp-full-overlay.expanded {
+	margin-left: 380px;
+}
+
+.wp-full-overlay-sidebar {
+	width: 380px;
+}
+
+.wp-full-overlay.collapsed .wp-full-overlay-sidebar {
+	margin-left: -380px;
+}
+
+#accordion-section-baton_conductor .accordion-section-content {
+	background: #fff;
+}
+
+#accordion-section-baton_conductor .customize-section-back {
+	height: 76px;
+}
+
+.baton-conductor-setting {
+	margin: 1em 0;
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+.baton-conductor-select {
+	width: 100%;
+	max-width: 100%;
+	font-size: 13px;
+}
+
+.baton-conductor-hidden {
+	display: none;
+}
+
+.baton-conductor-input {
+	width: 100%;
+	max-width: 100%;
+	padding: 5px;
+}
+
+.baton-conductor-description {
+	padding: 0 0 15px !important;
+}
+
+.baton-conductor-inline-input,
+.customize-control input.baton-conductor-inline-input,
+.customize-control input[type=text].baton-conductor-inline-input {
+	width: 50px;
+	display: inline;
+	font-weight: normal;
+}
+
+.baton-conductor-inline-select {
+	width: auto;
+	margin-top: -2px;
+	display: inline-block;
+	font-weight: normal;
+}
+
+/**
+ * Widget Sections/Accordion
+ */
+.baton-conductor-section {
+	margin-bottom: 4%;
+	background: #f6f6f6;
+	border: 1px solid #e6e6e6;
+	border-bottom-color: #e6e6e6;
+}
+
+.baton-conductor-section:last-child {
+	margin-bottom: 0;
+}
+
+.baton-conductor-section .baton-conductor-section-title {
+	padding: 12px 8px;
+	background: #eee;
+	border: none;
+}
+
+.baton-conductor-section.open .baton-conductor-section-title {
+	border-bottom: 1px solid #ccc;
+}
+
+.baton-conductor-section .baton-conductor-section-title h3 {
+	margin: 0;
+	padding: 0;
+	font-size: 1.1em;
+}
+
+.baton-conductor-section .baton-conductor-accordion-section-title {
+	width: auto;
+	height: auto;
+	position: relative;
+}
+
+.baton-conductor-section .baton-conductor-accordion-section-content {
+	padding: 2px 10px;
+	background: transparent;
+}
+
+.baton-conductor-setting .dashicons {
+	margin: 0;
+	padding: 0;
+	float: none;
+}
+
+/**
+ * Flexbox Columns
+ */
+.baton-conductor-flexbox-columns .baton-conductor-flexbox-columns-range {
+	width: 78%;
+	margin: 1em 0;
+	background: transparent;
+	outline: none;
+	-webkit-appearance: none;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.baton-conductor-flexbox-columns .baton-conductor-flexbox-columns-range::-webkit-slider-runnable-track {
+	height: 10px;
+	background: #ddd;
+}
+
+.baton-conductor-flexbox-columns-range::-moz-range-track {
+	width: 100%;
+	height: 10px;
+	background: #ddd;
+	border: 0;
+}
+
+.baton-conductor-flexbox-columns .baton-conductor-flexbox-columns-range::-ms-track {
+	width: 100%;
+	height: 10px;
+	outline: none;
+	color: transparent;
+	background: transparent;
+	border-color: transparent;
+	border-width: 8px 0;
+	-webkit-appearance: none;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.baton-conductor-flexbox-columns .baton-conductor-flexbox-columns-range::-ms-fill-lower {
+	background: #1e8cbe;
+}
+
+.baton-conductor-flexbox-columns .baton-conductor-flexbox-columns-range::-ms-fill-upper {
+	background: #ddd;
+}
+
+.baton-conductor-flexbox-columns .baton-conductor-flexbox-columns-range::-webkit-slider-thumb {
+	width: 10px;
+	height: 20px;
+	margin-top: -4px;
+	background: #fff;
+	cursor: pointer;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+	-webkit-appearance: none;
+}
+
+.baton-conductor-flexbox-columns .baton-conductor-flexbox-columns-range::-moz-range-thumb {
+	width: 10px;
+	height: 20px;
+	background: #fff;
+	cursor: pointer;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+	border: none;
+	border-radius: 0;
+}
+
+.baton-conductor-flexbox-columns .baton-conductor-flexbox-columns-range::-ms-thumb {
+	width: 10px;
+	height: 20px;
+	background: #fff;
+	cursor: pointer;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);;
+	border: none;
+	border-radius: 0;
+}
+
+.baton-conductor-flexbox-columns .baton-conductor-flexbox-columns-value {
+	width: 17%;
+	margin-left: 5px;
+	padding: 3px 0;
+	color: #fff;
+	background: #1e8cbe;
+	text-align: center;
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.baton-conductor-flexbox-columns-range::-moz-focus-inner {
+	border: 0;
+}
+
+
+/**
+ * Output/Custom Fields
+ */
+.baton-conductor-output {
+	margin: 1em 0;
+}
+
+.baton-conductor-output-list {
+	margin: 4px 1px;
+	padding: 0;
+	border: 1px solid #ddd;
+}
+
+.baton-conductor-output-list li.ui-state-default {
+	margin: 0;
+	padding: 15px 8px;
+	color: #222;
+	background: #fff;
+	border-top: 1px solid rgba(255, 255, 255, 0.5);
+	border-bottom: 1px solid #ddd;
+	font-size: 1em;
+	font-weight: bold;
+	position: relative;
+	outline: 0;
+
+	-webkit-transition: color .1s ease-in 0s;
+	transition: color .1s ease-in 0s;
+}
+
+.baton-conductor-output-list li.ui-state-default:first-child {
+	border-top: 0;
+}
+
+.baton-conductor-output-list li.ui-state-default:last-child {
+	border-bottom: 0;
+}
+
+.baton-conductor-output-list li.ui-state-default .dashicons-sort {
+	color: #ddd;
+	cursor: move;
+}
+.baton-conductor-output-list li.ui-state-default .dashicons-sort:before {
+	margin-left: -4px;
+	padding-right: 2px;
+	border-right: 1px solid #ccc;
+}
+
+.baton-conductor-output-list li.ui-state-default:hover .dashicons-sort {
+	color: #222;
+}
+
+.baton-conductor-output-list li.ui-state-default .baton-conductor-output-element-label {
+	padding-left: 2px;
+	color: #ccc;
+	display: inline-block;
+	vertical-align: middle;
+
+	-webkit-transition: color .1s ease-in 0s;
+	transition: color .1s ease-in 0s;
+}
+
+.baton-conductor-output-list li.ui-state-default.visible .baton-conductor-output-element-label {
+	color: #222;
+}
+
+.baton-conductor-output-list li.ui-state-default .baton-conductor-output-element-label-editable {
+	cursor: pointer;
+}
+
+.baton-conductor-output-list li.ui-state-default .baton-conductor-output-element-label-editable .dashicons-edit {
+	margin-top: -2px;
+	color: #fff;
+}
+
+.baton-conductor-output-list li.ui-state-default:hover .baton-conductor-output-element-label-editable .dashicons-edit {
+	color: #ccc;
+}
+
+.baton-conductor-output-list li.ui-state-default .baton-conductor-output-element-label.editing .label,
+.baton-conductor-output-list li.ui-state-default .baton-conductor-output-element-label.editing .dashicons-edit,
+.baton-conductor-output-list li.ui-state-default .baton-conductor-output-element-label-input {
+	display: none;
+}
+
+.baton-conductor-output-list li.ui-state-default .baton-conductor-output-element-label.editing {
+	width: 64%;
+}
+
+.baton-conductor-output-list li.ui-state-default .baton-conductor-output-element-label-editable {
+	max-width: 64%;
+}
+
+.baton-conductor-output-list li.ui-state-default .editing .baton-conductor-output-element-label-input {
+	width: 100%;
+	max-width: 100%;
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+}
+
+.baton-conductor-output-list li.ui-state-default .editing .baton-conductor-output-element-label-input input {
+	width: 100%;
+	max-width: 100%;
+	margin: -3px 0;
+	padding-left: 2px;
+	padding-right: 42px;
+	font-size: 1em;
+	border: 1px dashed #ccc;
+	display: inline-block;
+	outline: none;
+	position: absolute;
+	left: 0;
+	right: 0;
+}
+
+.baton-conductor-output-list li.ui-state-default .editing .baton-conductor-output-element-label-input .baton-conductor-save,
+.baton-conductor-output-list li.ui-state-default .editing .baton-conductor-output-element-label-input .baton-conductor-discard {
+	position: absolute;
+	right: 0;
+}
+
+.baton-conductor-output-list li.ui-state-default .editing .baton-conductor-output-element-label-input .baton-conductor-discard {
+	right: 20px;
+	border-left: 1px dashed #ccc;
+}
+
+/* Option (select) */
+.baton-conductor-output-list li.ui-state-default .baton-conductor-output-element-label.editable-select.editing {
+	width: auto;
+}
+
+.baton-conductor-output-list li.ui-state-default .editing .baton-conductor-output-element-label-select {
+	margin: -2px 0 -4px;
+	border: 1px dashed #ccc;
+}
+
+.baton-conductor-output-list li.ui-state-default .editing .baton-conductor-output-element-label-select select {
+	height: 22px;
+	padding: 0;
+	font-size: 13px;
+	line-height: 13px;
+	vertical-align: top;
+}
+
+.baton-conductor-output-list li.ui-state-default .editing .baton-conductor-output-element-label-select .baton-conductor-save,
+.baton-conductor-output-list li.ui-state-default .editing .baton-conductor-output-element-label-select .baton-conductor-discard {
+	height: 22px;
+	position: static;
+	right: auto;
+	vertical-align: bottom;
+}
+
+.baton-conductor-output-list li.ui-state-default .baton-conductor-output-element-controls	{
+	width: 20%;
+	text-align: right;
+	float: right;
+}
+
+.baton-conductor-output-list li.ui-state-default .baton-conductor-output-element-controls .dashicons {
+	color: #ccc;
+	cursor: pointer;
+}
+
+.baton-conductor-output-list li.ui-state-default .baton-conductor-output-element-controls .dashicons:hover {
+	color: #222;
+}
+
+/* Link */
+.baton-conductor-output-list li.ui-state-default .baton-conductor-output-element-controls .baton-conductor-link {
+	margin-top: 3px;
+	color: #ccc;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.baton-conductor-output-list li.ui-state-default .baton-conductor-output-element-controls .baton-conductor-link:hover {
+	color: #ccc;
+}
+
+.baton-conductor-output-list li.ui-state-default.visible.link .baton-conductor-output-element-controls .baton-conductor-link,
+.baton-conductor-output-list li.ui-state-default.visible.link .baton-conductor-output-element-controls .baton-conductor-link:hover {
+	color: #222;
+}
+
+/* Visibility */
+.baton-conductor-output-list li.ui-state-default .baton-conductor-output-element-controls .dashicons.baton-conductor-visibility:hover {
+	color: #ccc;
+}
+
+.baton-conductor-output-list li.ui-state-default.visible .baton-conductor-output-element-controls .baton-conductor-visibility,
+.baton-conductor-output-list li.ui-state-default.visible .baton-conductor-output-element-controls .dashicons.baton-conductor-visibility:hover {
+	color: #222;
+}
+
+.baton-conductor-output-list .ui-state-placeholder {
+	margin: 0;
+	padding: 23px;
+	outline: 0;
+	background: rgba(0, 0, 0, 0.10);
+}
