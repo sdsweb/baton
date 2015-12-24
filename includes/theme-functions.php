@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) )
  *
  * Description: This file contains functions for utilizing options within themes (displaying site logo, tagline, etc...)
  *
- * @version 1.4.1
+ * @version 1.4.2
  */
 
 
@@ -424,12 +424,12 @@ if ( ! function_exists( 'sds_social_media' ) ) {
 					// RSS (use site RSS feed, $url is Boolean this case)
 					if ( $key === 'rss_url_use_site_feed' && $url ) :
 					?>
-						<a href="<?php bloginfo( 'rss2_url' ); ?>" class="<?php echo esc_attr( 'rss_url' . $social_font_map['rss_url'] ); ?>" target="_blank"></a>
+						<a href="<?php bloginfo( 'rss2_url' ); ?>" class="<?php echo esc_attr( 'rss_url ' . $social_font_map['rss_url'] ); ?>" target="_blank"></a>
 					<?php
 					// RSS (use custom RSS feed)
 					elseif ( $key === 'rss_url' && ! $sds_theme_options['social_media']['rss_url_use_site_feed'] && ! empty( $url ) ) :
 					?>
-						<a href="<?php echo esc_attr( $url ); ?>" class="<?php echo esc_attr( 'rss_url' . $social_font_map['rss_url'] ); ?>" target="_blank"></a>
+						<a href="<?php echo esc_attr( $url ); ?>" class="<?php echo esc_attr( 'rss_url ' . $social_font_map['rss_url'] ); ?>" target="_blank"></a>
 					<?php
 					// All other networks
 					elseif ( $key !== 'rss_url_use_site_feed' && $key !== 'rss_url' && ! empty( $url ) ) :

@@ -176,6 +176,10 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 		 * This function outputs Baton Conductor after the Front Page Sidebar.
 		 */
 		public function dynamic_sidebar_after( $sidebar_id, $has_widgets ) {
+			// Bail if we're not on the front-end
+			if ( is_admin() )
+				return;
+
 			// If Baton Conductor is enabled, we have widgets, and this is the Front Page Sidebar
 			if ( $this->is_baton_conductor_enabled() && $has_widgets && $sidebar_id === 'front-page-sidebar' ) :
 				// Create an "instance"

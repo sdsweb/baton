@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) )
  *
  * Description: This Class instantiates SDS Options, providing themes with various options to use.
  *
- * @version 1.4.1
+ * @version 1.4.2
  */
 if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 	global $sds_theme_options;
@@ -19,7 +19,7 @@ if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 		/**
 		 * @var string, Constant, Version of the class
 		 */
-		const VERSION = '1.4.1';
+		const VERSION = '1.4.2';
 
 
 		// Private Variables
