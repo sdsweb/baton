@@ -4,7 +4,7 @@
  *
  * @class Baton
  * @author Slocum Studio
- * @version 1.0.0
+ * @version 1.0.1
  * @since 1.0.0
  */
 
@@ -17,7 +17,7 @@ if ( ! class_exists( 'Baton' ) ) {
 		/**
 		 * @var string, Current version number
 		 */
-		public $version = '1.0.0';
+		public $version = '1.0.1';
 
 		/**
 		 * @var Baton, Instance of the class
@@ -493,7 +493,7 @@ if ( ! class_exists( 'Baton' ) ) {
 		public function wp_footer() {
 		?>
 			<script type="text/javascript">
-				// <![CDATA[
+					// <![CDATA[
 				jQuery( function( $ ) {
 					var $primary_nav_and_button = $( '.primary-nav-button, .primary-nav-mobile' ),
 						$primary_nav_items = $primary_nav_and_button.find( 'li' ),
