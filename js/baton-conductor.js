@@ -16,7 +16,8 @@ var baton_conductor = baton_conductor || {};
 		var $baton_conductor_number = $( '.baton-conductor-number' ),
 			$baton_conductor_flexbox_range = $( '.baton-conductor-flexbox-columns-range' ),
 			$baton_conductor_output = $( '.baton-conductor-output' ),
-			baton_conductor_section = api.section( 'baton_conductor' );
+			baton_conductor_section = api.section( 'baton_conductor' ),
+			baton_conductor_disabled_control = api.control( 'baton_conductor[disabled]' );
 
 		// Baton Conductor Section
 		if ( baton_conductor_section ) {
@@ -47,6 +48,12 @@ var baton_conductor = baton_conductor || {};
 			el: $baton_conductor_output, // Attach this view to the widgets output list
 			collection: new baton_conductor.collections.output() // New collection
 		} ) );
+
+		// Baton Conductor Disabled Control
+		if ( baton_conductor_disabled_control ) {
+			// Append <sup> label to title
+			baton_conductor_disabled_control.container.find( '.customize-control-title' ).append( ' <sup>' + baton_conductor.customizer.section_sup_label + '</sup>' + ' ' + baton_conductor.customizer.control_enabled_label );
+		}
 	} );
 
 

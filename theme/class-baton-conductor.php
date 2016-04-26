@@ -63,7 +63,7 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 				// Posts per page
 				'posts_per_page' => 9,
 				// Category
-				'category' => '',
+				'category' => 0, // All
 				// Flexbox Columns
 				'flexbox_columns' => 3,
 				// Output
@@ -114,7 +114,7 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 					),
 				),
 				// Featured Image Size
-				'post_thumbnails_size' => false,
+				'post_thumbnails_size' => '',
 				// Excerpt Length
 				'excerpt_length' => apply_filters( 'excerpt_length', 55 )
 			);
@@ -319,7 +319,7 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 		 * This function determines if Baton Conductor is disabled.
 		 */
 		public function is_baton_conductor_disabled() {
-			return $this->baton_conductor_theme_mod['disabled'] === true;
+			return ( $this->baton_conductor_theme_mod['disabled'] === true );
 		}
 
 		/**

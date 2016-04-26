@@ -87,13 +87,25 @@ select {
 /**
  * Conductor
  */
+/* Conductor Slider - General (Front Page Sidebar) */
+.front-page-widgets .conductor-slider .arrows .arrow {
+	color: #fff;
+}
+
+.front-page-widgets .conductor-widget .conductor-slider .dots .dot .dot-inner {
+	border-color: #fff;
+}
+
+.front-page-widgets .conductor-widget .conductor-slider .dots .dot.active .dot-inner {
+	background: #fff;
+}
+
 /* Slider - Testimonials (Front Page Sidebar) */
 .front-page-widgets .conductor-widget.conductor-slider-testimonials-wrap {
 	background: #ff5b5d;
 }
 
-.front-page-widgets .conductor-widget.conductor-slider-testimonials-wrap .widget-title,
-.front-page-widgets .conductor-widget.conductor-slider-testimonials-wrap .arrows .arrow {
+.front-page-widgets .conductor-widget.conductor-slider-testimonials-wrap .widget-title {
 	color: #fff;
 }
 
@@ -102,8 +114,16 @@ select {
 	background: #ff5b5d;
 }
 
-.front-page-widgets .conductor-widget.conductor-slider-hero-wrap .widget-title,
-.front-page-widgets .conductor-widget.conductor-slider-hero-wrap .arrows .arrow {
+.front-page-widgets .conductor-widget.conductor-slider-hero-wrap .widget-title {
+	color: #fff;
+}
+
+/* Slider - News (Front Page Sidebar) */
+.front-page-widgets .conductor-widget.conductor-slider-news-wrap {
+	background: #ff5b5d;
+}
+
+.front-page-widgets .conductor-widget.conductor-slider-news-wrap .widget-title {
 	color: #fff;
 }
 

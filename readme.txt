@@ -1,4 +1,10 @@
 /**
+ * SDS Core Framework - https://slocumthemes.com/
+ * License: GPL2
+ * Copyright: Slocum Design Studio, http://slocumstudio.com/
+ */
+
+/**
  * Font Awesome Web Font - http://fontawesome.io/
  * License: GPL Compatible (http://fontawesome.io/license/)
  * Font License: SIL OFL 1.1 (http://scripts.sil.org/OFL/)

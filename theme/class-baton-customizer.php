@@ -130,6 +130,55 @@ if ( ! class_exists( 'Baton_Customizer' ) ) {
 			include_once get_template_directory() . '/customizer/class-baton-customizer-font-size-control.php'; // Baton Customizer Font Size Control
 
 			/**
+			 * Demo Content
+			 */
+
+			/*
+			 * Demo Content Section
+			 */
+			$wp_customize->add_section( 'baton_enable_disable_features', array(
+				'priority' => 5, // Top
+				'title' => __( 'Baton Features', 'baton' )
+			) );
+
+			/*
+			 * Disable Demo Content
+			 */
+			// Setting
+			$wp_customize->add_setting(
+				'baton_disable_demo_content',
+				array(
+					'default' => apply_filters( 'baton_disable_demo_content', false ),
+					'sanitize_callback' => 'baton_boolval'
+				)
+			);
+
+			// Control
+			$wp_customize->add_control(
+				new SDS_Theme_Options_Customize_Checkbox_Control(
+					$wp_customize,
+					'baton_disable_demo_content', // IDs can have nested array keys
+					array(
+						'label' => __( 'Demo Content Enabled', 'baton' ),
+						'description' => __( 'Use this setting to enable or disable Baton demo content.', 'baton' ),
+						'section'  => 'baton_enable_disable_features',
+						'settings' => 'baton_disable_demo_content',
+						'priority' => 10,
+						'type' => 'checkbox', // Used in js controller
+						'css_class' => 'baton-disable-demo-content',
+						'css_id' => 'baton_disable_demo_content',
+						'checked_label' => __( 'Yes', 'baton' ),
+						'unchecked_label' => __( 'No', 'baton' ),
+						'style' => array(
+							'before' => 'width: 38%; text-align: center;',
+							'after' => 'width: 38%; padding: 0 6px; text-align: center; right: 0;'
+						)
+					)
+				)
+			);
+
+
+			/**
 			 * General Settings
 			 */
 
@@ -137,7 +186,7 @@ if ( ! class_exists( 'Baton_Customizer' ) ) {
 			 * General Settings Panel
 			 */
 			$wp_customize->add_panel( 'baton_general_settings', array(
-				'priority' => 10, // Top
+				'priority' => 10, // After Demo Content
 				'title' => __( 'General Settings', 'baton' )
 			) );
 

@@ -254,33 +254,32 @@ if ( ! class_exists( 'Baton' ) ) {
 		public function pre_get_posts() {
 			global $sds_theme_options, $post;
 
+			// Determine the correct protocol
 			$protocol = is_ssl() ? 'https' : 'http';
 
-			// Admin only
-			if ( is_admin() ) {
-				add_editor_style( 'css/editor-style.css' );
+			// Core editor styles
+			add_editor_style( 'css/editor-style.css' );
 
-				// Add correct color scheme if selected
-				if ( function_exists( 'sds_color_schemes' ) && ! empty( $sds_theme_options['color_scheme'] ) && $sds_theme_options['color_scheme'] !== 'default' ) {
-					$color_schemes = sds_color_schemes();
-					add_editor_style( 'css/' . $color_schemes[$sds_theme_options['color_scheme']]['stylesheet'] );
-				}
-
-				// Open Sans Web Font (include only if a web font is not selected in Theme Options)
-				if ( ! function_exists( 'sds_web_fonts' ) || empty( $sds_theme_options['web_font'] ) )
-					add_editor_style( str_replace( ',', '%2C', $protocol . '://fonts.googleapis.com/css?family=Lato:400,700,900|Martel+Sans:400,600' ) ); // Google WebFonts (Open Sans)
-
-				// Fetch page template if any on Pages only
-				if ( ! empty( $post ) && $post->post_type === 'page' )
-					$wp_page_template = get_post_meta( $post->ID,'_wp_page_template', true );
+			// Add correct color scheme if selected
+			if ( function_exists( 'sds_color_schemes' ) && ! empty( $sds_theme_options['color_scheme'] ) && $sds_theme_options['color_scheme'] !== 'default' ) {
+				$color_schemes = sds_color_schemes();
+				add_editor_style( 'css/' . $color_schemes[$sds_theme_options['color_scheme']]['stylesheet'] );
 			}
 
-			// Admin only and if we have a post using our full page or landing page templates
-			if ( is_admin() && ! empty( $post ) && ( isset( $wp_page_template ) && ( $wp_page_template === 'template-full-width.php' || $wp_page_template === 'template-landing-page.php' ) ) )
+			// Open Sans Web Font (include only if a web font is not selected in Theme Options)
+			if ( ! function_exists( 'sds_web_fonts' ) || empty( $sds_theme_options['web_font'] ) )
+				add_editor_style( str_replace( ',', '%2C', $protocol . '://fonts.googleapis.com/css?family=Lato:400,700,900|Martel+Sans:400,600' ) ); // Google WebFonts (Open Sans)
+
+			// Fetch page template (Pages only)
+			$wp_page_template = get_page_template_slug();
+
+
+			// If we have a post using our full page or landing page templates
+			if ( ! empty( $post ) && ( $wp_page_template === 'template-full-width.php' || $wp_page_template === 'template-landing-page.php' ) )
 				add_editor_style( 'css/editor-style-full-width.css' );
 
 			// FontAwesome
-			add_editor_style( '/includes/css/font-awesome.min.css' );
+			add_editor_style( SDS_Theme_Options::sds_core_dir( true ) . '/css/font-awesome.min.css' );
 		}
 
 
@@ -375,7 +374,7 @@ if ( ! class_exists( 'Baton' ) ) {
 			wp_enqueue_script( 'jquery' );
 
 			// Fitvids
-			wp_enqueue_script( 'fitvids', get_template_directory_uri() . '/js/fitvids.js', array( 'jquery' ), $this->version );
+			wp_enqueue_script( 'fitvids', get_template_directory_uri() . '/js/fitvids.min.js', array( 'jquery' ), $this->version );
 
 			// FontAwesome
 			wp_enqueue_style( 'font-awesome-css-min', get_template_directory_uri() . '/includes/css/font-awesome.min.css' );
@@ -502,9 +501,16 @@ if ( ! class_exists( 'Baton' ) ) {
 
 					// Primary Nav
 					$primary_nav_and_button.on( 'click', function ( e ) {
-						// Prevent Propagation (bubbling) to other elements and default
-						e.stopPropagation();
-						e.preventDefault();
+						<?php
+							// If we're not in the Customizer, stop propagation and default on click
+							if ( ! is_customize_preview() ) :
+						?>
+								// Prevent Propagation (bubbling) to other elements and default
+								e.stopPropagation();
+								e.preventDefault();
+						<?php
+							endif;
+						?>
 
 						// Open
 						if ( ! $primary_nav_and_button.hasClass( 'open' ) ) {
@@ -523,9 +529,16 @@ if ( ! class_exists( 'Baton' ) ) {
 
 					// Secondary Nav
 					$secondary_nav_and_button.on( 'click', function ( e ) {
-						// Prevent Propagation (bubbling) to other elements and default
-						e.stopPropagation();
-						e.preventDefault();
+						<?php
+							// If we're not in the Customizer, stop propagation and default on click
+							if ( ! is_customize_preview() ) :
+						?>
+								// Prevent Propagation (bubbling) to other elements and default
+								e.stopPropagation();
+								e.preventDefault();
+						<?php
+							endif;
+						?>
 
 						// Open
 						if ( ! $secondary_nav_and_button.hasClass( 'open' ) ) {
@@ -1690,6 +1703,7 @@ if ( ! class_exists( 'Baton' ) ) {
 					// No key found, return the original array
 					return $where;
 				break;
+
 				// Settings Section
 				case 'settings-section':
 					global $wp_settings_sections;

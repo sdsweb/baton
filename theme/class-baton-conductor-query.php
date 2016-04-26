@@ -407,7 +407,7 @@ if( ! class_exists( 'Baton_Conductor_Query' ) ) {
 				'base' => untrailingslashit( esc_url( get_pagenum_link() ) ) . '%_%', // %_% will be replaced with format below
 				'format' => ( $permalink_structure ) ? '/page/%#%/' : '&paged=%#%', // %#% will be replaced with page number
 				'current' => max( 1, $query->get( 'paged' ) ), // Get whichever is the max out of 1 and the current page count
-				'total' => ( ! empty( $this->instance['posts_per_page'] ) && $this->instance['posts_per_page'] !== 0 ) ? ceil( $this->post_count->publish / $this->instance['posts_per_page'] ) : 1, // Get total number of pages in current query
+				'total' => $query->max_num_pages, // Get total number of pages in current query
 				'next_text' => __( 'Next &#8594;', 'baton' ),
 				'prev_text' => __( '&#8592; Previous', 'baton' ),
 				'type' => ( ! $echo ) ? 'array' : 'list'  // Output this as an array or unordered list

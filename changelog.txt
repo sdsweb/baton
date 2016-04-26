@@ -5,9 +5,11 @@ Author URI: https://slocumthemes.com/
 Current Version: 1.0.1
 ==========================================
 
+
 1.0.1 // December 24 2015
 -------------------------
 - Fixed multiple fatal PHP errors due to functions not existing at the time of execution
+- Updated to SDS Core Free 1.4.2
 
 1.0.0 // December 17 2015
 -------------------------

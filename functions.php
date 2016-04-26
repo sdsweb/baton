@@ -68,39 +68,40 @@ if ( ! function_exists( 'sds_social_media' ) ) {
 
 			$social_font_map = apply_filters( 'sds_social_icon_map', $social_font_map );
 			?>
+
 			<div class="social-media-icons baton-flex baton-flex-5-columns baton-flex-social-media">
 				<?php
-				foreach( $sds_theme_options['social_media'] as $key => $url ) :
-					// RSS (use site RSS feed, $url is Boolean this case)
-					if ( $key === 'rss_url_use_site_feed' && $url ) :
+					foreach( $sds_theme_options['social_media'] as $key => $url ) :
+						// RSS (use site RSS feed, $url is Boolean this case)
+						if ( $key === 'rss_url_use_site_feed' && $url ) :
 					?>
-						<a href="<?php esc_attr( bloginfo( 'rss2_url' ) ); ?>" class="rss-url baton-col baton-col-social-media" target="_blank">
-							<span class="social-media-icon <?php echo esc_attr( $social_font_map['rss_url']['icon'] ); ?>"></span>
-							<br />
-							<span class="social-media-label rss-url-label"><?php echo $social_font_map['rss_url']['label']; ?></span>
-						</a>
+							<a href="<?php esc_attr( bloginfo( 'rss2_url' ) ); ?>" class="rss-url baton-col baton-col-social-media" target="_blank">
+								<span class="social-media-icon <?php echo esc_attr( $social_font_map['rss_url']['icon'] ); ?>"></span>
+								<br />
+								<span class="social-media-label rss-url-label"><?php echo $social_font_map['rss_url']['label']; ?></span>
+							</a>
 					<?php
-					// RSS (use custom RSS feed)
-					elseif ( $key === 'rss_url' && ! $sds_theme_options['social_media']['rss_url_use_site_feed'] && ! empty( $url ) ) :
+						// RSS (use custom RSS feed)
+						elseif ( $key === 'rss_url' && ! $sds_theme_options['social_media']['rss_url_use_site_feed'] && ! empty( $url ) ) :
 					?>
-						<a href="<?php echo esc_attr( $url ); ?>" class="rss-url baton-col baton-col-social-media" target="_blank">
-							<span class="social-media-icon <?php echo esc_attr( $social_font_map['rss_url']['icon'] ); ?>"></span>
-							<br />
-							<span class="social-media-label rss-url-label"><?php echo $social_font_map['rss_url']['label']; ?></span>
-						</a>
+							<a href="<?php echo esc_attr( $url ); ?>" class="rss-url baton-col baton-col-social-media" target="_blank">
+								<span class="social-media-icon <?php echo esc_attr( $social_font_map['rss_url']['icon'] ); ?>"></span>
+								<br />
+								<span class="social-media-label rss-url-label"><?php echo $social_font_map['rss_url']['label']; ?></span>
+							</a>
 					<?php
-					// All other networks
-					elseif ( $key !== 'rss_url_use_site_feed' && $key !== 'rss_url' && ! empty( $url ) ) :
-						$css_class = str_replace( '_', '-', $key ); // Replace _ with -
+						// All other networks
+						elseif ( $key !== 'rss_url_use_site_feed' && $key !== 'rss_url' && ! empty( $url ) ) :
+							$css_class = str_replace( '_', '-', $key ); // Replace _ with -
 					?>
-						<a href="<?php echo esc_attr( $url ); ?>" class="<?php echo esc_attr( $css_class ); ?> baton-col baton-col-social-media" target="_blank">
-							<span class="social-media-icon <?php echo esc_attr( $social_font_map[$key]['icon'] ); ?>"></span>
-							<br />
-							<span class="social-media-label <?php echo esc_attr( $css_class ); ?>-label"><?php echo $social_font_map[$key]['label']; ?></span>
-						</a>
+							<a href="<?php echo esc_attr( $url ); ?>" class="<?php echo esc_attr( $css_class ); ?> baton-col baton-col-social-media" target="_blank">
+								<span class="social-media-icon <?php echo esc_attr( $social_font_map[$key]['icon'] ); ?>"></span>
+								<br />
+								<span class="social-media-label <?php echo esc_attr( $css_class ); ?>-label"><?php echo $social_font_map[$key]['label']; ?></span>
+							</a>
 					<?php
-					endif;
-				endforeach;
+						endif;
+					endforeach;
 				?>
 			</div>
 		<?php
@@ -113,12 +114,7 @@ if ( ! function_exists( 'sds_social_media' ) ) {
  */
 if ( ! function_exists( 'sds_post_meta' ) ) {
 	function sds_post_meta( $archive = false ) {
-		global $sds_theme_options;
-
-		// Determine if we should we output the post meta based on settings
-		if ( $sds_theme_options['hide_post_meta'] )
-			return;
-		?>
+	?>
 			<span class="article-date <?php echo ( $archive ) ? 'baton-col baton-col-article-date' : false; ?>">
 				<?php
 					// Archives without titles
@@ -156,7 +152,7 @@ if ( ! function_exists( 'sds_post_meta' ) ) {
 					<?php echo get_comments_number(); ?>
 				</a>
 			</span>
-		<?php
+	<?php
 	}
 }
 
@@ -266,10 +262,15 @@ if ( ! function_exists( 'baton_body_class' ) ) {
 		// Front Page Sidebar/Widgets
 		if ( is_front_page() ) {
 			// If the Front Page Sidebar is active
-			if ( is_active_sidebar( 'front-page-sidebar' ) )
+			if ( sds_is_front_page_sidebar_active() )
 				$classes['baton-front-page-sidebar-active'] = 'front-page-sidebar-active';
-			else
+			// Otherwise if Baton demo content or Baton Conductor are enabled
+			else if ( baton_is_demo_content_enabled() || baton_is_baton_conductor_enabled() )
 				$classes['baton-front-page-sidebar-default-widgets'] = 'front-page-sidebar-default-widgets';
+
+			// If Baton Conductor is enabled
+			if ( baton_is_baton_conductor_enabled() )
+				$classes['baton-baton-conductor'] = 'baton-baton-conductor';
 
 			// If Conductor is active on the Front Page
 			if ( class_exists( 'Conductor' ) && Conductor::is_conductor() ) {
@@ -279,6 +280,9 @@ if ( ! function_exists( 'baton_body_class' ) ) {
 
 				if ( isset( $classes['baton-front-page-sidebar-default-widgets'] ) )
 					unset( $classes['baton-front-page-sidebar-default-widgets'] );
+
+				if ( isset( $classes['baton-baton-conductor'] ) )
+					unset( $classes['baton-baton-conductor'] );
 			}
 		}
 
@@ -541,12 +545,36 @@ if ( ! function_exists( 'sds_color_schemes' ) ) {
 }
 
 /**
+ * This determines if Baton demo content is enabled.
+ */
+function baton_is_demo_content_enabled() {
+	return ( get_theme_mod( 'baton_disable_demo_content' ) === false );
+}
+
+/**
+ * This determines if Baton Conductor is enabled.
+ */
+function baton_is_baton_conductor_enabled() {
+	// Grab the Baton_Conductor instance
+	$baton_conductor = Baton_Conductor_Instance();
+
+	return $baton_conductor->is_baton_conductor_enabled();
+}
+
+/**
  * This function displays default Front Page Sidebar widgets.
  */
 function baton_default_widgets() {
 	get_template_part( 'default-widget', 'note-baton-hero-1' ); // Note Baton Hero 1
 	get_template_part( 'default-widget', 'note-baton-features-1' ); // Note Baton Feature 1
 	get_template_part( 'default-widget', 'note-baton-hero-2' ); // Note Baton Hero 2
+}
+
+/**
+ * This determines if a Static Front Page is selected.
+ */
+function baton_has_static_front_page() {
+	return ( get_option( 'show_on_front' ) === 'page' && get_option( 'page_on_front' ) );
 }
 
 
