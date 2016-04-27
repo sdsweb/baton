@@ -2608,6 +2608,25 @@ nav .primary-nav .children .children:after {
 }
 
 
+/**
+ *
+ * Woocommerce Styling
+ * 
+*/
+.woocommerce ul.products li.product, .woocommerce-page ul.products li.product {
+	background-color: #FFF;
+	padding: 20px;
+	-webkit-box-shadow: 0 2px 0 0 #d3d8de;
+	box-shadow: 0 2px 0 0 #d3d8de;
+}
+
+.woocommerce #content div.product div.images, .woocommerce div.product div.images, .woocommerce-page #content div.product div.images, .woocommerce-page div.product div.images {
+	width: 25%;
+}
+
+.woocommerce #content div.product div.summary, .woocommerce div.product div.summary, .woocommerce-page #content div.product div.summary, .woocommerce-page div.product div.summary {
+	width: 70%;
+}
 
 /**
  * 3rd Party
