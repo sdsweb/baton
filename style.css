@@ -2628,6 +2628,21 @@ nav .primary-nav .children .children:after {
 	width: 70%;
 }
 
+/* Upsell and related Product grid size */
+.single-product ul.products li.product {
+	width: 16%;
+}
+
+/* Border around sections */
+.single-product .product > .products, .single-product .single-product .product > .products, .woocommerce-tabs {
+    border-bottom: 1px solid #d3ced2;
+    margin-bottom: 60px;
+}
+.woocommerce-page.woocommerce h2 {
+    font-size: 24px;
+}
+
+
 /**
  * 3rd Party
  */

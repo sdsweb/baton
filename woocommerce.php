@@ -8,27 +8,26 @@ if ( ! defined( 'ABSPATH' ) )
 	exit;
 
 get_header(); ?>
+	<!-- Main -->
+	<main role="main" class="content-wrap content-wrap-page content-wrap-full-width-page baton-flex <?php echo ( baton_is_yoast_breadcrumbs_active() ) ? 'has-breadcrumbs' : 'no-breadcrumbs'; ?>">
+		<!-- Page Content -->
+		<div class="baton-col baton-col-content">
+			<section class="content-container content-page-container">
+				<?php get_template_part( 'yoast', 'breadcrumbs' ); // Yoast Breadcrumbs ?>
 
-			<!-- Main -->
-			<main role="main" class="content-wrap content-wrap-page content-wrap-full-width-page baton-flex <?php echo ( baton_is_yoast_breadcrumbs_active() ) ? 'has-breadcrumbs' : 'no-breadcrumbs'; ?>">
-				<!-- Page Content -->
-				<div class="baton-col baton-col-content">
-					<section class="content-container content-page-container">
-						<?php get_template_part( 'yoast', 'breadcrumbs' ); // Yoast Breadcrumbs ?>
+				<?php woocommerce_content(); ?>
 
-						<?php woocommerce_content(); ?>
-
-						<!-- Comments -->
-						<?php comments_template(); // Comments ?>
-						<!-- End Comments -->
-
-						<div class="clear"></div>
-					</section>
-				</div>
-				<!-- End Page Content -->
+				<!-- Comments -->
+				<?php comments_template(); // Comments ?>
+				<!-- End Comments -->
 
 				<div class="clear"></div>
-			</main>
-			<!-- End Main -->
+			</section>
+		</div>
+		<!-- End Page Content -->
+
+		<div class="clear"></div>
+	</main>
+	<!-- End Main -->
 
 <?php get_footer(); ?>
