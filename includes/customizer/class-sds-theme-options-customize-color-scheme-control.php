@@ -27,7 +27,7 @@ class SDS_Theme_Options_Customize_Color_Scheme_Control extends WP_Customize_Cont
 	 * This function enqueues scripts and styles
 	 */
 	public function enqueue() {
-		wp_enqueue_script( 'sds-theme-options-customizer-color-scheme', SDS_Theme_Options::sds_core_url() . '/js/customizer-sds-theme-options-color-scheme.js', array( 'customize-base', 'customize-controls' ), SDS_Theme_Options::VERSION );
+		wp_enqueue_script( 'sds-theme-options-customizer-color-scheme', SDS_Theme_Options::sds_core_url() . '/js/customizer-sds-theme-options-color-scheme.js', array( 'customize-base', 'customize-controls' ), SDS_Theme_Options::get_version() );
 		wp_localize_script( 'sds-theme-options-customizer-color-scheme', 'sds_color_schemes_customizer', array(
 			'color_schemes' => sds_color_schemes(),
 			'controls' => $this->color_controls

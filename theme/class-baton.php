@@ -134,6 +134,13 @@ if ( ! class_exists( 'Baton' ) ) {
 				'default-color' => $baton_customizer->get_current_color_scheme_default( 'background_color', '#f1f5f9' )
 			) );
 
+			// Custom Logo
+			add_theme_support( 'custom-logo', array(
+				'width' => 300,
+				'height' => 100,
+				'flex-height' => true
+			) );
+
 			// Yoast WordPress SEO Breadcrumbs (automatically enables breadcrumbs)
 			//add_theme_support( 'yoast-seo-breadcrumbs', true );
 
@@ -170,7 +177,7 @@ if ( ! class_exists( 'Baton' ) ) {
 			 */
 
 			// Update Conductor Widgets
-			$this->update_conductor_widgets();
+			$this->update_conductor_widgets( true );
 		}
 
 		/**
@@ -1751,6 +1758,10 @@ if ( ! class_exists( 'Baton' ) ) {
 		 */
 		public function update_conductor_widgets( $after_switch_theme = false ) {
 			global $sds_theme_options;
+
+			// Bail if we don't have options stored in the database
+			if ( ! SDS_Theme_Options::has_options() )
+				return;
 
 			// Grab SDS Theme Options
 			$sds_theme_options = SDS_Theme_Options::get_sds_theme_options();

@@ -194,7 +194,7 @@ if ( ! class_exists( 'Baton_Customizer' ) ) {
 			/**
 			 * Logo/Site Title & Tagline Section
 			 */
-			if ( $title_tagline_section = $wp_customize->get_section( 'title_tagline' ) ) {// Get Section
+			if ( $title_tagline_section = $wp_customize->get_section( 'title_tagline' ) ) { // Get Section
 				$title_tagline_section->panel = 'baton_general_settings'; // Add panel
 				$title_tagline_section->priority = 10; // Adjust Priority
 			}
