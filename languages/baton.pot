@@ -2,7 +2,7 @@
 # This file is distributed under the GPL2+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Baton 1.0.2\n"
+"Project-Id-Version: Baton 1.0.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/baton\n"
 "POT-Creation-Date: 2016-05-02 13:04-0400\n"
 "MIME-Version: 1.0\n"

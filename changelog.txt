@@ -2,9 +2,15 @@
 Theme: Baton
 Author: Slocum Themes/Slocum Design Studio
 Author URI: https://slocumthemes.com/
-Current Version: 1.0.2
+Current Version: 1.0.3
 ==========================================
 
+1.0.3 // May 02 2016
+--------------------
+- Updated SDS Core to version 1.5.0 (adds support for WordPress 4.5 logo uploader)
+- Added WordPress 4.5 custom-logo theme support
+- Fixed PHP notice for undefined "disabled" key in Baton Conductor logic
+- Updated POT file
 
 1.0.2 // April 26 2016
 ----------------------
