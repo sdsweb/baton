@@ -1430,7 +1430,8 @@ if ( ! class_exists( 'Baton' ) ) {
 		?>
 			<!-- Article Header -->
 			<header class="article-title-wrap">
-				<div class="article-categories-wrap"><?php the_category( ', ' ); ?></div>
+				<?php baton_categories_tags(); ?>
+
 				<?php if ( strlen( get_the_title() ) > 0 ) : ?>
 					<h1 class="article-title">
 						<?php

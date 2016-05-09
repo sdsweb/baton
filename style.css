@@ -2103,6 +2103,16 @@ nav .primary-nav .children .children:after {
 	text-transform: uppercase;
 }
 
+.article-categories-wrap .fa {
+	font-size: 0.77777777em;
+	padding-right: 0.1em;
+	opacity: 0.75;
+}
+
+.article-categories-wrap .tags .fa {
+	padding-left: 0.75em;
+}
+
 .article-post-meta {
 	margin: 2em 0;
 	padding: 2rem 6rem;

@@ -29,7 +29,8 @@
 		<article id="post-<?php the_ID(); ?>" <?php post_class( esc_attr( 'content content-' . $post->post_type  . ' content-archive cf' ) ); ?>>
 			<!-- Article Header -->
 			<header class="article-title-wrap">
-				<div class="article-categories-wrap"><?php the_category( ', ' ); ?></div>
+				<?php baton_categories_tags(); ?>
+
 				<?php if ( strlen( get_the_title() ) > 0 ) : ?>
 					<h1 class="article-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 				<?php endif; ?>

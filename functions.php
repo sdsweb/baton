@@ -235,6 +235,73 @@ if ( ! function_exists( 'sds_content_layouts' ) ) {
 }
 
 /**
+ * This function registers all color schemes available in this theme.
+ */
+if ( ! function_exists( 'sds_color_schemes' ) ) {
+	function sds_color_schemes() {
+		$color_schemes = array(
+			// Default (any additional color schemes should contain all of these properties as well as a 'deps' property)
+			'default' => array( // Name used in saved option
+				'label' => __( 'Default', 'baton' ), // Label on options panel (required)
+				'stylesheet' => false, // Stylesheet URL, relative to theme directory (required)
+				'preview' => '#7cb2c2', // Preview color on options panel (required)
+				'default' => true,
+				// Customizer
+				'background_color' => '#f1f5f9', // Default background color
+			),
+			// Blue
+			'blue' => array(
+				'label' => __( 'Blue', 'baton' ),
+				'stylesheet' => '/css/blue.css',
+				'preview' => '#3f70d4',
+				'deps' => 'baton',
+				// Customizer
+				'background_color' => '#ffffff', // Default background color
+			),
+			// Green
+			'green' => array(
+				'label' => __( 'Green', 'baton' ),
+				'stylesheet' => '/css/green.css',
+				'preview' => '#66bc7d',
+				'deps' => 'baton',
+				// Customizer
+				'background_color' => '#f1f5f9', // Default background color
+			),
+			// Red
+			'red' => array(
+				'label' => __( 'Red', 'baton' ),
+				'stylesheet' => '/css/red.css',
+				'preview' => '#ff5b5d',
+				'deps' => 'baton',
+				// Customizer
+				'background_color' => '#ffffff', // Default background color
+			)
+		);
+
+		return apply_filters( 'sds_theme_options_color_schemes', $color_schemes );
+	}
+}
+
+/**
+ * This function sets a default featured image size for use in this theme.
+ */
+if ( ! function_exists( 'sds_theme_options_default_featured_image_size' ) ) {
+	add_filter( 'sds_theme_options_default_featured_image_size', 'sds_theme_options_default_featured_image_size' );
+
+	function sds_theme_options_default_featured_image_size( $default ) {
+		return 'baton-1200x9999';
+	}
+}
+
+if ( ! function_exists( 'sds_copyright_branding' ) ) {
+	add_filter( 'sds_copyright_branding', 'sds_copyright_branding', 10, 2 );
+
+	function sds_copyright_branding( $text, $theme_name ) {
+		return '<a href="http://slocumthemes.com/wordpress-themes/baton/?utm_source=' . esc_url( home_url() ) . '&amp;utm_medium=footer-plugs&amp;utm_campaign=WordPressThemes" target="_blank">' . $theme_name . ' by Slocum Studio</a>';
+	}
+}
+
+/**
  * This function modifies the global $content_width value based on content layout or page template settings.
  */
 if ( ! function_exists( 'baton_body_class' ) ) {
@@ -287,25 +354,6 @@ if ( ! function_exists( 'baton_body_class' ) ) {
 		}
 
 		return $classes;
-	}
-}
-
-/**
- * This function sets a default featured image size for use in this theme.
- */
-if ( ! function_exists( 'sds_theme_options_default_featured_image_size' ) ) {
-	add_filter( 'sds_theme_options_default_featured_image_size', 'sds_theme_options_default_featured_image_size' );
-
-	function sds_theme_options_default_featured_image_size( $default ) {
-		return 'baton-1200x9999';
-	}
-}
-
-if ( ! function_exists( 'sds_copyright_branding' ) ) {
-	add_filter( 'sds_copyright_branding', 'sds_copyright_branding', 10, 2 );
-
-	function sds_copyright_branding( $text, $theme_name ) {
-		return '<a href="http://slocumthemes.com/wordpress-themes/baton/?utm_source=' . esc_url( home_url() ) . '&amp;utm_medium=footer-plugs&amp;utm_campaign=WordPressThemes" target="_blank">' . $theme_name . ' by Slocum Studio</a>';
 	}
 }
 
@@ -497,54 +545,6 @@ function baton_is_yoast_breadcrumbs_active() {
 }
 
 /**
- * This function registers all color schemes available in this theme.
- */
-if ( ! function_exists( 'sds_color_schemes' ) ) {
-	function sds_color_schemes() {
-		$color_schemes = array(
-			// Default (any additional color schemes should contain all of these properties as well as a 'deps' property)
-			'default' => array( // Name used in saved option
-				'label' => __( 'Default', 'baton' ), // Label on options panel (required)
-				'stylesheet' => false, // Stylesheet URL, relative to theme directory (required)
-				'preview' => '#7cb2c2', // Preview color on options panel (required)
-				'default' => true,
-				// Customizer
-				'background_color' => '#f1f5f9', // Default background color
-			),
-			// Blue
-			'blue' => array(
-				'label' => __( 'Blue', 'baton' ),
-				'stylesheet' => '/css/blue.css',
-				'preview' => '#3f70d4',
-				'deps' => 'baton',
-				// Customizer
-				'background_color' => '#ffffff', // Default background color
-			),
-			// Green
-			'green' => array(
-				'label' => __( 'Green', 'baton' ),
-				'stylesheet' => '/css/green.css',
-				'preview' => '#66bc7d',
-				'deps' => 'baton',
-				// Customizer
-				'background_color' => '#f1f5f9', // Default background color
-			),
-			// Red
-			'red' => array(
-				'label' => __( 'Red', 'baton' ),
-				'stylesheet' => '/css/red.css',
-				'preview' => '#ff5b5d',
-				'deps' => 'baton',
-				// Customizer
-				'background_color' => '#ffffff', // Default background color
-			)
-		);
-
-		return apply_filters( 'sds_theme_options_color_schemes', $color_schemes );
-	}
-}
-
-/**
  * This determines if Baton demo content is enabled.
  */
 function baton_is_demo_content_enabled() {
@@ -575,6 +575,50 @@ function baton_default_widgets() {
  */
 function baton_has_static_front_page() {
 	return ( get_option( 'show_on_front' ) === 'page' && get_option( 'page_on_front' ) );
+}
+
+/**
+ * This function outputs categories and tags.
+ */
+if ( ! function_exists( 'baton_categories_tags' ) ) {
+	function baton_categories_tags() {
+		// Grab categories and tags
+		$categories = get_the_category();
+		$tags = get_the_tags();
+
+		// CSS Classes
+		$css_classes = array(
+			( $categories ) ? 'has-categories' : 'no-categories',
+			( $tags ) ? 'has-tags' : 'no-tags'
+		);
+	?>
+		<div class="article-categories-wrap <?php echo esc_attr( implode( ' ', $css_classes ) ); ?>">
+			<?php
+				// Categories
+				if ( $categories ) :
+			?>
+				<span class="categories">
+					<span class="fa fa-filter"></span>
+					<?php the_category( ', ' ); ?>
+				</span>
+			<?php
+				endif;
+			?>
+
+			<?php
+				// Tags
+				if ( $tags ) :
+			?>
+				<span class="tags">
+					<span class="fa <?php echo esc_attr( ( count( $tags ) > 1 ) ? 'fa-tags' : 'fa-tag' ); ?>"></span>
+					<?php the_tags( '', ', ' ); ?>
+				</span>
+			<?php
+				endif;
+			?>
+		</div>
+	<?php
+	}
 }
 
 
