@@ -23,7 +23,7 @@ class SDS_Theme_Options_Customize_Logo_Control extends WP_Customize_Image_Contro
 	 */
 	public function enqueue() {
 		wp_enqueue_media(); // Enqueue media scripts
-		wp_enqueue_script( 'sds-theme-options-customizer-logo', SDS_Theme_Options::sds_core_url() . '/js/customizer-sds-theme-options-logo.js', array( 'customize-base', 'customize-controls' ), SDS_Theme_Options::VERSION );
+		wp_enqueue_script( 'sds-theme-options-customizer-logo', SDS_Theme_Options::sds_core_url() . '/js/customizer-sds-theme-options-logo.js', array( 'customize-base', 'customize-controls' ), SDS_Theme_Options::get_version() );
 
 		// Call the parent enqueue method here
 		parent::enqueue();
@@ -40,7 +40,7 @@ class SDS_Theme_Options_Customize_Logo_Control extends WP_Customize_Image_Contro
 			<p>
 				<?php
 					$sds_logo_dimensions = apply_filters( 'sds_theme_options_logo_dimensions', '300x100' );
-					printf( __( 'Upload a logo to to replace the site name. Recommended dimensions: %1$s.', 'baton' ), $sds_logo_dimensions );
+					printf( __( 'Upload a logo to to replace the site title. Recommended dimensions: %1$s.', 'baton' ), $sds_logo_dimensions );
 				?>
 			</p>
 

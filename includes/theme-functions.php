@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) )
  *
  * Description: This file contains functions for utilizing options within themes (displaying site logo, tagline, etc...)
  *
- * @version 1.4.2
+ * @version 1.5.0
  */
 
 
@@ -37,11 +37,18 @@ if ( ! function_exists( 'sds_logo' ) ) {
 		// Determine HTML wrapper element
 		$sds_logo_wrapper_el = ( is_front_page() || is_home() ) ? 'h1' : 'p';
 
-		// Logo
-		if ( ! empty( $sds_theme_options['logo_attachment_id'] ) ) :
+		//Logo (WordPress 4.5 and up)
+		if ( SDS_Theme_Options::wp_version_compare( '4.5' ) && function_exists( 'the_custom_logo' ) && ( $custom_logo = get_theme_mod( 'custom_logo' ) ) ) :
 	?>
 		<<?php echo $sds_logo_wrapper_el; ?> id="title" class="site-title site-title-logo has-logo">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+			<?php the_custom_logo(); ?>
+		</<?php echo $sds_logo_wrapper_el; ?>>
+	<?php
+		// Logo (below WordPress 4.5)
+		elseif ( ! empty( $sds_theme_options['logo_attachment_id'] ) ) :
+	?>
+		<<?php echo $sds_logo_wrapper_el; ?> id="title" class="site-title site-title-logo has-logo">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" rel="home" itemprop="url">
 				<?php echo wp_get_attachment_image( $sds_theme_options['logo_attachment_id'], 'full' ); ?>
 			</a>
 		</<?php echo $sds_logo_wrapper_el; ?>>
@@ -50,7 +57,7 @@ if ( ! function_exists( 'sds_logo' ) ) {
 		else :
 	?>
 		<<?php echo $sds_logo_wrapper_el; ?> id="title" class="site-title site-title-no-logo no-logo">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" rel="home" itemprop="url">
 				<?php bloginfo( 'name' ); ?>
 			</a>
 		</<?php echo $sds_logo_wrapper_el; ?>>
@@ -612,35 +619,51 @@ function sds_customize_register( $wp_customize ) {
 	$sds_theme_options_defaults = $sds_theme_options_instance->get_sds_theme_option_defaults();
 
 	/**
-	 * Logo Upload
+	 * Logo Upload (WordPress 4.5 and up and if the theme supports WordPress' custom logo)
 	 */
+	if ( SDS_Theme_Options::wp_version_compare( '4.5' ) && get_theme_support( 'custom-logo' ) ) {
+		/**
+		 * Custom Logo Control
+		 */
+		if ( $custom_logo_control = $wp_customize->get_control( 'custom_logo' ) ) { // Get Control
+			$sds_logo_dimensions = apply_filters( 'sds_theme_options_logo_dimensions', '300x100' );
 
-	// Setting (data is sanitized upon update_option() call using the sanitize function in $sds_theme_options_instance)
-	$wp_customize->add_setting(
-		'sds_theme_options[logo_attachment_id]', // IDs can have nested array keys
-		array(
-			'default' => $sds_theme_options_defaults['logo_attachment_id'],
-			'type' => 'option',
-			'sanitize_callback' => 'absint'
-		)
-	);
+			$custom_logo_control->priority = 30; // Adjust priority
+			$custom_logo_control->description = sprintf( __( 'Upload a logo to to replace the site title. Recommended dimensions: %1$s.', 'baton' ), $sds_logo_dimensions ); // Add description
+		}
+	}
 
-	// Section - overwrite the default title_tagline section properties
-	$wp_customize->get_section( 'title_tagline' )->title = __( 'Logo/Site Title & Tagline', 'baton' );
-
-	// Control
-	$wp_customize->add_control(
-		new SDS_Theme_Options_Customize_Logo_Control(
-			$wp_customize,
-			'logo_attachment_id',
+	/**
+	 * Logo Upload (below WordPress 4.5 or if the theme doesn't support WordPress' custom logo)
+	 */
+	if ( SDS_Theme_Options::wp_version_compare( '4.5', '<' ) || ! get_theme_support( 'custom-logo' ) ) {
+		// Setting (data is sanitized upon update_option() call using the sanitize function in $sds_theme_options_instance)
+		$wp_customize->add_setting(
+			'sds_theme_options[logo_attachment_id]', // IDs can have nested array keys
 			array(
-				'label' => __( 'Logo', 'baton' ),
-				'section'  => 'title_tagline',
-				'settings' => 'sds_theme_options[logo_attachment_id]',
-				'type' => 'sds_theme_options_logo' // Used in js controller
+				'default' => $sds_theme_options_defaults['logo_attachment_id'],
+				'type' => 'option',
+				'sanitize_callback' => 'absint'
 			)
-		)
-	);
+		);
+
+		// Section - overwrite the default title_tagline section properties
+		$wp_customize->get_section( 'title_tagline' )->title = __( 'Logo/Site Title & Tagline', 'baton' );
+
+		// Control
+		$wp_customize->add_control(
+			new SDS_Theme_Options_Customize_Logo_Control(
+				$wp_customize,
+				'logo_attachment_id',
+				array(
+					'label' => __( 'Logo', 'baton' ),
+					'section'  => 'title_tagline',
+					'settings' => 'sds_theme_options[logo_attachment_id]',
+					'type' => 'sds_theme_options_logo' // Used in js controller
+				)
+			)
+		);
+	}
 
 
 	/**
@@ -1463,6 +1486,10 @@ add_action( 'customize_preview_init', 'sds_customize_preview_init' );
 function sds_customize_preview_init() {
 	global $sds_theme_options;
 
+	// Bail if we don't have options stored in the database
+	if ( ! SDS_Theme_Options::has_options() )
+		return;
+
 	$sds_theme_options = SDS_Theme_Options::get_sds_theme_options();
 
 	/**
@@ -1490,7 +1517,7 @@ add_action( 'customize_controls_enqueue_scripts', 'sds_customize_controls_enqueu
 
 function sds_customize_controls_enqueue_scripts() {
 	// SDS Theme Options
-	wp_enqueue_style( 'sds-theme-options', SDS_Theme_Options::sds_core_url() . '/css/sds-theme-options.css', false, SDS_Theme_Options::VERSION );
+	wp_enqueue_style( 'sds-theme-options', SDS_Theme_Options::sds_core_url() . '/css/sds-theme-options.css', false, SDS_Theme_Options::get_version() );
 
 	// Customizer SDS Theme Options (after core SDS Theme Options)
 	wp_enqueue_style( 'sds-theme-options-customizer', SDS_Theme_Options::sds_core_url() . '/css/customizer-sds-theme-options.css', array( 'sds-theme-options' ) );
@@ -1502,12 +1529,47 @@ function sds_customize_controls_enqueue_scripts() {
  ***************************/
 
 /**
+ * This function contains a forward compatibility check for WordPress 4.5 custom logo uploader.
+ */
+add_action( 'after_setup_theme' , 'sds_after_setup_theme_custom_logo_compatibility', 9999 ); // Late
+
+function sds_after_setup_theme_custom_logo_compatibility() {
+	global $sds_theme_options;
+
+	// Bail if we don't have options stored in the database
+	if ( ! SDS_Theme_Options::has_options() )
+		return;
+
+	// If this is WordPress 4.5 and up and we have a old logo
+	if ( SDS_Theme_Options::wp_version_compare( '4.5' ) && ! empty( $sds_theme_options['logo_attachment_id'] ) ) {
+		/*
+		 * Store the SDS Theme Options logo attachment ID in the new custom_logo theme mod
+		 * to ensure forwards compatibility. Also remove the SDS Theme Options logo attachment ID
+		 * as it is no longer necessary.
+		 */
+
+		// Update the custom_logo theme mod
+		set_theme_mod( 'custom_logo', $sds_theme_options['logo_attachment_id'] );
+
+		// Unset the SDS Theme Options logo attachment ID
+		$sds_theme_options['logo_attachment_id'] = false;
+
+		// Update SDS Theme Options
+		update_option( SDS_Theme_Options::get_option_name(), $sds_theme_options );
+	}
+}
+
+/**
  * This function sets various theme options to their defaults to prevent overlap between themes.
  */
 add_action( 'after_switch_theme' , 'sds_after_switch_theme' );
 
 function sds_after_switch_theme() {
 	global $sds_theme_options;
+
+	// Bail if we don't have options stored in the database
+	if ( ! SDS_Theme_Options::has_options() )
+		return;
 
 	$sds_theme_option_defaults = SDS_Theme_Options::get_sds_theme_option_defaults(); // Defaults
 

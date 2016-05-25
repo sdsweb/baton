@@ -65,7 +65,6 @@ if ( ! class_exists( 'Baton_Conductor_Customizer' ) ) {
 				'priority' => 40,
 				'title' => __( 'Blog Display', 'baton' ),
 				'description' => sprintf( __( 'This is a preview of our Conductor Widget. <a href="%1$s" target="_blank">Install our Conductor plugin</a> for even better ways to control your content.', 'baton' ), esc_url( 'https://conductorplugin.com/?utm_source=baton&utm_medium=link&utm_content=baton-conductor&utm_campaign=baton' ) ),
-				//'active_callback' => array( $this, 'is_front_page_sidebar_active' )
 			) );
 
 			/*
@@ -155,10 +154,11 @@ if ( ! class_exists( 'Baton_Conductor_Customizer' ) ) {
 					$wp_customize,
 					'baton_conductor[disabled]', // IDs can have nested array keys
 					array(
-						'label' => __( 'Enable', 'baton' ),
-						'section'  => 'baton_conductor',
+						'label' => __( 'Blog Display', 'baton' ),
+						'description' => __( 'Use this setting to enable or disable Blog Display <sup>by Conductor</sup>.', 'baton' ),
+						'section'  => 'baton_enable_disable_features',
 						'settings' => 'baton_conductor[disabled]',
-						'priority' => 10,
+						'priority' => 20,
 						'type' => 'checkbox', // Used in js controller
 						'css_class' => 'baton-conductor-disabled',
 						'css_id' => 'baton_conductor_disabled',
@@ -166,7 +166,7 @@ if ( ! class_exists( 'Baton_Conductor_Customizer' ) ) {
 						'unchecked_label' => __( 'No', 'baton' ),
 						'style' => array(
 							'before' => 'width: 38%; text-align: center;',
-							'after' => 'right: 0; width: 38%; padding: 0 6px; text-align: center;'
+							'after' => 'width: 38%; padding: 0 6px; text-align: center; right: 0;'
 						)
 					)
 				)
@@ -189,8 +189,8 @@ if ( ! class_exists( 'Baton_Conductor_Customizer' ) ) {
 							'post_thumbnails_size' => 'baton_conductor[post_thumbnails_size]',
 							'excerpt_length' => 'baton_conductor[excerpt_length]'
 						),
-						'priority' => 20,
-						'active_callback' => array( $this, 'is_baton_conductor_enabled' )
+						'priority' => 10,
+						'active_callback' => 'baton_is_baton_conductor_enabled'
 					)
 				)
 			);
@@ -246,25 +246,6 @@ if ( ! class_exists( 'Baton_Conductor_Customizer' ) ) {
 		 */
 		public function sanitize_js_output( $input ) {
 			return json_encode( $input );
-		}
-
-		/**
-		 * This function determines if the Front Page Sidebar is active.
-		 */
-		public function is_front_page_sidebar_active() {
-			return ( is_active_sidebar( 'front-page-sidebar' ) );
-		}
-
-		/**
-		 * This function determines if Baton Conductor functionality is enabled.
-		 */
-		public function is_baton_conductor_enabled() {
-			// Grab the Baton Conductor theme mod
-			$baton_conductor = Baton_Conductor_Instance();
-			$baton_conductor_theme_mod = get_theme_mod( 'baton_conductor', $baton_conductor->defaults );
-			$baton_conductor_theme_mod = wp_parse_args( $baton_conductor_theme_mod, $baton_conductor->defaults ); // Parse any saved arguments into defaults
-
-			return ! $baton_conductor_theme_mod['disabled'];
 		}
 	}
 

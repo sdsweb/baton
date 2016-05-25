@@ -2,12 +2,45 @@
 Theme: Baton
 Author: Slocum Themes/Slocum Design Studio
 Author URI: https://slocumthemes.com/
-Current Version: 1.0.1
+Current Version: 1.0.4
 ==========================================
+
+
+1.0.4 // May 09 2016
+--------------------
+- Introduced baton_categories_tags() to output categories and tags
+- Added CSS for icons within categories and tags output
+
+1.0.3 // May 02 2016
+--------------------
+- Updated SDS Core to version 1.5.0 (adds support for WordPress 4.5 logo uploader)
+- Added WordPress 4.5 custom-logo theme support
+- Fixed PHP notice for undefined "disabled" key in Baton Conductor logic
+- Updated POT file
+
+1.0.2 // April 26 2016
+----------------------
+- Added missing styles to color schemes
+- Added option to enable/disable demo content
+- Added logic to output static front page or blog roll below default widgets/Front
+  Page sidebar if Baton Conductor was disabled
+- Fixed PHP notice regarding hide_post_meta in SDS Theme Options
+- Fixed default values in Baton Conductor for featured image size and category selection
+- Added medium_large image dimensions to Baton Conductor
+- Fixed bug with Baton Conductor pagination output (use query max_num_pages for total)
+- Introduced baton_is_demo_content_enabled()
+- Introduced baton_is_baton_conductor_enabled()
+- Introduced baton_has_static_front_page()
+- Added regular versions of Font Awesome and Fitvids.js
+- Added attribution for SDS Core
+- Added various Gravity Forms styles
+- Updated screenshot
+- Updated POT file
 
 1.0.1 // December 24 2015
 -------------------------
 - Fixed multiple fatal PHP errors due to functions not existing at the time of execution
+- Updated to SDS Core Free 1.4.2
 
 1.0.0 // December 17 2015
 -------------------------

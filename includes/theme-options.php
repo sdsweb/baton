@@ -10,16 +10,16 @@ if ( ! defined( 'ABSPATH' ) )
  *
  * Description: This Class instantiates SDS Options, providing themes with various options to use.
  *
- * @version 1.4.2
+ * @version 1.5.0
  */
 if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 	global $sds_theme_options;
 
 	class SDS_Theme_Options {
 		/**
-		 * @var string, Constant, Version of the class
+		 * @var string
 		 */
-		const VERSION = '1.4.2';
+		public static $version = '1.5.0';
 
 
 		// Private Variables
@@ -72,12 +72,12 @@ if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 		/**
 		 * This function enqueues our theme options stylesheet, WordPress media upload scripts, and our custom upload script only on our options page in admin.
 		 */
-		function admin_enqueue_scripts( $hook ) {
+		public function admin_enqueue_scripts( $hook ) {
 			// SDS Theme Options CSS
-			wp_enqueue_style( 'sds-theme-options', SDS_Theme_Options::sds_core_url() . '/css/sds-theme-options.css', false, self::VERSION );
+			wp_enqueue_style( 'sds-theme-options', SDS_Theme_Options::sds_core_url() . '/css/sds-theme-options.css', false, self::get_version() );
 
 			// SDS Theme Options JS
-			wp_enqueue_script( 'sds-theme-options', get_template_directory_uri() . '/includes/js/sds-theme-options.js', array( 'jquery' ), self::VERSION );
+			wp_enqueue_script( 'sds-theme-options', get_template_directory_uri() . '/includes/js/sds-theme-options.js', array( 'jquery' ), self::get_version() );
 
 			// About Page
 			if ( $hook === 'appearance_page_about-baton' )
@@ -88,7 +88,7 @@ if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 		/**
 		 * This function adds a menu item under "Appearance" in the Dashboard.
 		 */
-		function admin_menu() {
+		public function admin_menu() {
 			// About
 			add_theme_page( sprintf( __( 'About %1$s', 'baton' ), $this->theme->get( 'Name' ) ), sprintf( __( 'About %1$s', 'baton' ), $this->theme->get( 'Name' ) ), 'edit_theme_options', 'about-baton', array( $this, 'sds_about_theme_page' ) );
 		}
@@ -96,7 +96,7 @@ if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 		/**
 		 * This function handles the rendering of the about page.
 		 */
-		function sds_about_theme_page() {
+		public function sds_about_theme_page() {
 		?>
 			<div class="wrap about-wrap">
 				<h1><?php printf( __( 'Welcome to %1$s', 'baton' ), $this->theme->get( 'Name' ) ); ?></h1>
@@ -432,7 +432,7 @@ if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 		/**
 		 * This function sanitizes input from the user when saving options.
 		 */
-		function sds_theme_options_sanitize( $input ) {
+		public function sds_theme_options_sanitize( $input ) {
 			// Reset to Defaults
 			// TODO: Allow for reset in the Customizer?
 			if ( isset( $input['reset'] ) )
@@ -554,9 +554,16 @@ if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 		}
 
 		/**
+		 * This function determines if SDS Theme Options are currently stored in the database.
+		 */
+		public static function has_options() {
+			return ( ! empty( get_option( SDS_Theme_Options::get_option_name() ) ) );
+		}
+
+		/**
 		 * This function returns a formatted list of Google Web Font families for use when enqueuing styles.
 		 */
-		function get_google_font_families_list() {
+		public function get_google_font_families_list() {
 			if ( function_exists( 'sds_web_fonts' ) ) {
 				$web_fonts = sds_web_fonts();
 				$web_fonts_count = count( $web_fonts );
@@ -616,6 +623,13 @@ if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 		}
 
 		/**
+		 * This function returns the current version.
+		 */
+		public static function get_version() {
+			return self::$version;
+		}
+
+		/**
 		 * This function returns the directory for SDS Core without a trailing slash. A relative directory
 		 * can be returned by passing true for the $relative parameter.
 		 */
@@ -632,6 +646,17 @@ if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 		 */
 		public static function sds_core_url() {
 			return untrailingslashit( get_template_directory_uri() . self::sds_core_dir( true ) );
+		}
+
+		/**
+		 * This function returns a boolean result comparing against the current WordPress version.
+		 *
+		 * @return Boolean
+		 */
+		public static function wp_version_compare( $version, $operator = '>=' ) {
+			global $wp_version;
+
+			return version_compare( $wp_version, $version, $operator );
 		}
 	}
 

@@ -63,7 +63,7 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 				// Posts per page
 				'posts_per_page' => 9,
 				// Category
-				'category' => '',
+				'category' => 0, // All
 				// Flexbox Columns
 				'flexbox_columns' => 3,
 				// Output
@@ -114,7 +114,7 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 					),
 				),
 				// Featured Image Size
-				'post_thumbnails_size' => false,
+				'post_thumbnails_size' => '',
 				// Excerpt Length
 				'excerpt_length' => apply_filters( 'excerpt_length', 55 )
 			);
@@ -123,11 +123,14 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 			$this->includes();
 
 
+			// Setup the theme mod
+			$this->setup_theme_mod();
+
+
 			// Hooks
 			add_action( 'wp', array( $this, 'wp' ), 20 ); // Populate theme mod value (after WordPress)
 			add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) ); // Enqueue scripts/styles
 			add_action( 'dynamic_sidebar_after', array( $this, 'dynamic_sidebar_after' ), 10, 2 ); // After Front Page Sidebar
-
 		}
 
 		/**
@@ -144,15 +147,11 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 		 ************************************************************************************/
 
 		/**
-		 * This function populates the theme_mod
+		 * This function populates the theme_mod.
 		 */
 		public function wp() {
-			// Grab the Baton Conductor theme mod
-			$this->baton_conductor_theme_mod = get_theme_mod( 'baton_conductor', $this->defaults );
-
-			// Parse any saved arguments into defaults
-			$this->baton_conductor_theme_mod = wp_parse_args( $this->baton_conductor_theme_mod, $this->defaults );
-
+			// Setup the theme mod
+			$this->setup_theme_mod();
 		}
 
 		/**
@@ -319,7 +318,7 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 		 * This function determines if Baton Conductor is disabled.
 		 */
 		public function is_baton_conductor_disabled() {
-			return $this->baton_conductor_theme_mod['disabled'] === true;
+			return ( $this->baton_conductor_theme_mod['disabled'] === true );
 		}
 
 		/**
@@ -363,6 +362,17 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 			$css_classes = apply_filters( 'baton_conductor_css_classes', $css_classes, $instance, $this );
 
 			return implode( ' ', $css_classes );
+		}
+
+		/**
+		 * This function sets up the theme mod data.
+		 */
+		public function setup_theme_mod() {
+			// Grab the Baton Conductor theme mod
+			$this->baton_conductor_theme_mod = get_theme_mod( 'baton_conductor', $this->defaults );
+
+			// Parse any saved arguments into defaults
+			$this->baton_conductor_theme_mod = wp_parse_args( $this->baton_conductor_theme_mod, $this->defaults );
 		}
 	}
 
