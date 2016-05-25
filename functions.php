@@ -682,7 +682,7 @@ if ( ! function_exists( 'sds_about_page_free_vs_pro_table' ) ) {
 
 
 /**
- * Load the theme function files (options panel, theme functions, widgets, etc...).
+ * Load the theme function files (options panel, theme functions, widgets, wocommerce configuration etc...).
  */
 include_once get_template_directory() . '/includes/class-tgm-plugin-activation.php'; // TGM Activation
 
@@ -692,6 +692,8 @@ include_once get_template_directory() . '/includes/widget-social-media.php'; // 
 
 include_once get_template_directory() . '/theme/class-baton.php'; // Baton Class (main functionality, actions/filters)
 include_once get_template_directory() . '/theme/class-baton-customizer.php'; // Baton Customizer Class (specific to the customizer)
+
+include_once get_template_directory() . 'theme/class-woo-config.php'; // Baton Class for woocommerce configuration 
 
 include_once get_template_directory() . '/theme/class-baton-conductor.php'; // Baton Conductor Class
 include_once get_template_directory() . '/theme/class-baton-conductor-customizer.php'; // Baton Conductor Customizer Class (specific to the customizer)

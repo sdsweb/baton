@@ -2620,6 +2620,25 @@ nav .primary-nav .children .children:after {
 	box-shadow: 0 2px 0 0 #d3d8de;
 }
 
+.woocommerce div.product form.cart .variations select {
+	background-color: #FFF;
+}
+
+.woocommerce .star-rating {
+	color: #3ebbbb;
+}
+
+.woocommerce .cross-sells .products .product {
+	padding: 0 20px 0 0;
+	-webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.woocommerce ul.products li.product .price del {
+    display: inline;
+    margin-right: 1em;
+}
+
 .woocommerce #content div.product div.images, .woocommerce div.product div.images, .woocommerce-page #content div.product div.images, .woocommerce-page div.product div.images {
 	width: 25%;
 }
@@ -2628,18 +2647,83 @@ nav .primary-nav .children .children:after {
 	width: 70%;
 }
 
+/* Single Product Description Tab */
+.woocommerce div.product .woocommerce-tabs ul.tabs {
+	margin: 0;
+}
+.woocommerce div.product .woocommerce-tabs .panel {
+    padding: 20px;
+    background-color: #FFF;
+}
+
+/* Review Section and comment section background color */
+.woocommerce #reviews #comments ol.commentlist li .comment-text, .woocommerce #review_form #respond textarea, .woocommerce #review_form #respond input, .woocommerce #review_form #respond select, .woocommerce .woocommerce-ordering select {
+	background-color: #FFF;
+}
+.woocommerce #review_form #respond label {
+	display: block;
+}
+
 /* Upsell and related Product grid size */
 .single-product ul.products li.product {
-	width: 16%;
+	width: 18.5%;
+}
+
+/* Woocomemrce Button */
+.woocommerce button.button.alt, .woocommerce a.button.alt, .woocommerce input.button.alt {
+	background-color: #3ebbbb;
+}
+.woocommerce button.button.alt:hover, .woocommerce a.button.alt:hover, .woocommerce input.button.alt:hover {
+	background-color: #363a42;
+}
+.woocommerce button.button {
+	-webkit-border-radius: 0;
+	border-radius: 0;
+}
+
+.woocommerce #respond input#submit, .woocommerce a.button, .woocommerce input.button {
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	color: #FFF;
+	background-color: #3ebbbb;
+}
+.woocommerce #respond input#submit:hover, .woocommerce a.button:hover, .woocommerce input.button:hover {
+	color: #FFF;
+	background-color: #363a42;
 }
 
 /* Border around sections */
-.single-product .product > .products, .single-product .single-product .product > .products, .woocommerce-tabs {
+.single-product .product > .upsells, .single-product .single-product .product > .products {
     border-bottom: 1px solid #d3ced2;
     margin-bottom: 60px;
 }
-.woocommerce-page.woocommerce h2 {
+.woocommerce h2 {
     font-size: 24px;
+    margin-bottom: 1.5em;
+}
+.woocommerce #reviews h3 {
+	font-size: 20px;
+    margin-bottom: 1em;
+}
+
+.woocommerce .quantity input {
+	padding: 0.65em 0em;
+    background: #FFF;
+    margin-right: 1em;
+}
+
+.product_meta > span {
+    display: block;
+}
+
+.woocommerce #review_form #respond textarea, .woocommerce #review_form #respond input, .woocommerce #review_form #respond select {
+	border: 1px solid #DDD;
+}
+
+.woocommerce table.cart td.actions  .coupon .input-text {
+    width: 160px;
+    margin-right: 1em;
+    float: none;
 }
 
 
@@ -2862,6 +2946,11 @@ nav .primary-nav .children .children:after {
 		-ms-justify-content: center;
 		-webkit-justify-content: center;
 		justify-content: center;
+	}
+
+	/* Woocommerce Post Style */
+	.woocommerce-page div.product div.images, .woocommerce-page div.product div.summary, .woocommerce ul.products li.product, .woocommerce-page ul.products li.product {
+    	width: 100%;
 	}
 }
 
@@ -3276,6 +3365,7 @@ nav .primary-nav .children .children:after {
 	.after-posts-widgets .widget {
 		padding-top: 1.5em;
 	}
+
 }
 
 @media only screen and (max-width: 480px) {

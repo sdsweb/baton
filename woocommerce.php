@@ -17,10 +17,6 @@ get_header(); ?>
 
 				<?php woocommerce_content(); ?>
 
-				<!-- Comments -->
-				<?php comments_template(); // Comments ?>
-				<!-- End Comments -->
-
 				<div class="clear"></div>
 			</section>
 		</div>
