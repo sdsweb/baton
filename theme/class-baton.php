@@ -98,12 +98,27 @@ if ( ! class_exists( 'Baton' ) ) {
 			// Gravity Forms
 			add_filter( 'gform_field_input', array( $this, 'gform_field_input' ), 10, 5 ); // Add placholder to newsletter form
 			add_filter( 'gform_confirmation', array( $this, 'gform_confirmation' ), 10, 4 ); // Change confirmation message on newsletter form
+
+			/* Woocommerce Hooks */
+			remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
+			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'baton_single_product_thumb_html' ) );
+
 		}
 
 
 		/************************************************************************************
 		 *    Functions to correspond with actions above (attempting to keep same order)    *
 		 ************************************************************************************/
+
+
+		/**
+		* Woocommerce function to add a wrapping div in the product archive thumbnails
+		*/
+
+		public function baton_single_product_thumb_html() {
+			echo woocommerce_get_product_thumbnail();
+			echo '<div class="woo-baton-product-wrapper">';
+		}
 
 		/**
 		 * This function adds images sizes to WordPress.

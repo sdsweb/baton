@@ -412,6 +412,71 @@ nav .primary-nav .children .children:after{
 
 
 /**
+ *
+ * Woocommerce Color and Styling for Green Scheme
+ * 
+*/
+.woocommerce ul.products li.product, .woocommerce-page ul.products li.product {
+	background-color: #FFF;
+}
+
+.woocommerce div.product form.cart .variations select {
+	background-color: #FFF;
+}
+
+.woocommerce .star-rating {
+	color: #3f70d4;
+}
+
+/* Woocommerce Pagination styles */
+
+.woocommerce nav.woocommerce-pagination ul li a:hover {
+	color: #FFF;
+	background: #3f70d4;
+}
+
+/* Single Product Description Tab */
+
+.woocommerce div.product .woocommerce-tabs .panel {
+    background-color: #FFF;
+}
+
+/* Review Section and comment section background color */
+.woocommerce #reviews #comments ol.commentlist li .comment-text, .woocommerce #review_form #respond textarea, .woocommerce #review_form #respond input, .woocommerce #review_form #respond select, .woocommerce .woocommerce-ordering select {
+	background-color: #FFF;
+}
+
+
+/* Woocomemrce Button */
+.woocommerce button.button.alt, .woocommerce a.button.alt, .woocommerce input.button.alt {
+	background-color: #3f70d4;
+}
+.woocommerce button.button.alt:hover, .woocommerce a.button.alt:hover, .woocommerce input.button.alt:hover {
+	background-color: #3f70d4;
+}
+
+
+.woocommerce #respond input#submit, .woocommerce a.button, .woocommerce input.button {
+	color: #FFF;
+	background-color: #3f70d4;
+}
+.woocommerce #respond input#submit:hover, .woocommerce a.button:hover, .woocommerce input.button:hover {
+	color: #FFF;
+	background-color: #363a42;
+}
+
+/* Border around sections */
+.single-product .product > .upsells, .single-product .single-product .product > .products {
+    border-bottom: 1px solid #d3ced2;
+}
+
+
+.woocommerce .quantity input {
+    background: #FFF;
+}
+
+
+/**
  * Responsive Structure
  */
 @media only screen and (max-width: 768px) {
