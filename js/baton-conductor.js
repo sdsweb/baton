@@ -17,7 +17,11 @@ var baton_conductor = baton_conductor || {};
 			$baton_conductor_flexbox_range = $( '.baton-conductor-flexbox-columns-range' ),
 			$baton_conductor_output = $( '.baton-conductor-output' ),
 			baton_conductor_section = api.section( 'baton_conductor' ),
-			baton_conductor_disabled_control = api.control( 'baton_conductor[disabled]' );
+			baton_conductor_posts_per_page_setting = api( 'baton_conductor[posts_per_page]' ),
+			baton_conductor_posts_per_page_setting_changed = false,
+			baton_conductor_disabled_control = api.control( 'baton_conductor[disabled]' ),
+			baton_conductor_enhanced_display_disabled_setting = api( 'baton_conductor[enhanced_display_disabled]' ),
+			baton_conductor_enhanced_display_disabled_control = api.control( 'baton_conductor[enhanced_display_disabled]' );
 
 		// Baton Conductor Section
 		if ( baton_conductor_section ) {
@@ -53,6 +57,27 @@ var baton_conductor = baton_conductor || {};
 		if ( baton_conductor_disabled_control ) {
 			// Append <sup> label to title
 			baton_conductor_disabled_control.container.find( '.customize-control-title' ).append( ' <sup>' + baton_conductor.customizer.section_sup_label + '</sup>' + ' ' + baton_conductor.customizer.control_enabled_label );
+		}
+
+		// Baton Conductor Enhanced Display Disabled Control
+		if ( baton_conductor_enhanced_display_disabled_control ) {
+			// Append <sup> label to title
+			baton_conductor_enhanced_display_disabled_control.container.find( '.customize-control-title' ).append( ' <sup>' + baton_conductor.customizer.section_sup_label + '</sup>' + ' ' + baton_conductor.customizer.control_enabled_label );
+		}
+
+		// Baton Conductor Posts Per Page Setting
+		if ( baton_conductor_posts_per_page_setting && baton_conductor_enhanced_display_disabled_setting ) {
+			// Baton Conductor Enhanced Display Disabled Setting
+			baton_conductor_enhanced_display_disabled_setting.bind( function( setting ) {
+				// If the enhanced display is disabled
+				if ( setting && baton_conductor_posts_per_page_setting() === baton_conductor.defaults.posts_per_page ) {
+					baton_conductor_posts_per_page_setting( ( baton_conductor.defaults.posts_per_page - baton_conductor.defaults.enhanced_display_posts_per_page_offset ) );
+				}
+				// Otherwise if it is enabled
+				else if ( baton_conductor_posts_per_page_setting() === ( baton_conductor.defaults.posts_per_page - baton_conductor.defaults.enhanced_display_posts_per_page_offset ) ) {
+					baton_conductor_posts_per_page_setting( baton_conductor.defaults.posts_per_page );
+				}
+			} );
 		}
 	} );
 

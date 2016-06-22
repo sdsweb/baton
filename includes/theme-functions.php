@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) )
  *
  * Description: This file contains functions for utilizing options within themes (displaying site logo, tagline, etc...)
  *
- * @version 1.5.0
+ * @version 1.5.1
  */
 
 
@@ -492,32 +492,6 @@ if ( ! function_exists( 'sds_post_meta' ) ) {
 			</p>
 		<?php
 		endif;
-	}
-}
-
-
-/**
- * This function displays pagination links based on arguments.
- * @uses paginate_links for output
- */
-if ( ! function_exists( 'sds_post_navigation' ) ) {
-	function sds_post_navigation( $return = false ) {
-		global $wp_query;
-
-		$pagination_links = paginate_links( array(
-			'base' => esc_url( get_pagenum_link() ) . '%_%', // %_% will be replaced with format below
-			'format' => ( ( get_option( 'permalink_structure' ) && ! $wp_query->is_search ) || ( is_home() && get_option( 'show_on_front' ) !== 'page' && ! get_option( 'page_on_front' ) ) ) ? '?paged=%#%' : '&paged=%#%', // %#% will be replaced with page number
-			'current' => max( 1, get_query_var( 'paged' ) ), // Get whichever is the max out of 1 and the current page count
-			'total' => $wp_query->max_num_pages, // Get total number of pages in current query
-			'next_text' => __( 'Next &#8594;', 'baton' ),
-			'prev_text' => __( '&#8592; Previous', 'baton' ),
-			'type' => ( $return ) ? 'array' : 'list'  // Output this as an array or unordered list
-		) );
-
-		if ( $return )
-			return $pagination_links;
-		else
-			echo $pagination_links;
 	}
 }
 
@@ -1612,17 +1586,6 @@ add_action( 'tgmpa_register', 'sds_tgmpa_register' );
 
 function sds_tgmpa_register() {
 	$plugins = array(
-		// One-Click Child Themes for Slocum Themes
-		array(
-			'name' => 'One-Click Child Themes for Slocum Themes',
-			'slug' => 'sds-one-click-child-themes-master',
-			'source' => 'https://github.com/sdsweb/sds-one-click-child-themes/archive/master.zip',
-			'required' => false,
-			'force_activation' => false,
-			'force_deactivation' => false,
-			'external_url' => 'https://github.com/sdsweb/sds-one-click-child-themes/'
-		),
-
 		// Note
 		array(
 			'name' => 'Note - A live text widget',

@@ -326,18 +326,20 @@ if ( ! function_exists( 'baton_body_class' ) ) {
 		if ( is_customize_preview() )
 			$classes['baton-customizer'] = 'customizer';
 
-		// Front Page Sidebar/Widgets
+		// Front Page
 		if ( is_front_page() ) {
 			// If the Front Page Sidebar is active
-			if ( sds_is_front_page_sidebar_active() )
+			if ( baton_has_static_front_page() && sds_is_front_page_sidebar_active() )
 				$classes['baton-front-page-sidebar-active'] = 'front-page-sidebar-active';
-			// Otherwise if Baton demo content or Baton Conductor are enabled
-			else if ( baton_is_demo_content_enabled() || baton_is_baton_conductor_enabled() )
-				$classes['baton-front-page-sidebar-default-widgets'] = 'front-page-sidebar-default-widgets';
 
 			// If Baton Conductor is enabled
-			if ( baton_is_baton_conductor_enabled() )
+			if ( baton_has_blog_front_page() && have_posts() && baton_is_baton_conductor_enabled() ) {
 				$classes['baton-baton-conductor'] = 'baton-baton-conductor';
+
+				// Enhanced Display
+				if ( baton_is_baton_conductor_display_enhanced() )
+					$classes['baton-baton-conductor-enhanced-display'] = 'baton-baton-conductor-enhanced-display';
+			}
 
 			// If Conductor is active on the Front Page
 			if ( class_exists( 'Conductor' ) && Conductor::is_conductor() ) {
@@ -345,8 +347,8 @@ if ( ! function_exists( 'baton_body_class' ) ) {
 				if ( isset( $classes['baton-front-page-sidebar-active'] ) )
 					unset( $classes['baton-front-page-sidebar-active'] );
 
-				if ( isset( $classes['baton-front-page-sidebar-default-widgets'] ) )
-					unset( $classes['baton-front-page-sidebar-default-widgets'] );
+				if ( isset( $classes['baton-baton-conductor-enhanced-display'] ) )
+					unset( $classes['baton-baton-conductor-enhanced-display'] );
 
 				if ( isset( $classes['baton-baton-conductor'] ) )
 					unset( $classes['baton-baton-conductor'] );
@@ -545,10 +547,13 @@ function baton_is_yoast_breadcrumbs_active() {
 }
 
 /**
- * This determines if Baton demo content is enabled.
+ * This determines if Baton Conductor enhanced display is enabled.
  */
-function baton_is_demo_content_enabled() {
-	return ( get_theme_mod( 'baton_disable_demo_content' ) === false );
+function baton_is_baton_conductor_display_enhanced() {
+	// Grab the Baton_Conductor instance
+	$baton_conductor = Baton_Conductor_Instance();
+
+	return $baton_conductor->is_baton_conductor_enhanced_display_enabled();
 }
 
 /**
@@ -562,26 +567,31 @@ function baton_is_baton_conductor_enabled() {
 }
 
 /**
- * This function displays default Front Page Sidebar widgets.
- */
-function baton_default_widgets() {
-	get_template_part( 'default-widget', 'note-baton-hero-1' ); // Note Baton Hero 1
-	get_template_part( 'default-widget', 'note-baton-features-1' ); // Note Baton Feature 1
-	get_template_part( 'default-widget', 'note-baton-hero-2' ); // Note Baton Hero 2
-}
-
-/**
- * This determines if a Static Front Page is selected.
+ * This determines if a static front page is selected.
  */
 function baton_has_static_front_page() {
 	return ( get_option( 'show_on_front' ) === 'page' && get_option( 'page_on_front' ) );
 }
 
 /**
+ * This determines if a blog front page is selected.
+ */
+function baton_has_blog_front_page() {
+	return ( ! baton_has_static_front_page() );
+}
+
+/**
+ * This is used as the active_callback for Baton Conductor customizer components.
+ */
+function baton_conductor_customizer_active_callback() {
+	return ( baton_is_baton_conductor_enabled() && baton_has_blog_front_page() );
+}
+
+/**
  * This function outputs categories and tags.
  */
 if ( ! function_exists( 'baton_categories_tags' ) ) {
-	function baton_categories_tags() {
+	function baton_categories_tags( $force_display = false ) {
 		// Grab categories and tags
 		$categories = get_the_category();
 		$tags = get_the_tags();
@@ -595,7 +605,7 @@ if ( ! function_exists( 'baton_categories_tags' ) ) {
 		<div class="article-categories-wrap <?php echo esc_attr( implode( ' ', $css_classes ) ); ?>">
 			<?php
 				// Categories
-				if ( $categories ) :
+				if ( $categories && ( is_singular( 'post' ) || $force_display ) ) :
 			?>
 				<span class="categories">
 					<span class="fa fa-filter"></span>
@@ -607,7 +617,7 @@ if ( ! function_exists( 'baton_categories_tags' ) ) {
 
 			<?php
 				// Tags
-				if ( $tags ) :
+				if ( $tags && ( is_singular( 'post' ) || $force_display ) ) :
 			?>
 				<span class="tags">
 					<span class="fa <?php echo esc_attr( ( count( $tags ) > 1 ) ? 'fa-tags' : 'fa-tag' ); ?>"></span>
@@ -620,7 +630,6 @@ if ( ! function_exists( 'baton_categories_tags' ) ) {
 	<?php
 	}
 }
-
 
 /*
  * SDS Core

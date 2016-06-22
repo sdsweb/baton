@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) )
  *
  * Description: This Class instantiates SDS Options, providing themes with various options to use.
  *
- * @version 1.5.0
+ * @version 1.5.1
  */
 if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 	global $sds_theme_options;
@@ -19,18 +19,7 @@ if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 		/**
 		 * @var string
 		 */
-		public static $version = '1.5.0';
-
-
-		// Private Variables
-
-		/**
-		 * @var SDS_Theme_Options, Instance of the class
-		 */
-		private static $instance; // Keep track of the instance
-
-
-		// Public Variables
+		public static $version = '1.5.1';
 
 		/**
 		 * @var string, Option name
@@ -46,6 +35,11 @@ if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 		 * @var WP_Theme, Current theme object
 		 */
 		public $theme;
+
+		/**
+		 * @var SDS_Theme_Options, Instance of the class
+		 */
+		private static $instance; // Keep track of the instance
 
 		/*
 		 * Function used to create instance of class.
@@ -110,9 +104,9 @@ if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 
 				<div id="sds-about-page">
 					<?php
-					/*
-					 * Getting Started
-					 */
+						/*
+						 * Getting Started
+						 */
 					?>
 					<div id="getting-started-tab-content" class="sds-theme-options-tab-content sds-theme-options-tab-content-active">
 						<div class="sds-about-page-section">
@@ -144,9 +138,9 @@ if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 					</div>
 
 					<?php
-					/*
-					 * Free vs. Pro
-					 */
+						/*
+						 * Free vs. Pro
+						 */
 					?>
 					<div id="free-vs-pro-tab-content" class="sds-theme-options-tab-content">
 						<div class="sds-about-page-section">
@@ -557,7 +551,9 @@ if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 		 * This function determines if SDS Theme Options are currently stored in the database.
 		 */
 		public static function has_options() {
-			return ( ! empty( get_option( SDS_Theme_Options::get_option_name() ) ) );
+			$sds_theme_options = get_option( SDS_Theme_Options::get_option_name() );
+
+			return ( ! empty( $sds_theme_options ) );
 		}
 
 		/**

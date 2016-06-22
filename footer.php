@@ -1,11 +1,11 @@
 <?php
-	global $sidebars_widgets;
 
 	// Bail if accessed directly
 	if ( ! defined( 'ABSPATH' ) )
 		exit;
 
-	global $sds_theme_options;
+
+global $sds_theme_options, $sidebars_widgets;
 ?>
 		</div>
 		<!-- End Content Wrapper -->

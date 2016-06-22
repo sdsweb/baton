@@ -92,8 +92,6 @@ if ( ! class_exists( 'Baton' ) ) {
 			add_filter( 'baton_conductor_content_wrapper_html_element', array( $this, 'conductor_widget_content_wrapper_html_element' ) ); // Adjust the content wrapper HTML element on Conductor Widgets
 			add_filter( 'baton_conductor_content_wrapper_css_classes', array( $this, 'conductor_widget_content_wrapper_css_classes' ), 10, 5 ); // Adjust the CSS classes for the content wrapper HTML element on Conductor Widgets
 			add_filter( 'baton_conductor_instance', array( $this, 'conductor_widget_instance' ), 20, 3 ); // Adjust callback functions upon Conductor Widget display
-			add_action( 'baton_conductor_pagination_before', array( $this, 'conductor_widget_pagination_before' ) ); // Output a wrapper element around Conductor Widget pagination
-			add_action( 'baton_conductor_pagination_after', array( $this, 'conductor_widget_pagination_after' ) ); // Output a wrapper element around Conductor Widget pagination
 
 			// Gravity Forms
 			add_filter( 'gform_field_input', array( $this, 'gform_field_input' ), 10, 5 ); // Add placholder to newsletter form
@@ -367,12 +365,18 @@ if ( ! class_exists( 'Baton' ) ) {
 			// Grab the Conductor Widget instance (if it exists)
 			$note_widget = ( class_exists( 'Note' ) && function_exists( 'Note_Widget' ) ) ? Note_Widget() : false;
 
-			// Baton (main stylesheet)
-			wp_enqueue_style( 'baton', get_template_directory_uri() . '/style.css', false, $this->version );
+			// If a child theme is active
+			if ( is_child_theme() ) {
+				// Baton (main stylesheet)
+				wp_enqueue_style( 'baton', get_template_directory_uri() . '/style.css', false, $this->version );
 
-			// Enqueue the child theme stylesheet only if a child theme is active
-			if ( is_child_theme() )
+				// Baton Child Theme
 				wp_enqueue_style( 'baton-child', get_stylesheet_uri(), array( 'baton' ), $this->version );
+			}
+			// Otherwise just Baton is active
+			else
+				// Baton (main stylesheet)
+				wp_enqueue_style( 'baton', get_stylesheet_uri(), false, $this->version );
 
 			// Google Web Fonts - Lato & Martel Sans
 			wp_enqueue_style( 'baton-google-web-fonts', $protocol . '://fonts.googleapis.com/css?family=Lato:400,700,900|Martel+Sans:400,600', false, $this->version );
@@ -390,7 +394,6 @@ if ( ! class_exists( 'Baton' ) ) {
 			if ( ! class_exists( 'Note' ) || ( $note_widget && is_a( $note_widget, 'Note_Widget' ) && ! is_active_widget( false, false, $note_widget->id_base, true ) ) )
 				// Note Flexbox Shim
 				wp_enqueue_style( 'baton-note-flexbox', get_template_directory_uri() . '/css/note-flexbox.css', false, $this->version );
-
 		}
 
 		/**
@@ -1430,7 +1433,7 @@ if ( ! class_exists( 'Baton' ) ) {
 		?>
 			<!-- Article Header -->
 			<header class="article-title-wrap">
-				<?php baton_categories_tags(); ?>
+				<?php baton_categories_tags( true ); ?>
 
 				<?php if ( strlen( get_the_title() ) > 0 ) : ?>
 					<h1 class="article-title">

@@ -30,9 +30,9 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 		public $baton_conductor_query = false;
 
 		/**
-		 * @var array
+		 * @var int
 		 */
-		public $baton_conductor_query_hooks = array();
+		public $enhanced_display_offset = 4;
 
 
 		private static $instance; // Keep track of the instance
@@ -58,10 +58,14 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 			$this->defaults = array(
 				// Disabled
 				'disabled' => false,
+				// Enhanced Display Disabled
+				'enhanced_display_disabled' => false,
 				// Title
 				'title' => __( 'Recent News', 'baton' ),
 				// Posts per page
-				'posts_per_page' => 9,
+				'posts_per_page' => 13,
+				// Posts per page
+				'enhanced_display_posts_per_page_offset' => 4,
 				// Category
 				'category' => 0, // All
 				// Flexbox Columns
@@ -128,9 +132,9 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 
 
 			// Hooks
+			add_action( 'pre_get_posts', array( $this, 'pre_get_posts' ) ); // Pre Get Posts
 			add_action( 'wp', array( $this, 'wp' ), 20 ); // Populate theme mod value (after WordPress)
 			add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) ); // Enqueue scripts/styles
-			add_action( 'dynamic_sidebar_after', array( $this, 'dynamic_sidebar_after' ), 10, 2 ); // After Front Page Sidebar
 		}
 
 		/**
@@ -145,6 +149,33 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 		/************************************************************************************
 		 *    Functions to correspond with actions above (attempting to keep same order)    *
 		 ************************************************************************************/
+
+
+		/**
+		 * This function adjusts the main query arguments on the home (blog) page if Baton Conductor
+		 * is enabled.
+		 */
+		public function pre_get_posts( $query ) {
+			// Bail if Baton Conductor is not enabled, we're in the admin, this isn't the main query, or we're not on the home (blog) page
+			if ( $this->is_baton_conductor_disabled() || is_admin() || ! $query->is_main_query() || ! $query->is_home() )
+				return;
+
+			// Grab the Baton Conductor Query instance
+			$baton_conductor_query = Baton_Conductor_Query();
+
+			// If we're in the Customizer, setup the theme mod
+			if ( is_customize_preview() )
+				$this->setup_theme_mod();
+
+			// Adjust the posts per page
+			$query->set( 'posts_per_page', ( ! empty( $this->baton_conductor_theme_mod['posts_per_page'] ) && $this->baton_conductor_theme_mod['posts_per_page'] !== 0 ) ? $this->baton_conductor_theme_mod['posts_per_page'] : $baton_conductor_query->post_count->publish );
+
+			// Adjust the category
+			$query->set( 'cat', $this->baton_conductor_theme_mod['category'] );
+
+			// Ignore sticky posts
+			$query->set( 'ignore_sticky_posts', true );
+		}
 
 		/**
 		 * This function populates the theme_mod.
@@ -171,137 +202,6 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 				wp_enqueue_style( 'baton-conductor-flexbox', get_template_directory_uri() . '/css/conductor-flexbox.css', false, $this->version );
 		}
 
-		/**
-		 * This function outputs Baton Conductor after the Front Page Sidebar.
-		 */
-		public function dynamic_sidebar_after( $sidebar_id, $has_widgets ) {
-			// Bail if we're not on the front-end
-			if ( is_admin() )
-				return;
-
-			// If Baton Conductor is enabled, we have widgets, and this is the Front Page Sidebar
-			if ( $this->is_baton_conductor_enabled() && $has_widgets && $sidebar_id === 'front-page-sidebar' ) :
-				// Create an "instance"
-				$instance = array(
-					// Title
-					'title' => $this->baton_conductor_theme_mod['title'],
-					// Posts Per page
-					'posts_per_page' => $this->baton_conductor_theme_mod['posts_per_page'],
-					// Category
-					'category' => $this->baton_conductor_theme_mod['category'],
-					// Flexbox Columns
-					'flexbox_columns' => $this->baton_conductor_theme_mod['flexbox_columns'],
-					'flexbox'=> array(
-						'columns' => $this->baton_conductor_theme_mod['flexbox_columns']
-					),
-					// Output
-					'output' => $this->baton_conductor_theme_mod['output'],
-					// Output elements
-					'output_elements' => array(),
-					// Content Display Type
-					'content_display_type' => 'excerpt',
-					// Widget Size
-					'widget_size' => 'flexbox',
-					// Featured Image Size
-					'post_thumbnails_size' => $this->baton_conductor_theme_mod['post_thumbnails_size'],
-					// Excerpt Length
-					'excerpt_length' => ( $this->baton_conductor_theme_mod['excerpt_length'] !== 0 ) ? $this->baton_conductor_theme_mod['excerpt_length'] : $this->defaults['excerpt_length']
-				);
-
-				// Loop through output elements to populate other data
-				foreach ( $instance['output'] as $priority => $output ) {
-					// Add this element to the list of output elements (Conductor expects this to exist)
-					$instance['output_elements'][$output['id']] = $priority;
-
-					// Post content
-					if ( $output['id'] === 'post_content' )
-						$instance['content_display_type'] = $output['value'];
-				}
-
-				// Query arguments
-				$instance['query_args'] = array(
-					'posts_per_page' => $instance['posts_per_page'],
-					'max_num_posts' => '',
-					'offset' => 0,
-					'post__in' => false,
-					'post__not_in' => false
-				);
-
-				// Conductor instance filter (second parameter would be widget args in Conductor)
-				$instance = apply_filters( 'baton_conductor_instance', $instance, array(), $this );
-
-				// Base CSS classes
-				$css_classes = array(
-					'in',
-					'front-page-widget-in',
-					'cf',
-					'widget',
-					'front-page',
-					'front-page-sidebar',
-					'conductor-widget',
-					'conductor-widget-wrap',
-					'conductor-row',
-					'conductor-widget-row',
-					'conductor-flex',
-					'conductor-widget-flex'
-				);
-
-				// Add the specific column CSS classes
-				$css_classes[] = 'conductor-row-' . $instance['flexbox_columns'] . '-columns';
-				$css_classes[] = 'conductor-widget-row-' . $instance['flexbox_columns'] . '-columns';
-				$css_classes[] = 'conductor-flex-' . $instance['flexbox_columns'] . '-columns';
-				$css_classes[] = 'conductor-widget-flex-' . $instance['flexbox_columns'] . '-columns';
-				$css_classes[] = 'conductor-' . $instance['flexbox_columns'] . '-columns';
-				$css_classes[] = 'conductor-widget-' . $instance['flexbox_columns'] . '-columns';
-
-				$css_classes = implode( ' ', $css_classes );
-			?>
-				<div id="front-page-baton-conductor" class="<?php echo esc_attr( $css_classes ); ?>">
-					<?php
-						// If we have a title
-						if ( ! empty( $this->baton_conductor_theme_mod['title'] ) ) :
-							do_action( 'baton_conductor_title_before', $instance,  $this );
-					?>
-							<h3 class="widgettitle widget-title conductor-widget-title"><?php echo $instance['title']; ?></h3>
-					<?php
-							do_action( 'baton_conductor_title_after', $instance, $this );
-						endif;
-
-						// Conductor Query
-						$baton_conductor_query_args = array(
-							'instance' => $instance,
-							'display_content_args_count' => 4 // Current number of arguments on the display_content() function, used in sortable output
-						);
-						$baton_conductor_query_args = apply_filters( 'baton_conductor_query_args', $baton_conductor_query_args, $instance, $this );
-
-						// Default to Baton Conductor Query
-						if ( ! ( $this->baton_conductor_query = apply_filters( 'baton_conductor_query', false, $baton_conductor_query_args, $instance, $this ) ) )
-							$this->baton_conductor_query = new Baton_Conductor_Query( $baton_conductor_query_args );
-
-						// Return the query (should contain results)
-						$baton_conductor_query_results = $this->baton_conductor_query->get_query();
-
-						if ( $this->baton_conductor_query->have_posts() ) {
-							while ( $this->baton_conductor_query->have_posts() ) : $this->baton_conductor_query->the_post();
-								$this->display_content( $this->baton_conductor_query->get_current_post(), $instance );
-							endwhile;
-
-							// Pagination
-							if ( $this->baton_conductor_query->has_pagination() ) {
-								do_action( 'baton_conductor_pagination_before', $instance, $baton_conductor_query_results, $this );
-								$this->baton_conductor_query->get_pagination_links();
-								do_action( 'baton_conductor_pagination_after', $instance, $baton_conductor_query_results, $this );
-							}
-
-							// Reset global $post
-							wp_reset_postdata();
-						}
-					?>
-				</div>
-			<?php
-			endif;
-		}
-
 
 		/**********************
 		 * Internal Functions *
@@ -322,6 +222,20 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 		}
 
 		/**
+		 * This function determines if Baton Conductor enhanced display is disabled.
+		 */
+		public function is_baton_conductor_enhanced_display_disabled() {
+			return ( $this->baton_conductor_theme_mod['enhanced_display_disabled'] === true );
+		}
+
+		/**
+		 * This function determines if Baton Conductor enhanced display is enabled.
+		 */
+		public function is_baton_conductor_enhanced_display_enabled() {
+			return ( $this->is_baton_conductor_enhanced_display_disabled() === false );
+		}
+
+		/**
 		 * This function outputs the content for this Baton Conductor instance.
 		 */
 		public function display_content( $post, $instance ) {
@@ -330,10 +244,31 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 		}
 
 		/**
+		 * This function displays a specific output element.
+		 */
+		public function display_output_element( $output_element, $baton_conductor_query, $args ) {
+				// Array callback
+				// Only display this element if the callback exists, it's callable, and the element is visible
+				if ( is_array( $output_element['callback'] ) && method_exists( $output_element['callback'][0], $output_element['callback'][1] ) && $output_element['visible'] )
+					call_user_func_array( $output_element['callback'], $args );
+				// String/other callbacks within the Baton Conductor Query class
+				// Only display this element if the callback exists, it's callable, and the element is visible
+				else if ( ! is_array( $output_element['callback'] ) && method_exists( $baton_conductor_query, $output_element['callback'] ) && is_callable( array( $baton_conductor_query, $output_element['callback'] ) ) && $output_element['visible'] )
+					call_user_func_array( array( $baton_conductor_query, $output_element['callback'] ), $args );
+				// String/other callbacks outside of this class
+				// Only display this element if the callback exists, it's callable, and the element is visible
+				else if ( ! is_array( $output_element['callback'] ) && function_exists( $output_element['callback'] ) && is_callable( $output_element['callback'] ) && $output_element['visible'] )
+					call_user_func_array( $output_element['callback'], $args );
+		}
+
+		/**
 		 * This function generates CSS classes for widget output.
 		 */
 		public function get_css_classes( $instance ) {
-			$baton_conductor_query = $this->baton_conductor_query->get_query();
+			global $wp_query;
+
+			// Grab the current post index
+			$post_index = ( baton_is_baton_conductor_display_enhanced() ) ? ( ( $wp_query->current_post + 1 ) - $this->enhanced_display_offset ) : ( $wp_query->current_post + 1 );
 
 			// Base CSS classes
 			$css_classes = array(
@@ -343,21 +278,18 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 				'conductor-col'
 			);
 
-			// Even or odd
-			if ( property_exists( $baton_conductor_query, 'current_post' ) ) {
-				// Even
-				if ( ( $baton_conductor_query->current_post + 1 ) % 2 === 0 ) {
-					$css_classes[] = 'conductor-widget-even';
-					$css_classes[] = 'conductor-widget-flexbox-even';
-				}
-				// Odd
-				else {
-					$css_classes[] = 'conductor-widget-odd';
-					$css_classes[] = 'conductor-widget-flexbox-odd';
-				}
-
-				$css_classes[] = 'conductor-col-' . ( $baton_conductor_query->current_post + 1 ); // WP_Query returns posts in a zero-index array
+			// Even
+			if ( $post_index % 2 === 0 ) {
+				$css_classes[] = 'conductor-widget-even';
+				$css_classes[] = 'conductor-widget-flexbox-even';
 			}
+			// Odd
+			else {
+				$css_classes[] = 'conductor-widget-odd';
+				$css_classes[] = 'conductor-widget-flexbox-odd';
+			}
+
+			$css_classes[] = 'conductor-col-' . $post_index; // WP_Query returns posts in a zero-index array
 
 			$css_classes = apply_filters( 'baton_conductor_css_classes', $css_classes, $instance, $this );
 
@@ -374,13 +306,70 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 			// Parse any saved arguments into defaults
 			$this->baton_conductor_theme_mod = wp_parse_args( $this->baton_conductor_theme_mod, $this->defaults );
 		}
+
+		/**
+		 * This function returns a Baton Conductor instance (settings).
+		 */
+		public function get_baton_conductor_instance() {
+			// Create an "instance"
+			$instance = array(
+				// Title
+				'title' => $this->baton_conductor_theme_mod['title'],
+				// Posts Per page
+				'posts_per_page' => $this->baton_conductor_theme_mod['posts_per_page'],
+				// Category
+				'category' => $this->baton_conductor_theme_mod['category'],
+				// Flexbox Columns
+				'flexbox_columns' => $this->baton_conductor_theme_mod['flexbox_columns'],
+				'flexbox'=> array(
+					'columns' => $this->baton_conductor_theme_mod['flexbox_columns']
+				),
+				// Output
+				'output' => $this->baton_conductor_theme_mod['output'],
+				// Output elements
+				'output_elements' => array(),
+				// Content Display Type
+				'content_display_type' => 'excerpt',
+				// Widget Size
+				'widget_size' => 'flexbox',
+				// Featured Image Size
+				'post_thumbnails_size' => $this->baton_conductor_theme_mod['post_thumbnails_size'],
+				// Excerpt Length
+				'excerpt_length' => ( $this->baton_conductor_theme_mod['excerpt_length'] !== 0 ) ? $this->baton_conductor_theme_mod['excerpt_length'] : $this->defaults['excerpt_length']
+			);
+
+			// Loop through output elements to populate other data
+			foreach ( $instance['output'] as $priority => $output ) {
+				// Add this element to the list of output elements (Conductor expects this to exist)
+				$instance['output_elements'][$output['id']] = $priority;
+
+				// Post content
+				if ( $output['id'] === 'post_content' )
+					$instance['content_display_type'] = $output['value'];
+			}
+
+			// Query arguments
+			$instance['query_args'] = array(
+				'posts_per_page' => $instance['posts_per_page'],
+				'max_num_posts' => '',
+				'offset' => 0,
+				'post__in' => false,
+				'post__not_in' => false
+			);
+
+			// Conductor instance filter (second parameter would be widget args in Conductor)
+			return apply_filters( 'baton_conductor_instance', $instance, array(), $this );
+		}
 	}
 
 
+	/**
+	 * Create an instance of the Baton_Conductor_Query class.
+	 */
 	function Baton_Conductor_Instance() {
 		return Baton_Conductor::instance();
 	}
 
-	// Starts Baton Customizer
+	// Starts Baton Conductor
 	Baton_Conductor_Instance();
 }

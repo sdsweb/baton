@@ -8,12 +8,12 @@
  * Version: 1.0.4
  * License: GPL2+
  * License URI: http://www.gnu.org/licenses/gpl.html
- * Tags: blue, green, orange, pink, purple, red, white, light, two-columns, left-sidebar, fluid-layout, custom-colors, custom-menu, editor-style, featured-images, full-width-template, sticky-post, theme-options, threaded-comments
-
+ * Tags: one-column, two-columns, left-sidebar, right-sidebar, grid-layout, custom-background, custom-colors, custom-menu, editor-style, featured-images, footer-widgets, full-width-template, sticky-post, theme-options, threaded-comments, translation-ready, blog, entertainment, news, photography, portfolio
+ *
  * Baton WordPress theme, Copyright (C) 2015 Slocum Studio
  * Baton WordPress theme is licensed under the GPL.
-
- * @see attribution.txt for more license information.
+ *
+ * @see readme.txt for more license information.
  */
 
 /**
@@ -972,15 +972,6 @@ a img.aligncenter {
 	text-align: center;
 }
 
-/* Default Widgets */
-#front-page-note-widget-default-hero-1 {
-	background: url( 'images/baton-jellyfish.jpg' ) center / cover no-repeat;
-}
-
-#front-page-note-widget-default-hero-2 {
-	background: url( 'images/baton-northern-lights.jpg' ) center / cover no-repeat;
-}
-
 /* Headings */
 .conductor-widget h1 {
 	font-size: 2.2222222rem;
@@ -1470,6 +1461,129 @@ a img.aligncenter {
 .front-page-widgets .conductor-slider-news-content .conductor-slider-author-byline {
 	padding-left: 0;
 	padding-right: 0;
+}
+
+/* Baton Conductor - Enhanced Display */
+.baton-baton-conductor-enhanced-display-wrap .baton-hero-widget .baton-baton-conductor-enhanced-in {
+	max-width: none;
+	padding: 0;
+}
+
+#baton-baton-conductor-enhanced-hero-1 {
+	background: url( 'images/baton-jellyfish.jpg' ) center / cover no-repeat;
+}
+
+#baton-baton-conductor-enhanced-hero-1 .article-categories-wrap {
+	display: none;
+}
+
+#baton-baton-conductor-enhanced-hero-1 .article-title {
+	margin-bottom: 0;
+	color: #fff;
+	font-size: 3.3333333rem;
+}
+
+#baton-baton-conductor-enhanced-hero-1 .article-title a {
+	color: #fff;
+}
+
+#baton-baton-conductor-enhanced-hero-1 .article-content {
+	color: #e8e1e1;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#baton-baton-conductor-enhanced-hero-1 .article-content.article-content-more-link {
+	font-size: 1rem;
+}
+
+#baton-baton-conductor-enhanced-features-1 {
+	padding: 5rem 0;
+}
+
+#baton-baton-conductor-enhanced-features-1 .article-categories-wrap {
+	display: none;
+}
+
+#baton-baton-conductor-enhanced-features-1 .article-title a,
+#baton-baton-conductor-enhanced-features-1 .more-link {
+	color: #363a42;
+}
+
+#baton-baton-conductor-enhanced-features-1 .more-link {
+	text-decoration: none;
+}
+
+#baton-baton-conductor-enhanced-features-1 .note-content {
+	text-align: center;
+}
+
+#baton-baton-conductor-enhanced-features-1 .note-content .article-title {
+	font-size: 1.8888888rem;
+}
+
+#baton-baton-conductor-enhanced-features-1 .note-col .note-content .article-title {
+	font-size: 1rem;
+}
+
+#baton-baton-conductor-enhanced-features-1 .note-col .note-content .article-content,
+#baton-baton-conductor-enhanced-features-1 .note-col .note-content .more-link {
+	font-size: 16px;
+}
+
+#baton-baton-conductor-enhanced-features-1 .note-col .note-content .more-link {
+	font-weight: bold;
+}
+
+#baton-baton-conductor-enhanced-hero-2 {
+	background: url( 'images/baton-northern-lights.jpg' ) center / cover no-repeat;
+}
+
+#baton-baton-conductor-enhanced-hero-2 .article-categories-wrap {
+	display: none;
+}
+
+#baton-baton-conductor-enhanced-hero-2 .note-content {
+	text-align: center;
+}
+
+#baton-baton-conductor-enhanced-hero-2 .article-title {
+	margin-bottom: 0;
+	color: #fff;
+	font-size: 2.2222222rem;
+}
+
+#baton-baton-conductor-enhanced-hero-2 .article-title a {
+	color: #fff;
+}
+
+#baton-baton-conductor-enhanced-hero-2 .article-content {
+	color: #e8e1e1;
+}
+
+/* Baton Conductor */
+.baton-baton-conductor .content-wrap {
+	padding-top: 0;
+}
+
+#baton-baton-conductor {
+	padding: 2em 1rem;
+}
+
+#baton-baton-conductor .baton-baton-conductor-title {
+	margin: 1.5rem auto !important; /* !important due to Conductor CSS */
+	padding-bottom: 1.5rem;
+	font-size: 1.777777em;
+	text-align: center;
+}
+
+#baton-baton-conductor .conductor-col {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+#baton-baton-conductor .pagination.navigation {
+	padding: 0;
 }
 
 
@@ -1966,18 +2080,18 @@ nav .primary-nav .children .children:after {
 }
 
 /* Front Page */
-.front-page-sidebar-default-widgets .in.content-wrapper-in,
+.baton-baton-conductor-enhanced-display .in.content-wrapper-in,
 .front-page-sidebar-active .in.content-wrapper-in {
 	max-width: none;
 	padding: 0;
 }
 
-.front-page-sidebar-default-widgets .content-wrap,
+.baton-baton-conductor-enhanced-display .content-wrap,
 .front-page-sidebar-active .content-wrap {
 	padding-top: 0;
 }
 
-.front-page-widgets {
+.front-page-widgets, .baton-baton-conductor-enhanced-display-wrap {
 	width: 100%;
 }
 
@@ -2104,9 +2218,9 @@ nav .primary-nav .children .children:after {
 }
 
 .article-categories-wrap .fa {
+	color: #d4d5d5;
 	font-size: 0.77777777em;
 	padding-right: 0.1em;
-	opacity: 0.75;
 }
 
 .article-categories-wrap .tags .fa {
@@ -2259,6 +2373,11 @@ nav .primary-nav .children .children:after {
 .after-posts-widgets .widget {
 	margin-bottom: 3em;
 	padding-top: 2em;
+}
+
+.after-posts-widgets > .widget.conductor-widget,
+.after-posts-widgets > .widget.widget.conductor-widget {
+	display: block; /* Conductor sets these to display: inline; by default */
 }
 
 /* Comments */
@@ -2492,6 +2611,7 @@ nav .primary-nav .children .children:after {
 .social-media-icons a {
 	text-align: center;
 	text-decoration: none;
+	display: inline-block; /* Fixes a display bug in IE10 */
 }
 
 .social-media-icons a:hover {
@@ -2522,7 +2642,7 @@ nav .primary-nav .children .children:after {
 	line-height: 1.75em;
 }
 
-.front-page-sidebar-default-widgets #footer,
+.baton-baton-conductor-enhanced-display #footer,
 .front-page-sidebar-active #footer {
 	margin-top: 0;
 }
@@ -2851,7 +2971,7 @@ body .mc-newsletter .gform_footer .button, body .mc_newsletter .gform_footer .bu
 body .mc-gravity_wrapper .gform_footer .button, body .mc_gravity_wrapper .gform_footer .button,
 body .mc-newsletter_wrapper .gform_footer .button, body .mc_newsletter_wrapper .gform_footer .button {
 	width: 100%;
-	padding: 0.6em 1%;
+	padding: 0.6em 1% !important; /* !important for IE */
 	white-space: pre-wrap;
 }
 
@@ -3203,6 +3323,15 @@ body .mc-newsletter-confirmation .gform_confirmation_wrapper, body .mc_newslette
 		padding-right: 2rem;
 	}
 
+	/* Baton Conductor - Enhanced Display */
+	#baton-baton-conductor-enhanced-hero-1 .article-title {
+		font-size: 1.8888888rem;
+	}
+
+	#baton-baton-conductor-enhanced-hero-2 .article-title {
+		font-size: 1.8888888rem;
+	}
+
 	/**
 	 * Note
 	 */
@@ -3425,7 +3554,7 @@ body .mc-newsletter-confirmation .gform_confirmation_wrapper, body .mc_newslette
 		padding-top: 3em;
 	}
 
-	.front-page-sidebar-default-widgets .content-wrap,
+	.baton-baton-conductor-enhanced-display .content-wrap,
 	.front-page-sidebar-active .content-wrap {
 		padding-top: 0;
 	}

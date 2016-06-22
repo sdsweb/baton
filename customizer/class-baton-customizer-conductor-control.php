@@ -57,12 +57,16 @@ if ( ! class_exists( 'Baton_Customize_Conductor_Control' ) ) {
 		 * This function enqueues scripts and styles
 		 */
 		public function enqueue() {
+			// Grab the Baton Conductor instance
+			$baton_conductor = Baton_Conductor_Instance();
+
 			// Stylesheets
 			wp_enqueue_style( 'baton-conductor', get_template_directory_uri() . '/css/baton-conductor.css', array( 'dashicons' ) );
 
 			// Scripts
 			wp_enqueue_script( 'baton-conductor', get_template_directory_uri() . '/js/baton-conductor.js', array( 'backbone', 'jquery-ui-sortable' ), $this->version, true );
 			wp_localize_script( 'baton-conductor', 'baton_conductor', array(
+				'defaults' => $baton_conductor->defaults,
 				'customizer' => array(
 					'section_sup_label' => _x( 'by Conductor', 'label applied to <sup> tag within Customizer section title for Baton Conductor', 'baton' ),
 					'control_enabled_label' => _x( 'Enabled', 'label applied to Customizer control title for Baton Conductor', 'baton' )
@@ -181,7 +185,7 @@ if ( ! class_exists( 'Baton_Customize_Conductor_Control' ) ) {
 								<input type="range" min="1" max="6" class="baton-conductor-input baton-conductor-flexbox-columns-range" id="baton_conductor_flexbox_columns" name="baton_conductor[flexbox_columns]" value="<?php echo esc_attr( $this->settings['flexbox_columns']->value() ); ?>" <?php $this->link( 'flexbox_columns' ); ?> />
 								<span class="baton-conductor-flexbox-columns-value"><?php echo $this->settings['flexbox_columns']->value(); ?></span>
 								<br />
-								<small class="description baton-conductor-description"><?php _e( 'Specify the number of columns used when outputting widget content.', 'baton' ); ?></small>
+								<small class="description baton-conductor-description"><?php _e( 'Specify the number of columns used when outputting widget content. Note: When the enhanced Blog Display <sup>by Conductor</sup> is enabled, this value applies to posts which are output after the enhanced displays.', 'baton' ); ?></small>
 							</p>
 						<?php
 							endif;

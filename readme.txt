@@ -63,11 +63,11 @@
 /**
  * Jellyfish - /images/baton-jellyfish.jpg - https://unsplash.com/photos/bviex5lwf3s
  * License: CC0 (GPL Compatible)
- * Copyright: Danist Soh - https://unsplash.com/danist07
+ * Copyright: Danist Soh - https://unsplash.com/@danist07
  */
 
 /**
  * Northern Lights - /images/baton-northern-lights.jpg - https://unsplash.com/photos/R3pUGn5YiTg
  * License: CC0 (GPL Compatible)
- * Copyright: Marcelo Quinan - https://unsplash.com/danist07
+ * Copyright: Marcelo Quinan - https://unsplash.com/@marceloquinan
  */

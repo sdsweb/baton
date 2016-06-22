@@ -80,6 +80,15 @@ if ( ! class_exists( 'Baton_Conductor_Customizer' ) ) {
 				)
 			);
 
+			// Enhanced Display Disabled
+			$wp_customize->add_setting(
+				'baton_conductor[enhanced_display_disabled]',
+				array(
+					'default' => apply_filters( 'theme_mod_baton_conductor_enhanced_display_disabled', $baton_conductor->defaults['enhanced_display_disabled'] ),
+					'sanitize_callback' => 'baton_boolval'
+				)
+			);
+
 			// Title
 			$wp_customize->add_setting(
 				'baton_conductor[title]',
@@ -158,10 +167,36 @@ if ( ! class_exists( 'Baton_Conductor_Customizer' ) ) {
 						'description' => __( 'Use this setting to enable or disable Blog Display <sup>by Conductor</sup>.', 'baton' ),
 						'section'  => 'baton_enable_disable_features',
 						'settings' => 'baton_conductor[disabled]',
-						'priority' => 20,
+						'priority' => 10,
+						'active_callback' => 'baton_has_blog_front_page',
 						'type' => 'checkbox', // Used in js controller
 						'css_class' => 'baton-conductor-disabled',
 						'css_id' => 'baton_conductor_disabled',
+						'checked_label' => __( 'Yes', 'baton' ),
+						'unchecked_label' => __( 'No', 'baton' ),
+						'style' => array(
+							'before' => 'width: 38%; text-align: center;',
+							'after' => 'width: 38%; padding: 0 6px; text-align: center; right: 0;'
+						)
+					)
+				)
+			);
+
+			// Enhanced Display Disabled
+			$wp_customize->add_control(
+				new SDS_Theme_Options_Customize_Checkbox_Control(
+					$wp_customize,
+					'baton_conductor[enhanced_display_disabled]', // IDs can have nested array keys
+					array(
+						'label' => __( 'Enhanced Blog Display', 'baton' ),
+						'description' => __( 'Use this setting to enable or disable the enhanced Blog Display <sup>by Conductor</sup>.', 'baton' ),
+						'section'  => 'baton_enable_disable_features',
+						'settings' => 'baton_conductor[enhanced_display_disabled]',
+						'priority' => 20,
+						'active_callback' => 'baton_conductor_customizer_active_callback',
+						'type' => 'checkbox', // Used in js controller
+						'css_class' => 'baton-conductor-enhanced-display-disabled',
+						'css_id' => 'baton_conductor_enhanced_display_disabled',
 						'checked_label' => __( 'Yes', 'baton' ),
 						'unchecked_label' => __( 'No', 'baton' ),
 						'style' => array(
@@ -190,7 +225,7 @@ if ( ! class_exists( 'Baton_Conductor_Customizer' ) ) {
 							'excerpt_length' => 'baton_conductor[excerpt_length]'
 						),
 						'priority' => 10,
-						'active_callback' => 'baton_is_baton_conductor_enabled'
+						'active_callback' => 'baton_conductor_customizer_active_callback'
 					)
 				)
 			);
