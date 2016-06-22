@@ -4,7 +4,7 @@
  *
  * @class Baton
  * @author Slocum Studio
- * @version 1.0.4
+ * @version 1.0.5
  * @since 1.0.0
  */
 
@@ -17,7 +17,7 @@ if ( ! class_exists( 'Baton' ) ) {
 		/**
 		 * @var string, Current version number
 		 */
-		public $version = '1.0.4';
+		public $version = '1.0.5';
 
 		/**
 		 * @var Baton, Instance of the class

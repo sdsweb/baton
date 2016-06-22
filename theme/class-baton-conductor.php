@@ -12,7 +12,7 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 		/**
 		 * @var string
 		 */
-		public $version = '1.0.0';
+		public $version = '1.0.5';
 
 		/**
 		 * @var array

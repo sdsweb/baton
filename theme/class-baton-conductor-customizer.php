@@ -12,7 +12,7 @@ if ( ! class_exists( 'Baton_Conductor_Customizer' ) ) {
 		/**
 		 * @var string
 		 */
-		public $version = '1.0.0';
+		public $version = '1.0.5';
 
 
 		private static $instance; // Keep track of the instance
