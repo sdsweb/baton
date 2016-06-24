@@ -116,7 +116,7 @@ if ( ! function_exists( 'sds_post_meta' ) ) {
 		global $sds_theme_options;
 
 		// Determine if we should we output the post meta based on settings
-		if ( $sds_theme_options['hide_post_meta'] )
+		if ( isset( $sds_theme_options['hide_post_meta'] ) )
 			return;
 		?>
 			<span class="article-date <?php echo ( $archive ) ? 'baton-col baton-col-article-date' : false; ?>">
@@ -682,7 +682,7 @@ if ( ! function_exists( 'sds_about_page_free_vs_pro_table' ) ) {
 
 
 /**
- * Load the theme function files (options panel, theme functions, widgets, etc...).
+ * Load the theme function files (options panel, theme functions, widgets, wocommerce configuration etc...).
  */
 include_once get_template_directory() . '/includes/class-tgm-plugin-activation.php'; // TGM Activation
 

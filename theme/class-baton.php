@@ -98,12 +98,61 @@ if ( ! class_exists( 'Baton' ) ) {
 			// Gravity Forms
 			add_filter( 'gform_field_input', array( $this, 'gform_field_input' ), 10, 5 ); // Add placholder to newsletter form
 			add_filter( 'gform_confirmation', array( $this, 'gform_confirmation' ), 10, 4 ); // Change confirmation message on newsletter form
+
+			/* Woocommerce Hooks */
+			remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
+			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'baton_single_product_thumb_html' ) );
+
+			/* Woocommerce Archive product Hooks */
+			add_action( 'woocommerce_before_main_content', array( $this, 'baton_woo_main_content_before' ) );
+			add_action( 'woocommerce_after_main_content', array( $this, 'baton_woo_main_content_after' ) );
+
+			
+			remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+			
+
 		}
 
 
 		/************************************************************************************
 		 *    Functions to correspond with actions above (attempting to keep same order)    *
 		 ************************************************************************************/
+
+
+		/**
+		* Woocommerce function to add a wrapping div in the product archive thumbnails
+		*/
+
+		public function baton_single_product_thumb_html() {
+				echo woocommerce_get_product_thumbnail();
+			if ( ! is_cart() ) {	
+				echo '<div class="woo-baton-product-wrapper">';
+			}
+		}
+
+		public function baton_woo_main_content_before() { ?>
+
+			<main role="main" class="content-wrap content-wrap-page content-wrap-full-width-page baton-flex <?php echo ( baton_is_yoast_breadcrumbs_active() ) ? 'has-breadcrumbs' : 'no-breadcrumbs'; ?>">
+				<!-- Page Content -->
+				<div class="baton-col baton-col-content">
+					<section class="content-container content-page-container">
+
+		<?php 
+		}
+
+		public function baton_woo_main_content_after() { ?>
+
+						<div class="clear"></div>
+					</section>
+				</div>
+			<!-- End Page Content -->
+
+				<div class="clear"></div>
+			</main>
+			<!-- End Main -->
+
+		<?php 
+		}
 
 		/**
 		 * This function adds images sizes to WordPress.

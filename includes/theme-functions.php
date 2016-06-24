@@ -1735,6 +1735,9 @@ function sds_after_setup_theme() {
 	// Enable Title Tag Support (4.1)
 	add_theme_support( 'title-tag' );
 
+	// Enable Woocommerce Support
+	add_theme_support( 'woocommerce' );
+
 	// Enable excerpts on Pages
 	add_post_type_support( 'page', 'excerpt' );
 

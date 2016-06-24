@@ -2606,6 +2606,168 @@ nav .primary-nav .children .children:after {
 }
 
 
+/**
+ *
+ * Woocommerce Styling
+ * 
+*/
+.woocommerce ul.products li.product, .woocommerce-page ul.products li.product {
+	background-color: #FFF;
+	-webkit-box-shadow: 0 2px 0 0 #d3d8de;
+	box-shadow: 0 2px 0 0 #d3d8de;
+}
+
+.woo-baton-product-wrapper {
+    padding: 20px;
+}
+
+.woocommerce div.product form.cart .variations select {
+	background-color: #FFF;
+}
+
+.woocommerce .star-rating {
+	color: #3ebbbb;
+}
+
+.woocommerce .cross-sells .products .product {
+	padding: 0 20px 0 0;
+	-webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.woocommerce ul.products li.product .price del {
+    display: inline;
+    margin-right: 1em;
+}
+
+.woocommerce #content div.product div.images, .woocommerce div.product div.images, .woocommerce-page #content div.product div.images, .woocommerce-page div.product div.images {
+	width: 25%;
+}
+
+.woocommerce #content div.product div.summary, .woocommerce div.product div.summary, .woocommerce-page #content div.product div.summary, .woocommerce-page div.product div.summary {
+	width: 70%;
+}
+
+/* Single Product Description Tab */
+.woocommerce div.product .woocommerce-tabs ul.tabs {
+	margin: 0;
+}
+.woocommerce div.product .woocommerce-tabs .panel {
+    padding: 20px;
+    background-color: #FFF;
+}
+
+/* Review Section and comment section background color */
+.woocommerce #reviews #comments ol.commentlist li .comment-text, .woocommerce #review_form #respond textarea, .woocommerce #review_form #respond input, .woocommerce #review_form #respond select, .woocommerce .woocommerce-ordering select {
+	background-color: #FFF;
+}
+.woocommerce #review_form #respond label {
+	display: block;
+}
+
+/* Upsell and related Product grid size */
+.single-product ul.products li.product {
+	width: 18.5%;
+}
+/* Woocomemrce Button */
+.woocommerce button.button.alt, .woocommerce a.button.alt, .woocommerce input.button.alt {
+	background-color: #3ebbbb;
+}
+.page-template-template-full-width .cross-sells ul.products li.product .button {
+    font-size: 100%;
+}
+
+.cross-sells ul.products li.product .button {
+    font-size: 76%;
+}
+
+.woocommerce-cart .wc-proceed-to-checkout a.checkout-button {
+	font-size: 100%;
+	padding: .618em 1em;
+}
+
+
+/* Woocommerce Pagination */
+
+.woocommerce nav.woocommerce-pagination ul li span.current {
+    background: #363a42;
+    color: #FFF;
+}
+
+.woocommerce nav.woocommerce-pagination {
+    text-align: left;
+}
+.woocommerce nav.woocommerce-pagination ul {
+	border: none;
+}
+.woocommerce nav.woocommerce-pagination ul li {
+    border-right: none;
+    padding: 0 0.25em;
+}    
+
+.woocommerce button.button.alt:hover, .woocommerce a.button.alt:hover, .woocommerce input.button.alt:hover {
+	background-color: #363a42;
+}
+
+.woocommerce nav.woocommerce-pagination ul li a, .woocommerce nav.woocommerce-pagination ul li span {
+    font-size: 0.8em;
+    font-weight: 400;
+    padding: 0.5em 0.725em;
+    box-shadow: 0 2px 0 0 #d3d8de;
+    display: inline-block;
+}
+
+
+/* Woocomemrce Button */
+
+
+.woocommerce #respond input#submit, .woocommerce a.button, .woocommerce input.button {
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	color: #FFF;
+	background-color: #3ebbbb;
+}
+.woocommerce #respond input#submit:hover, .woocommerce a.button:hover, .woocommerce input.button:hover {
+	color: #FFF;
+	background-color: #363a42;
+}
+
+
+
+/* Border around sections */
+.single-product .product > .upsells, .single-product .single-product .product > .products {
+    border-bottom: 1px solid #d3ced2;
+    margin-bottom: 60px;
+}
+.woocommerce h2 {
+    font-size: 24px;
+    margin-bottom: 1.5em;
+}
+.woocommerce #reviews h3 {
+	font-size: 20px;
+    margin-bottom: 1em;
+}
+
+.woocommerce .quantity input {
+	padding: 0.65em 0em;
+    background: #FFF;
+    margin-right: 1em;
+}
+
+.product_meta > span {
+    display: block;
+}
+
+.woocommerce #review_form #respond textarea, .woocommerce #review_form #respond input, .woocommerce #review_form #respond select {
+	border: 1px solid #DDD;
+}
+
+.woocommerce table.cart td.actions  .coupon .input-text {
+    width: 160px;
+    margin-right: 1em;
+    float: none;
+}
+
 
 /**
  * 3rd Party
@@ -2827,6 +2989,12 @@ nav .primary-nav .children .children:after {
 		-webkit-justify-content: center;
 		justify-content: center;
 	}
+
+	/* Woocommerce Post Style */
+	.woocommerce-page div.product div.images, .woocommerce-page div.product div.summary, .woocommerce ul.products li.product, .woocommerce-page ul.products li.product {
+    	width: 100%;
+	}
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -3180,6 +3348,18 @@ nav .primary-nav .children .children:after {
 	.social-media-footer .baton-flex .baton-col.baton-col-social-media {
 		width: 10%;
 	}
+
+	/* Woocommerce Single Product */
+	.woocommerce #content div.product div.images, .woocommerce div.product div.images, .woocommerce-page #content div.product div.images, .woocommerce-page div.product div.images {
+		width: 100%;
+	}
+
+	/* Woocommerce Cross sells in cart page */
+	.woocommerce .cart-collaterals .cross-sells ul.products li, .woocommerce-page .cart-collaterals .cross-sells ul.products li {
+	    width: 100%;
+	}
+
+
 }
 
 @media only screen and (max-width: 568px) {
@@ -3240,6 +3420,7 @@ nav .primary-nav .children .children:after {
 	.after-posts-widgets .widget {
 		padding-top: 1.5em;
 	}
+
 }
 
 @media only screen and (max-width: 480px) {
@@ -3309,7 +3490,12 @@ nav .primary-nav .children .children:after {
 		padding-left: 0.75em;
 	}
 
-
+	/* Woocommerce Coupon Button */
+	.woocommerce-page table.cart td.actions .coupon input {
+    	width: 64%!important;
+    	margin: 1em .5em;
+    }
+    	
 	/**
 	 * Footer
 	 */
