@@ -116,7 +116,7 @@ if ( ! function_exists( 'sds_post_meta' ) ) {
 		global $sds_theme_options;
 
 		// Determine if we should we output the post meta based on settings
-		if ( $sds_theme_options['hide_post_meta'] )
+		if ( isset( $sds_theme_options['hide_post_meta'] ) )
 			return;
 		?>
 			<span class="article-date <?php echo ( $archive ) ? 'baton-col baton-col-article-date' : false; ?>">
