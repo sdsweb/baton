@@ -17,7 +17,7 @@ get_header(); ?>
 				<?php
 					// If the Front Page is active
 					if ( baton_has_static_front_page() ) :
-						// Front Page Sidebar
+						// If the Front Page Sidebar is active
 						if ( sds_is_front_page_sidebar_active() ) : // Front Page Sidebar
 				?>
 						<!-- Front Page Sidebar -->
@@ -26,7 +26,8 @@ get_header(); ?>
 						</aside>
 						<!-- End Front Page Sidebar -->
 				<?php
-						endif;
+						// Otherwise, just show the front page
+						else:
 				?>
 						<?php // TODO: Baton conductor on the Front Page? ?>
 						<div class="in front-page-in baton-flex baton-flex-front-page <?php echo ( sds_is_front_page_sidebar_active() ) ? 'has-front-page-sidebar' : 'no-front-page-sidebar'; ?>">
@@ -51,6 +52,7 @@ get_header(); ?>
 							<!-- End Primary Sidebar -->
 						</div>
 				<?php
+						endif;
 					// Otherwise no Front Page is selected
 					else:
 						// If Baton Conductor is enabled
