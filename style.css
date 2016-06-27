@@ -5,15 +5,15 @@
  * Text Domain: baton
  * Author: Slocum Studio
  * Author URI: https://slocumthemes.com/
- * Version: 1.0.1
+ * Version: 1.0.5
  * License: GPL2+
  * License URI: http://www.gnu.org/licenses/gpl.html
- * Tags: blue, green, orange, pink, purple, red, white, light, two-columns, left-sidebar, fluid-layout, custom-colors, custom-menu, editor-style, featured-images, full-width-template, sticky-post, theme-options, threaded-comments
-
+ * Tags: one-column, two-columns, left-sidebar, right-sidebar, grid-layout, custom-background, custom-colors, custom-menu, editor-style, featured-images, footer-widgets, full-width-template, sticky-post, theme-options, threaded-comments, translation-ready, blog, entertainment, news, photography, portfolio
+ *
  * Baton WordPress theme, Copyright (C) 2015 Slocum Studio
  * Baton WordPress theme is licensed under the GPL.
-
- * @see attribution.txt for more license information.
+ *
+ * @see readme.txt for more license information.
  */
 
 /**
@@ -604,12 +604,15 @@ a img.aligncenter {
 }
 
 .baton-flex .baton-col.baton-col-social-media {
+	width: auto;
 	min-width: 2.55em;
+	max-width: 20%;
 	padding: 0.2em 0;
 }
 
 .social-media-footer .baton-flex .baton-col.baton-col-social-media {
-	width: 10%;
+	width: auto;
+	max-width: 10%;
 }
 
 .baton-flex.baton-flex-footer-widgets {
@@ -969,15 +972,6 @@ a img.aligncenter {
 	text-align: center;
 }
 
-/* Default Widgets */
-#front-page-note-widget-default-hero-1 {
-	background: url( 'images/baton-jellyfish.jpg' ) center / cover no-repeat;
-}
-
-#front-page-note-widget-default-hero-2 {
-	background: url( 'images/baton-northern-lights.jpg' ) center / cover no-repeat;
-}
-
 /* Headings */
 .conductor-widget h1 {
 	font-size: 2.2222222rem;
@@ -1312,7 +1306,7 @@ a img.aligncenter {
 	font-size: 1.666667em;
 }
 
-.front-page-widgets .conductor-slider  .arrows .arrow.prev {
+.front-page-widgets .conductor-slider .arrows .arrow.prev {
 	left: 20px;
 }
 
@@ -1335,6 +1329,13 @@ a img.aligncenter {
 }
 
 /* Slider - Testimonials (Front Page Sidebar) */
+.content .conductor-slider-testimonials-content .article-content,
+.page .content .conductor-slider-testimonials-content .article-content,
+.content.no-posts .conductor-slider-testimonials-content .article-content,
+.attachment .content .conductor-slider-testimonials-content .article-content {
+	padding: 0;
+}
+
 .front-page-widgets .conductor-widget.conductor-slider-testimonials-wrap {
 	max-width: none;
 	margin-bottom: 0;
@@ -1462,6 +1463,129 @@ a img.aligncenter {
 	padding-right: 0;
 }
 
+/* Baton Conductor - Enhanced Display */
+.baton-baton-conductor-enhanced-display-wrap .baton-hero-widget .baton-baton-conductor-enhanced-in {
+	max-width: none;
+	padding: 0;
+}
+
+#baton-baton-conductor-enhanced-hero-1 {
+	background: url( 'images/baton-jellyfish.jpg' ) center / cover no-repeat;
+}
+
+#baton-baton-conductor-enhanced-hero-1 .article-categories-wrap {
+	display: none;
+}
+
+#baton-baton-conductor-enhanced-hero-1 .article-title {
+	margin-bottom: 0;
+	color: #fff;
+	font-size: 3.3333333rem;
+}
+
+#baton-baton-conductor-enhanced-hero-1 .article-title a {
+	color: #fff;
+}
+
+#baton-baton-conductor-enhanced-hero-1 .article-content {
+	color: #e8e1e1;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#baton-baton-conductor-enhanced-hero-1 .article-content.article-content-more-link {
+	font-size: 1rem;
+}
+
+#baton-baton-conductor-enhanced-features-1 {
+	padding: 5rem 0;
+}
+
+#baton-baton-conductor-enhanced-features-1 .article-categories-wrap {
+	display: none;
+}
+
+#baton-baton-conductor-enhanced-features-1 .article-title a,
+#baton-baton-conductor-enhanced-features-1 .more-link {
+	color: #363a42;
+}
+
+#baton-baton-conductor-enhanced-features-1 .more-link {
+	text-decoration: none;
+}
+
+#baton-baton-conductor-enhanced-features-1 .note-content {
+	text-align: center;
+}
+
+#baton-baton-conductor-enhanced-features-1 .note-content .article-title {
+	font-size: 1.8888888rem;
+}
+
+#baton-baton-conductor-enhanced-features-1 .note-col .note-content .article-title {
+	font-size: 1rem;
+}
+
+#baton-baton-conductor-enhanced-features-1 .note-col .note-content .article-content,
+#baton-baton-conductor-enhanced-features-1 .note-col .note-content .more-link {
+	font-size: 16px;
+}
+
+#baton-baton-conductor-enhanced-features-1 .note-col .note-content .more-link {
+	font-weight: bold;
+}
+
+#baton-baton-conductor-enhanced-hero-2 {
+	background: url( 'images/baton-northern-lights.jpg' ) center / cover no-repeat;
+}
+
+#baton-baton-conductor-enhanced-hero-2 .article-categories-wrap {
+	display: none;
+}
+
+#baton-baton-conductor-enhanced-hero-2 .note-content {
+	text-align: center;
+}
+
+#baton-baton-conductor-enhanced-hero-2 .article-title {
+	margin-bottom: 0;
+	color: #fff;
+	font-size: 2.2222222rem;
+}
+
+#baton-baton-conductor-enhanced-hero-2 .article-title a {
+	color: #fff;
+}
+
+#baton-baton-conductor-enhanced-hero-2 .article-content {
+	color: #e8e1e1;
+}
+
+/* Baton Conductor */
+.baton-baton-conductor .content-wrap {
+	padding-top: 0;
+}
+
+#baton-baton-conductor {
+	padding: 2em 1rem;
+}
+
+#baton-baton-conductor .baton-baton-conductor-title {
+	margin: 1.5rem auto !important; /* !important due to Conductor CSS */
+	padding-bottom: 1.5rem;
+	font-size: 1.777777em;
+	text-align: center;
+}
+
+#baton-baton-conductor .conductor-col {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+#baton-baton-conductor .pagination.navigation {
+	padding: 0;
+}
+
 
 /**
  * Menus
@@ -1540,6 +1664,19 @@ nav .menu .sub-menu li, nav .menu .children li {
 	margin: 1.25rem 0;
 }
 
+#title.has-logo {
+	/*
+	 * Fix a bug in Firefox where a logo with a large width (i.e. 900px) actually affects height of header.
+	 * @see https://github.com/philipwalton/flexbugs#5-column-flex-items-dont-always-preserve-intrinsic-aspect-ratios
+	 */
+	max-width: 100%;
+	/*
+	 * Fix a bug in IE11 where a logo with a large width (i.e. 900px) actually affects height of header. This value
+	 * matches the line-height value.
+	 */
+	min-height: 1.25rem;
+}
+
 #title a {
 	color: #fff;
 }
@@ -1596,6 +1733,13 @@ nav .menu .sub-menu li, nav .menu .children li {
 
 .primary-nav-mobile-container {
 	display: none;
+}
+
+#primary-nav-container {
+	/*
+	 * Fix a bug in IE11 where hovering over a menu item with children causes menu to shift upwards.
+	 */
+	min-height: 1rem;
 }
 
 nav .primary-nav li {
@@ -1923,7 +2067,7 @@ nav .primary-nav .children .children:after {
 	padding: 0 6rem;
 }
 
-.page .content .article-content, .content.no-posts .article-content {
+.page .content .article-content, .content.no-posts .article-content, .attachment .content .article-content {
 	padding-bottom: 2rem;
 }
 
@@ -1936,18 +2080,18 @@ nav .primary-nav .children .children:after {
 }
 
 /* Front Page */
-.front-page-sidebar-default-widgets .in.content-wrapper-in,
+.baton-baton-conductor-enhanced-display .in.content-wrapper-in,
 .front-page-sidebar-active .in.content-wrapper-in {
 	max-width: none;
 	padding: 0;
 }
 
-.front-page-sidebar-default-widgets .content-wrap,
+.baton-baton-conductor-enhanced-display .content-wrap,
 .front-page-sidebar-active .content-wrap {
 	padding-top: 0;
 }
 
-.front-page-widgets {
+.front-page-widgets, .baton-baton-conductor-enhanced-display-wrap {
 	width: 100%;
 }
 
@@ -1974,6 +2118,16 @@ nav .primary-nav .children .children:after {
 .front-page-widgets .baton-hero-widget .front-page-widget-in {
 	max-width: none;
 	padding: 0;
+}
+
+.baton-flex-front-page.has-front-page-sidebar {
+	padding-top: 5em;
+	margin-bottom: 3em;
+}
+
+.baton-flex-front-page.no-front-page-sidebar {
+	padding-left: 0;
+	padding-right: 0;
 }
 
 /* Typography */
@@ -2061,6 +2215,16 @@ nav .primary-nav .children .children:after {
 	font-size: 0.66666666em;
 	font-weight: bold;
 	text-transform: uppercase;
+}
+
+.article-categories-wrap .fa {
+	color: #d4d5d5;
+	font-size: 0.77777777em;
+	padding-right: 0.1em;
+}
+
+.article-categories-wrap .tags .fa {
+	padding-left: 0.75em;
 }
 
 .article-post-meta {
@@ -2209,6 +2373,11 @@ nav .primary-nav .children .children:after {
 .after-posts-widgets .widget {
 	margin-bottom: 3em;
 	padding-top: 2em;
+}
+
+.after-posts-widgets > .widget.conductor-widget,
+.after-posts-widgets > .widget.widget.conductor-widget {
+	display: block; /* Conductor sets these to display: inline; by default */
 }
 
 /* Comments */
@@ -2442,6 +2611,7 @@ nav .primary-nav .children .children:after {
 .social-media-icons a {
 	text-align: center;
 	text-decoration: none;
+	display: inline-block; /* Fixes a display bug in IE10 */
 }
 
 .social-media-icons a:hover {
@@ -2472,7 +2642,7 @@ nav .primary-nav .children .children:after {
 	line-height: 1.75em;
 }
 
-.front-page-sidebar-default-widgets #footer,
+.baton-baton-conductor-enhanced-display #footer,
 .front-page-sidebar-active #footer {
 	margin-top: 0;
 }
@@ -2589,14 +2759,14 @@ nav .primary-nav .children .children:after {
 
 .footer-nav .menu .sub-menu li:before {
 	content: '';
-    width: 0.75em;
-    height: 0.85em;
-    position: absolute;
-    line-height: 1.8rem;
-    top: 0.2em;
-    left: -0.4rem;
-    border-left: 1px solid #f1f5f9;
-    border-bottom: 1px solid #f1f5f9;
+	width: 0.75em;
+	height: 0.85em;
+	position: absolute;
+	line-height: 1.8rem;
+	top: 0.2em;
+	left: -0.4rem;
+	border-left: 1px solid #f1f5f9;
+	border-bottom: 1px solid #f1f5f9;
 }
 
 .footer-nav .menu .sub-menu .sub-menu {
@@ -2612,7 +2782,220 @@ nav .primary-nav .children .children:after {
  */
 
 /* Gravity Forms */
-/* TODO */
+body .gform_wrapper input[type=text],
+body .gform_wrapper input[type=url],
+body .gform_wrapper input[type=email],
+body .gform_wrapper input[type=tel],
+body .gform_wrapper input[type=number],
+body .gform_wrapper input[type=password],
+body .gform_wrapper select,
+body .gform_wrapper textarea {
+	padding: 0.5em;
+}
+
+body .mc-gravity, body .mc_gravity,
+body .mc-newsletter, body .mc_newsletter,
+body .mc-gravity_wrapper, body .mc_gravity_wrapper,
+body .mc-newsletter_wrapper, body .mc_newsletter_wrapper {
+	width: 100%;
+	max-width: 100%;
+	border: 1px solid #f1f5f9;
+}
+
+body .mc-gravity, body .mc_gravity,
+body .mc-newsletter, body .mc_newsletter {
+	padding-bottom: 1.5rem;
+
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-moz-flex-flow: row wrap;
+	-ms-flex-flow: row wrap;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+	-moz-justify-content: space-around;
+	-ms-justify-content: space-around;
+	-webkit-justify-content: space-around;
+	justify-content: space-around;
+	-moz-align-content: flex-start;
+	-ms-align-content: flex-start;
+	-webkit-align-content: flex-start;
+	align-content: flex-start;
+	-ms-flex-pack: end;
+}
+
+body .mc-gravity:before, body .mc_gravity:before,
+body .mc-gravity_wrapper:before, body .mc_gravity_wrapper:before,
+body .mc-newsletter:before, body .mc_newsletter:before,
+body .mc-newsletter_wrapper:before, body .mc_newsletter_wrapper:before,
+body .mc-gravity:after, body .mc_gravity:after,
+body .mc-gravity_wrapper:after, body .mc_gravity_wrapper:after,
+body .mc-newsletter:after, body .mc_newsletter:after,
+body .mc-newsletter_wrapper:after, body .mc_newsletter_wrapper:after {
+	content: '';
+	display: table;
+}
+
+body .mc-gravity:after, body .mc_gravity:after,
+body .mc-gravity_wrapper:after, body .mc_gravity_wrapper:after,
+body .mc-newsletter:after, body .mc_newsletter:after,
+body .mc-newsletter_wrapper:after, body .mc_newsletter_wrapper:after {
+	clear: both;
+}
+
+body .mc-gravity .gform_heading, body .mc_gravity .gform_heading,
+body .mc-newsletter .gform_heading, body .mc_newsletter .gform_heading,
+body .mc-gravity_wrapper .gform_heading, body .mc_gravity_wrapper .gform_heading,
+body .mc-newsletter_wrapper .gform_heading, body .mc_newsletter_wrapper .gform_heading {
+	width: 100%;
+	margin: 0 0 1.5rem;
+	padding: 1.5rem 5%;
+	background: #3ebbbb;
+	color: #fff;
+	font-size: 24px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+body .mc-gravity .gform_heading .gform_title, body .mc_gravity .gform_heading .gform_title,
+body .mc-newsletter .gform_heading .gform_title, body .mc_newsletter .gform_heading .gform_title,
+body .mc-gravity_wrapper .gform_heading .gform_title, body .mc_gravity_wrapper .gform_heading .gform_title,
+body .mc-newsletter_wrapper .gform_heading .gform_title, body .mc_newsletter_wrapper .gform_heading .gform_title {
+	margin: 0.25em 0 0.5em;
+	color: #fff;
+	font-size: 1.7222222rem;
+	font-weight: 900;
+}
+
+body .mc-gravity .gform_heading .gform_description, body .mc_gravity .gform_heading .gform_description,
+body .mc-newsletter .gform_heading .gform_description, body .mc_newsletter .gform_heading .gform_description,
+body .mc-gravity_wrapper .gform_heading .gform_description, body .mc_gravity_wrapper .gform_heading .gform_description,
+body .mc-newsletter_wrapper .gform_heading .gform_description, body .mc_newsletter_wrapper .gform_heading .gform_description {
+	font-size: 1rem;
+	line-height: 1.75rem;
+	text-transform: none;
+	display: inline-block;
+}
+
+body .mc-gravity .gform_body, body .mc_gravity .gform_body,
+body .mc-newsletter .gform_body, body .mc_newsletter .gform_body,
+body .mc-gravity_wrapper .gform_body, body .mc_gravity_wrapper .gform_body,
+body .mc-newsletter_wrapper .gform_body, body .mc_newsletter_wrapper .gform_body {
+	width: 50%;
+	margin: 0 0 0 10%;
+	padding: 0;
+}
+
+body .mc-gravity .gfield_label, body .mc_gravity .gfield_label,
+body .mc-newsletter .gfield_label, body .mc_newsletter .gfield_label,
+body .mc-gravity_wrapper .gfield_label, body .mc_gravity_wrapper .gfield_label,
+body .mc-newsletter_wrapper .gfield_label, body .mc_newsletter_wrapper .gfield_label {
+	display: none !important;
+}
+
+body .gform_wrapper.mc-gravity_wrapper .gfield_label + .ginput_container,
+body .gform_wrapper.mc_gravity_wrapper  .gfield_label + .ginput_container,
+body .gform_wrapper.mc-newsletter_wrapper .gfield_label + .ginput_container,
+body .gform_wrapper.mc_newsletter_wrapper .gfield_label + .ginput_container {
+	margin: 0;
+}
+
+body .mc-gravity .gform_fields input, body .mc_gravity .gform_fields input,
+body .mc-newsletter .gform_fields input, body .mc_newsletter .gform_fields input,
+body .mc-gravity_wrapper .gform_fields input, body .mc_gravity_wrapper .gform_fields input,
+body .mc-newsletter_wrapper .gform_fields input, body .mc_newsletter_wrapper .gform_fields input {
+	width: 100% !important;
+	padding: 0.75em;
+}
+
+body .gform_wrapper.mc-gravity_wrapper .gform_fields .gfield_error input,
+body .gform_wrapper.mc_gravity_wrapper .gform_fields .gfield_error input,
+body .gform_wrapper.mc-newsletter_wrapper .gform_fields .gfield_error input,
+body .gform_wrapper.mc_newsletter_wrapper .gform_fields .gfield_error input {
+	margin: 0;
+	background: #ffdfe0;
+	border: none;
+}
+
+body .gform_wrapper.mc-gravity_wrapper .validation_error,
+body .gform_wrapper.mc_gravity_wrapper .validation_error,
+body .gform_wrapper.mc-newsletter_wrapper .validation_error,
+body .gform_wrapper.mc_newsletter_wrapper .validation_error {
+	margin: 0 10% 1.5rem;
+	padding: 0.25em 1em;
+	font-size: 0.8888888rem;
+	text-align: center;
+}
+
+body .gform_wrapper.mc-gravity_wrapper .gfield.gfield_error.gfield_contains_required,
+body .gform_wrapper.mc_gravity_wrapper .gfield.gfield_error.gfield_contains_required,
+body .gform_wrapper.mc-newsletter_wrapper .gfield.gfield_error.gfield_contains_required,
+body .gform_wrapper.mc_newsletter_wrapper .gfield.gfield_error.gfield_contains_required {
+	width: 100%;
+	margin: 0 !important;
+	padding: 0;
+	background: transparent;
+	border: none;
+}
+
+body .gform_wrapper.mc-gravity_wrapper .gfield.gfield_error.gfield_contains_required .ginput_container,
+body .gform_wrapper.mc_gravity_wrapper .gfield.gfield_error.gfield_contains_required .ginput_container,
+body .gform_wrapper.mc-newsletter_wrapper .gfield.gfield_error.gfield_contains_required .ginput_container,
+body .gform_wrapper.mc_newsletter_wrapper .gfield.gfield_error.gfield_contains_required .ginput_container {
+	max-width: 100%;
+	margin: 0;
+}
+
+body .mc-gravity .gform_fields .gfield_error .validation_message, body .mc_gravity .gform_fields .gfield_error .validation_message,
+body .mc-newsletter .gform_fields .gfield_error .validation_message, body .mc_newsletter .gform_fields .gfield_error .validation_message,
+body .mc-gravity_wrapper .gform_fields .gfield_error .validation_message, body .mc_gravity_wrapper .gform_fields .gfield_error .validation_message,
+body .mc-newsletter_wrapper .gform_fields .gfield_error .validation_message, body .mc_newsletter_wrapper .gform_fields .gfield_error .validation_message {
+	display: none;
+}
+
+body .mc-gravity .gform_footer, body .mc_gravity .gform_footer,
+body .mc-newsletter .gform_footer, body .mc_newsletter .gform_footer,
+body .mc-gravity_wrapper .gform_footer, body .mc_gravity_wrapper .gform_footer,
+body .mc-newsletter_wrapper .gform_footer, body .mc_newsletter_wrapper .gform_footer {
+	width: 30%;
+	margin: 0 10% 0 0;
+	padding: 0;
+	clear: none;
+	position: relative;
+}
+
+body .mc-gravity .gform_footer .button, body .mc_gravity .gform_footer .button,
+body .mc-newsletter .gform_footer .button, body .mc_newsletter .gform_footer .button,
+body .mc-gravity_wrapper .gform_footer .button, body .mc_gravity_wrapper .gform_footer .button,
+body .mc-newsletter_wrapper .gform_footer .button, body .mc_newsletter_wrapper .gform_footer .button {
+	width: 100%;
+	padding: 0.6em 1% !important; /* !important for IE */
+	white-space: pre-wrap;
+}
+
+body .mc-gravity .gform_ajax_spinner, body .mc_gravity .gform_ajax_spinner,
+body .mc-newsletter .gform_ajax_spinner, body .mc_newsletter .gform_ajax_spinner,
+body .mc-gravity_wrapper .gform_ajax_spinner, body .mc_gravity_wrapper .gform_ajax_spinner,
+body .mc-newsletter_wrapper .gform_ajax_spinner, body .mc_newsletter_wrapper .gform_ajax_spinner {
+	position: absolute;
+	top: 17px;
+	right: -25px;
+}
+
+body .mc-gravity-confirmation, body .mc_gravity-confirmation, body .mc-newsletter-confirmation, body .mc_newsletter-confirmation {
+	width: 100%;
+	padding: 1em;
+	color: #fff;
+	background: #3ebbbb;
+}
+
+body .mc-gravity-confirmation .gform_confirmation_wrapper, body .mc_gravity-confirmation .gform_confirmation_wrapper,
+body .mc-newsletter-confirmation .gform_confirmation_wrapper, body .mc_newsletter-confirmation .gform_confirmation_wrapper {
+	padding: 0;
+	border: none;
+}
 
 
 /**
@@ -2684,7 +3067,8 @@ nav .primary-nav .children .children:after {
 	}
 
 	.baton-flex .baton-col.baton-col-social-media {
-		width: 20%;
+		width: auto;
+		max-width: 20%;
 	}
 
 	.baton-flex .baton-col.baton-col-copyright {
@@ -2773,6 +3157,14 @@ nav .primary-nav .children .children:after {
 		padding-right: 4rem;
 	}
 
+	/* Slider - Testimonials */
+	.content .conductor-slider-testimonials-content .article-content,
+	.page .content .conductor-slider-testimonials-content .article-content,
+	.content.no-posts .conductor-slider-testimonials-content .article-content,
+	.attachment .content .conductor-slider-testimonials-content .article-content {
+		padding: 0;
+	}
+
 	/**
 	 * Content
 	 */
@@ -2785,7 +3177,7 @@ nav .primary-nav .children .children:after {
 		padding: 0 4rem;
 	}
 
-	.page .content .article-content {
+	.page .content .article-content, .attachment .content .article-content {
 		padding-bottom: 2rem;
 	}
 
@@ -2818,7 +3210,8 @@ nav .primary-nav .children .children:after {
 	}
 
 	.social-media-footer .baton-flex .baton-col.baton-col-social-media {
-		width: 15%;
+		width: auto;
+		max-width: 15%;
 	}
 
 	.baton-col-social-media-footer .baton-flex.baton-flex-social-media {
@@ -2928,6 +3321,15 @@ nav .primary-nav .children .children:after {
 	body .front-page-widgets .conductor-widget.conductor-slider-news-wrap .conductor-slider-news-slider .conductor-col {
 		padding-left: 2rem;
 		padding-right: 2rem;
+	}
+
+	/* Baton Conductor - Enhanced Display */
+	#baton-baton-conductor-enhanced-hero-1 .article-title {
+		font-size: 1.8888888rem;
+	}
+
+	#baton-baton-conductor-enhanced-hero-2 .article-title {
+		font-size: 1.8888888rem;
 	}
 
 	/**
@@ -3152,9 +3554,13 @@ nav .primary-nav .children .children:after {
 		padding-top: 3em;
 	}
 
-	.front-page-sidebar-default-widgets .content-wrap,
+	.baton-baton-conductor-enhanced-display .content-wrap,
 	.front-page-sidebar-active .content-wrap {
 		padding-top: 0;
+	}
+
+	.baton-flex-front-page.has-front-page-sidebar {
+		padding-top: 3em;
 	}
 
 	/* Post Meta */
@@ -3178,7 +3584,8 @@ nav .primary-nav .children .children:after {
 	}
 
 	.social-media-footer .baton-flex .baton-col.baton-col-social-media {
-		width: 10%;
+		width: auto;
+		max-width: 10%;
 	}
 }
 
@@ -3215,6 +3622,14 @@ nav .primary-nav .children .children:after {
 		padding-right: 1.5rem;
 	}
 
+	/* Slider - Testimonials */
+	.content .conductor-slider-testimonials-content .article-content,
+	.page .content .conductor-slider-testimonials-content .article-content,
+	.content.no-posts .conductor-slider-testimonials-content .article-content,
+	.attachment .content .conductor-slider-testimonials-content .article-content {
+		 padding: 0;
+	}
+
 	/**
 	 * Content
 	 */
@@ -3227,7 +3642,7 @@ nav .primary-nav .children .children:after {
 		padding: 0 1.5rem;
 	}
 
-	.page .content .article-content {
+	.page .content .article-content, .attachment .content .article-content {
 		padding-bottom: 1.5rem;
 	}
 
@@ -3239,6 +3654,34 @@ nav .primary-nav .children .children:after {
 	/* After Posts Sidebar & Widgets */
 	.after-posts-widgets .widget {
 		padding-top: 1.5em;
+	}
+
+	/**
+	 * 3rd Party
+	 */
+
+	/* Gravity Forms */
+	body .mc-gravity .gform_body, body .mc_gravity .gform_body,
+	body .mc-newsletter .gform_body, body .mc_newsletter .gform_body,
+	body .mc-gravity_wrapper .gform_body, body .mc_gravity_wrapper .gform_body,
+	body .mc-newsletter_wrapper .gform_body, body .mc_newsletter_wrapper .gform_body,
+	body .mc-gravity .gform_footer, body .mc_gravity .gform_footer,
+	body .mc-newsletter .gform_footer, body .mc_newsletter .gform_footer,
+	body .mc-gravity_wrapper .gform_footer, body .mc_gravity_wrapper .gform_footer,
+	body .mc-newsletter_wrapper .gform_footer, body .mc_newsletter_wrapper .gform_footer {
+		width: 100%;
+		margin: 0 10%;
+		text-align: center;
+	}
+
+	body .mc-gravity .gform_ajax_spinner, body .mc_gravity .gform_ajax_spinner,
+	body .mc-newsletter .gform_ajax_spinner, body .mc_newsletter .gform_ajax_spinner,
+	body .mc-gravity_wrapper .gform_ajax_spinner, body .mc_gravity_wrapper .gform_ajax_spinner,
+	body .mc-newsletter_wrapper .gform_ajax_spinner, body .mc_newsletter_wrapper .gform_ajax_spinner {
+		padding: 0.5em;
+		position: relative;
+		top: 0;
+		left: 0;
 	}
 }
 
@@ -3285,6 +3728,16 @@ nav .primary-nav .children .children:after {
 	/**
 	 * Content
 	 */
+	/* Content Layout */
+	.in.front-page-in.has-front-page-sidebar {
+		padding-top: 3em;
+	}
+
+	.in.front-page-in.no-front-page-sidebar {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+
 	/* Author */
 	.article-author {
 		margin-bottom: 1em;

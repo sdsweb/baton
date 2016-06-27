@@ -12,7 +12,7 @@ if ( ! class_exists( 'Baton_Customizer' ) ) {
 		/**
 		 * @var string
 		 */
-		public $version = '1.0.0';
+		public $version = '1.0.5';
 
 		/**
 		 * @var string, Transient name
@@ -130,6 +130,19 @@ if ( ! class_exists( 'Baton_Customizer' ) ) {
 			include_once get_template_directory() . '/customizer/class-baton-customizer-font-size-control.php'; // Baton Customizer Font Size Control
 
 			/**
+			 * Demo Content
+			 */
+
+			/*
+			 * Demo Content Section
+			 */
+			$wp_customize->add_section( 'baton_enable_disable_features', array(
+				'priority' => 5, // Top
+				'title' => __( 'Baton Features', 'baton' )
+			) );
+
+
+			/**
 			 * General Settings
 			 */
 
@@ -137,7 +150,7 @@ if ( ! class_exists( 'Baton_Customizer' ) ) {
 			 * General Settings Panel
 			 */
 			$wp_customize->add_panel( 'baton_general_settings', array(
-				'priority' => 10, // Top
+				'priority' => 10, // After Baton Features
 				'title' => __( 'General Settings', 'baton' )
 			) );
 
@@ -145,7 +158,7 @@ if ( ! class_exists( 'Baton_Customizer' ) ) {
 			/**
 			 * Logo/Site Title & Tagline Section
 			 */
-			if ( $title_tagline_section = $wp_customize->get_section( 'title_tagline' ) ) {// Get Section
+			if ( $title_tagline_section = $wp_customize->get_section( 'title_tagline' ) ) { // Get Section
 				$title_tagline_section->panel = 'baton_general_settings'; // Add panel
 				$title_tagline_section->priority = 10; // Adjust Priority
 			}

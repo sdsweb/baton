@@ -57,14 +57,19 @@ if ( ! class_exists( 'Baton_Customize_Conductor_Control' ) ) {
 		 * This function enqueues scripts and styles
 		 */
 		public function enqueue() {
+			// Grab the Baton Conductor instance
+			$baton_conductor = Baton_Conductor_Instance();
+
 			// Stylesheets
 			wp_enqueue_style( 'baton-conductor', get_template_directory_uri() . '/css/baton-conductor.css', array( 'dashicons' ) );
 
 			// Scripts
 			wp_enqueue_script( 'baton-conductor', get_template_directory_uri() . '/js/baton-conductor.js', array( 'backbone', 'jquery-ui-sortable' ), $this->version, true );
 			wp_localize_script( 'baton-conductor', 'baton_conductor', array(
+				'defaults' => $baton_conductor->defaults,
 				'customizer' => array(
-					'section_sup_label' => _x( 'by Conductor', 'label applied to <sup> tag within Customizer section title for Baton Conductor', 'baton' )
+					'section_sup_label' => _x( 'by Conductor', 'label applied to <sup> tag within Customizer section title for Baton Conductor', 'baton' ),
+					'control_enabled_label' => _x( 'Enabled', 'label applied to Customizer control title for Baton Conductor', 'baton' )
 				),
 				'output' => array(
 					'priority_step_size' => 10
@@ -180,7 +185,7 @@ if ( ! class_exists( 'Baton_Customize_Conductor_Control' ) ) {
 								<input type="range" min="1" max="6" class="baton-conductor-input baton-conductor-flexbox-columns-range" id="baton_conductor_flexbox_columns" name="baton_conductor[flexbox_columns]" value="<?php echo esc_attr( $this->settings['flexbox_columns']->value() ); ?>" <?php $this->link( 'flexbox_columns' ); ?> />
 								<span class="baton-conductor-flexbox-columns-value"><?php echo $this->settings['flexbox_columns']->value(); ?></span>
 								<br />
-								<small class="description baton-conductor-description"><?php _e( 'Specify the number of columns used when outputting widget content.', 'baton' ); ?></small>
+								<small class="description baton-conductor-description"><?php _e( 'Specify the number of columns used when outputting widget content. Note: When the enhanced Blog Display <sup>by Conductor</sup> is enabled, this value applies to posts which are output after the enhanced displays.', 'baton' ); ?></small>
 							</p>
 						<?php
 							endif;
@@ -331,7 +336,7 @@ if ( ! class_exists( 'Baton_Customize_Conductor_Control' ) ) {
 								<label for="baton_conductor_post_thumbnails_size"><strong><?php _e( 'Featured Image Size', 'baton' ); ?></strong></label>
 								<br />
 								<select name="baton_conductor[post_thumbnails_size]" id="baton_conductor_post_thumbnails_size" class="baton-conductor-select" <?php $this->link( 'post_thumbnails_size' ); ?>>
-									<option value=""><?php _e( '&mdash; Select &mdash;', 'baton' ); ?></option>
+									<option value="" <?php selected( $this->settings['post_thumbnails_size']->value(), '' ); ?> ><?php _e( '&mdash; Select &mdash;', 'baton' ); ?></option>
 									<?php
 										// Get all of the available image sizes
 										$avail_image_sizes = array();
@@ -344,7 +349,7 @@ if ( ! class_exists( 'Baton_Customize_Conductor_Control' ) ) {
 											);
 	
 											// Built-in Image Sizes
-											if ( in_array( $size, array( 'thumbnail', 'medium', 'large' ) ) ) {
+											if ( in_array( $size, array( 'thumbnail', 'medium', 'medium_large', 'large' ) ) ) {
 												$avail_image_sizes[$size]['label'] = $size;
 												$avail_image_sizes[$size]['width'] = get_option( $size . '_size_w' );
 												$avail_image_sizes[$size]['height'] = get_option( $size . '_size_h' );
@@ -355,12 +360,20 @@ if ( ! class_exists( 'Baton_Customize_Conductor_Control' ) ) {
 												$avail_image_sizes[$size]['width'] = $_wp_additional_image_sizes[$size]['width'];
 												$avail_image_sizes[$size]['height'] = $_wp_additional_image_sizes[$size]['height'];
 											}
+
+											// If width is 0, adjust the value
+											if ( $avail_image_sizes[$size]['width'] == 0 )
+												$avail_image_sizes[$size]['width'] = 9999;
+
+											// If height is 0, adjust the value
+											if ( $avail_image_sizes[$size]['height'] == 0 )
+												$avail_image_sizes[$size]['height'] = 9999;
 										}
 	
 										foreach ( $avail_image_sizes as $size => $atts ) :
 											$dimensions = array( $atts['width'], $atts['height'] );
 									?>
-										<option value="<?php echo esc_attr( $size ); ?>" <?php selected( $this->settings['flexbox_columns']->value(), $size ); ?>><?php echo $atts['label'] . ' (' . implode( ' x ', $dimensions ) . ')'; ?></option>
+										<option value="<?php echo esc_attr( $size ); ?>" <?php selected( $this->settings['post_thumbnails_size']->value(), $size ); ?>><?php echo $atts['label'] . ' (' . implode( ' x ', $dimensions ) . ')'; ?></option>
 									<?php
 										endforeach;
 									?>

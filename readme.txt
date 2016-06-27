@@ -1,4 +1,10 @@
 /**
+ * SDS Core Framework - https://slocumthemes.com/
+ * License: GPL2
+ * Copyright: Slocum Design Studio, http://slocumstudio.com/
+ */
+
+/**
  * Font Awesome Web Font - http://fontawesome.io/
  * License: GPL Compatible (http://fontawesome.io/license/)
  * Font License: SIL OFL 1.1 (http://scripts.sil.org/OFL/)
@@ -57,11 +63,11 @@
 /**
  * Jellyfish - /images/baton-jellyfish.jpg - https://unsplash.com/photos/bviex5lwf3s
  * License: CC0 (GPL Compatible)
- * Copyright: Danist Soh - https://unsplash.com/danist07
+ * Copyright: Danist Soh - https://unsplash.com/@danist07
  */
 
 /**
  * Northern Lights - /images/baton-northern-lights.jpg - https://unsplash.com/photos/R3pUGn5YiTg
  * License: CC0 (GPL Compatible)
- * Copyright: Marcelo Quinan - https://unsplash.com/danist07
+ * Copyright: Marcelo Quinan - https://unsplash.com/@marceloquinan
  */

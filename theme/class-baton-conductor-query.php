@@ -7,12 +7,12 @@
 if ( ! defined( 'ABSPATH' ) )
 	exit;
 
-if( ! class_exists( 'Baton_Conductor_Query' ) ) {
+if ( ! class_exists( 'Baton_Conductor_Query' ) ) {
 	class Baton_Conductor_Query {
 		/**
 		 * @var string
 		 */
-		public $version = '1.0.0';
+		public $version = '1.0.5';
 
 		/**
 		 * @var array
@@ -20,34 +20,9 @@ if( ! class_exists( 'Baton_Conductor_Query' ) ) {
 		public $instance = false;
 
 		/**
-		 * @var mixed, Content query
-		 */
-		public $query = null;
-
-		/**
-		 * @var string, Query type (single or many)
-		 */
-		public $query_type = 'many';
-
-		/**
-		 * @var string, Post Not In (current query)
-		 */
-		public static $query_post__not_in = array();
-
-		/**
-		 * @var mixed, Instance of Query used for output
-		 */
-		public $output = null;
-
-		/**
 		 * @var array
 		 */
 		public $post_count = -1;
-
-		/**
-		 * @var WP_Post, Current post
-		 */
-		public $post = null;
 
 		/**
 		 * @var WP_Post, Global post
@@ -63,7 +38,6 @@ if( ! class_exists( 'Baton_Conductor_Query' ) ) {
 		 * @var int, List of actions/filters this class has added/created
 		 */
 		public $display_content_args_count = 0;
-
 
 		/**
 		 * @var Conductor, Instance of the class
@@ -93,13 +67,10 @@ if( ! class_exists( 'Baton_Conductor_Query' ) ) {
 					$this->$key = $args[$key];
 			}
 
-			// TODO: which vars should the user not be able to customize?
-			$this->query = null;
-
 			// If we have an instance
 			if ( $this->instance ) {
-				// Query content piece(s)
-				$this->query( $this->query_type );
+				// Post count
+				$this->post_count = wp_count_posts( 'post' );
 
 				// Output Hooks
 				$this->hooks['baton_conductor_display_content'] = array();
@@ -126,8 +97,6 @@ if( ! class_exists( 'Baton_Conductor_Query' ) ) {
 							$this->hooks['baton_conductor_display_content'] += array( $priority => array( $callback[0], $callback[1] ) );
 
 							do_action( 'baton_conductor_query_add_display_content', $element, $priority, $this->display_content_args_count, $this );
-							do_action( 'baton_conductor_query_add_display_content', $element, $priority, $this->display_content_args_count, $this );
-
 						}
 						// String/other callbacks within this class
 						// Only add this action if the callback exists, it's callable, and the element is visible
@@ -136,7 +105,6 @@ if( ! class_exists( 'Baton_Conductor_Query' ) ) {
 
 							$this->hooks['baton_conductor_display_content'] += array( $priority => array( get_class(), $callback ) );
 
-							do_action( 'baton_conductor_query_add_display_content', $element, $priority, $this->display_content_args_count, $this );
 							do_action( 'baton_conductor_query_add_display_content', $element, $priority, $this->display_content_args_count, $this );
 						}
 
@@ -147,7 +115,6 @@ if( ! class_exists( 'Baton_Conductor_Query' ) ) {
 
 							$this->hooks['baton_conductor_display_content'] += array( $priority => $callback );
 
-							do_action( 'baton_conductor_query_add_display_content', $element, $priority, $this->display_content_args_count, $this );
 							do_action( 'baton_conductor_query_add_display_content', $element, $priority, $this->display_content_args_count, $this );
 						}
 					}
@@ -205,7 +172,7 @@ if( ! class_exists( 'Baton_Conductor_Query' ) ) {
 
 									// Remove the default action (if there are no output elements before the featured image)
 									if ( ! $output_elements_before_featured_image ) {
-										remove_action( 'baton_conductor_display_content', array( $this, $callback[1] ), $priority, $this->display_content_args_count );
+										remove_action( 'baton_conductor_display_content', array( $this, $callback[1] ), $priority );
 
 										// Adjust the "hooks" property
 										unset( $hooks[$priority] );
@@ -237,141 +204,6 @@ if( ! class_exists( 'Baton_Conductor_Query' ) ) {
 		}
 
 		/**
-		 * This function is used to create a query and return results from that query.
-		 * @uses WP_Query
-		 */
-		public function query( $type = false ) {
-			// Use class query_type if no $type was passed
-			if ( ! $type )
-				$type = $this->query_type;
-
-			// Many pieces of content
-			if ( $type === 'many' ) {
-				global $wp_query;
-
-				// Post count
-				$this->post_count = wp_count_posts( 'post' );
-
-				/**
-				 * Set up query arguments
-				 */
-				$query_args = array(
-					'post_status' => 'publish',
-					'posts_per_page' => ( ! empty( $this->instance['posts_per_page'] ) && $this->instance['posts_per_page'] !== 0 ) ? $this->instance['posts_per_page'] : $this->post_count->publish,
-					'cat' => $this->instance['category'],
-					'ignore_sticky_posts' => true,
-					'orderby' => 'date',
-					'order' => 'DESC',
-					'_conductor' => array()
-				);
-
-				// Get the "true" paged query variable from the main query (defaulting to 1)
-				$paged = $query_args['paged'] = ( int ) get_query_var( 'paged' );
-
-				// Use the paged query var if set
-				if ( empty( $query_args['paged'] ) && isset( $wp_query->query['paged'] ) )
-					$paged = $query_args['paged'] = ( int ) $wp_query->query['paged'];
-				// Single post uses "page" instead of "paged"
-				else if ( is_single() && ( int ) get_query_var( 'page' ) )
-					$paged = $query_args['paged'] = ( int ) get_query_var( 'page' );
-				// Otherwise assume page 1
-				else if ( empty( $query_args['paged'] ) )
-					$paged = $query_args['paged'] = 1;
-
-
-				// Set a custom parameter so that we know when a Conductor query is executed
-				$query_args['_conductor'] += array(
-					'instance' => $this->instance,
-					'max_num_posts' => '',
-					'paged' => $paged
-				);
-
-				// Allow filtering of query arguments
-				$query_args = apply_filters( 'baton_conductor_query_args', $query_args, $type, $this );
-
-				$this->query = new WP_Query( $query_args ); // Initiate the query
-			}
-			// Other Types
-			else
-				$this->query = apply_filters( 'baton_conductor_query_other_types', $this->query, $type, $this->instance, $this );
-		}
-
-		/**
-		 * This function is used to retrieve the current query (with results)
-		 */
-		public function get_query() {
-			return $this->query;
-		}
-
-		/**
-		 * This function resets the global $post variable using data stored on the class.
-		 */
-		public function reset_global_post() {
-			global $post;
-
-			// If we have a global $post reference
-			if ( $this->global_post ) {
-				// Reset/restore the global $post
-				$post = $this->global_post;
-
-				// Clear the global $post reference
-				$this->global_post = null;
-			}
-		}
-
-		/**
-		 * This function is used to determine if the current query has posts (uses query class have_posts() if exists).
-		 */
-		public function have_posts() {
-			// Use the query object's default have_posts() method if it exists
-			if ( method_exists( $this->query, 'have_posts' ) )
-				return $this->query->have_posts();
-
-			return apply_filters( 'baton_conductor_query_have_posts', false, $this );
-		}
-
-		/**
-		 * This function is used to move to the next post within the current query (uses query class next_post() if exists).
-		 */
-		public function next_post() {
-			// Use the query object's default next_post() method if it exists
-			if ( method_exists( $this->query, 'next_post' ) )
-				$this->query->next_post();
-
-			do_action( 'baton_conductor_query_next_post', $this->query->post, $this );
-
-			return $this->query->post;
-		}
-
-		/**
-		 * This function is used to move to the next post within the current query (uses query class the_post() if exists
-		 * and will also set global $post data).
-		 */
-		public function the_post() {
-			// Use the query object's default the_post() method if it exists
-			if ( method_exists( $this->query, 'the_post' ) )
-				$this->query->the_post();
-
-			do_action( 'baton_conductor_query_the_post', $this->query->post, $this );
-
-			return $this->query->post;
-		}
-
-		/**
-		 * This function is used to determine the current post in the query.
-		 */
-		public function get_current_post( $single = false ) {
-			// Single Content Pieces
-			if ( $single )
-				$post = $this->get_query(); // WP_Post Object
-			// Multiple Content Pieces
-			else
-				$post = $this->get_query()->post; // WP_Post Object
-
-			return apply_filters( 'baton_conductor_query_current_post', $post, $single, $this );
-		}
-
-		/**
 		 * This function determines if the current query has pagination.
 		 */
 		public function has_pagination() {
@@ -390,49 +222,6 @@ if( ! class_exists( 'Baton_Conductor_Query' ) ) {
 
 			return apply_filters( 'baton_conductor_query_has_pagination', $has_pagination, $this );
 		}
-
-		/**
-		 * This function returns or will echo pagination for a query depending on parameters.
-		 *
-		 */
-		public function get_pagination_links( $query = false, $echo = true ) {
-			// Use class query if no $query was passed
-			if ( empty( $query ) )
-				$query = $this->query;
-
-			// Permalink structure
-			$permalink_structure = get_option( 'permalink_structure' );
-
-			$paginate_links_args = array(
-				'base' => untrailingslashit( esc_url( get_pagenum_link() ) ) . '%_%', // %_% will be replaced with format below
-				'format' => ( $permalink_structure ) ? '/page/%#%/' : '&paged=%#%', // %#% will be replaced with page number
-				'current' => max( 1, $query->get( 'paged' ) ), // Get whichever is the max out of 1 and the current page count
-				'total' => ( ! empty( $this->instance['posts_per_page'] ) && $this->instance['posts_per_page'] !== 0 ) ? ceil( $this->post_count->publish / $this->instance['posts_per_page'] ) : 1, // Get total number of pages in current query
-				'next_text' => __( 'Next &#8594;', 'baton' ),
-				'prev_text' => __( '&#8592; Previous', 'baton' ),
-				'type' => ( ! $echo ) ? 'array' : 'list'  // Output this as an array or unordered list
-			);
-
-			// Front page
-			if ( is_front_page() )
-				$paginate_links_args['format'] = ( $permalink_structure ) ? '/page/%#%/' : '/?paged=%#%';
-
-			// Single post uses "page" instead of "paged"
-			if ( is_single() ) {
-				$paginate_links_args['base'] = untrailingslashit( esc_url( get_permalink() ) ) . '%_%';
-				$paginate_links_args['format'] = ( get_option( 'permalink_structure' ) ) ? '/%#%/' : '&page=%#%'; // %#% will be replaced with page number
-			}
-
-			$paginate_links_args = apply_filters( 'baton_conductor_query_paginate_links_args', $paginate_links_args, $query, $echo, $this );
-
-			$paginate_links = paginate_links( $paginate_links_args );
-
-			if ( $echo )
-				echo $paginate_links;
-			else
-				return $paginate_links;
-		}
-
 
 		/**
 		 * This function gets the excerpt of a specific post ID or object.
@@ -732,6 +521,7 @@ if( ! class_exists( 'Baton_Conductor_Query' ) ) {
 					echo $this->get_content_by_id( $post );
 				break;
 			}
+
 			do_action( 'baton_conductor_post_content_after', $post, $instance );
 		}
 
@@ -786,13 +576,13 @@ if( ! class_exists( 'Baton_Conductor_Query' ) ) {
 		<?php
 		}
 	}
-}
 
-/**
- * Create an instance of the Baton_Conductor_Query class.
- */
-function Baton_Conductor_Query() {
-	return Baton_Conductor_Query::instance();
-}
+	/**
+	 * Create an instance of the Baton_Conductor_Query class.
+	 */
+	function Baton_Conductor_Query() {
+		return Baton_Conductor_Query::instance();
+	}
 
-Baton_Conductor_Query(); // Conduct your content!
+	Baton_Conductor_Query(); // Conduct your content!
+}

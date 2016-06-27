@@ -68,39 +68,40 @@ if ( ! function_exists( 'sds_social_media' ) ) {
 
 			$social_font_map = apply_filters( 'sds_social_icon_map', $social_font_map );
 			?>
+
 			<div class="social-media-icons baton-flex baton-flex-5-columns baton-flex-social-media">
 				<?php
-				foreach( $sds_theme_options['social_media'] as $key => $url ) :
-					// RSS (use site RSS feed, $url is Boolean this case)
-					if ( $key === 'rss_url_use_site_feed' && $url ) :
+					foreach( $sds_theme_options['social_media'] as $key => $url ) :
+						// RSS (use site RSS feed, $url is Boolean this case)
+						if ( $key === 'rss_url_use_site_feed' && $url ) :
 					?>
-						<a href="<?php esc_attr( bloginfo( 'rss2_url' ) ); ?>" class="rss-url baton-col baton-col-social-media" target="_blank">
-							<span class="social-media-icon <?php echo esc_attr( $social_font_map['rss_url']['icon'] ); ?>"></span>
-							<br />
-							<span class="social-media-label rss-url-label"><?php echo $social_font_map['rss_url']['label']; ?></span>
-						</a>
+							<a href="<?php esc_attr( bloginfo( 'rss2_url' ) ); ?>" class="rss-url baton-col baton-col-social-media" target="_blank">
+								<span class="social-media-icon <?php echo esc_attr( $social_font_map['rss_url']['icon'] ); ?>"></span>
+								<br />
+								<span class="social-media-label rss-url-label"><?php echo $social_font_map['rss_url']['label']; ?></span>
+							</a>
 					<?php
-					// RSS (use custom RSS feed)
-					elseif ( $key === 'rss_url' && ! $sds_theme_options['social_media']['rss_url_use_site_feed'] && ! empty( $url ) ) :
+						// RSS (use custom RSS feed)
+						elseif ( $key === 'rss_url' && ! $sds_theme_options['social_media']['rss_url_use_site_feed'] && ! empty( $url ) ) :
 					?>
-						<a href="<?php echo esc_attr( $url ); ?>" class="rss-url baton-col baton-col-social-media" target="_blank">
-							<span class="social-media-icon <?php echo esc_attr( $social_font_map['rss_url']['icon'] ); ?>"></span>
-							<br />
-							<span class="social-media-label rss-url-label"><?php echo $social_font_map['rss_url']['label']; ?></span>
-						</a>
+							<a href="<?php echo esc_attr( $url ); ?>" class="rss-url baton-col baton-col-social-media" target="_blank">
+								<span class="social-media-icon <?php echo esc_attr( $social_font_map['rss_url']['icon'] ); ?>"></span>
+								<br />
+								<span class="social-media-label rss-url-label"><?php echo $social_font_map['rss_url']['label']; ?></span>
+							</a>
 					<?php
-					// All other networks
-					elseif ( $key !== 'rss_url_use_site_feed' && $key !== 'rss_url' && ! empty( $url ) ) :
-						$css_class = str_replace( '_', '-', $key ); // Replace _ with -
+						// All other networks
+						elseif ( $key !== 'rss_url_use_site_feed' && $key !== 'rss_url' && ! empty( $url ) ) :
+							$css_class = str_replace( '_', '-', $key ); // Replace _ with -
 					?>
-						<a href="<?php echo esc_attr( $url ); ?>" class="<?php echo esc_attr( $css_class ); ?> baton-col baton-col-social-media" target="_blank">
-							<span class="social-media-icon <?php echo esc_attr( $social_font_map[$key]['icon'] ); ?>"></span>
-							<br />
-							<span class="social-media-label <?php echo esc_attr( $css_class ); ?>-label"><?php echo $social_font_map[$key]['label']; ?></span>
-						</a>
+							<a href="<?php echo esc_attr( $url ); ?>" class="<?php echo esc_attr( $css_class ); ?> baton-col baton-col-social-media" target="_blank">
+								<span class="social-media-icon <?php echo esc_attr( $social_font_map[$key]['icon'] ); ?>"></span>
+								<br />
+								<span class="social-media-label <?php echo esc_attr( $css_class ); ?>-label"><?php echo $social_font_map[$key]['label']; ?></span>
+							</a>
 					<?php
-					endif;
-				endforeach;
+						endif;
+					endforeach;
 				?>
 			</div>
 		<?php
@@ -113,12 +114,7 @@ if ( ! function_exists( 'sds_social_media' ) ) {
  */
 if ( ! function_exists( 'sds_post_meta' ) ) {
 	function sds_post_meta( $archive = false ) {
-		global $sds_theme_options;
-
-		// Determine if we should we output the post meta based on settings
-		if ( $sds_theme_options['hide_post_meta'] )
-			return;
-		?>
+	?>
 			<span class="article-date <?php echo ( $archive ) ? 'baton-col baton-col-article-date' : false; ?>">
 				<?php
 					// Archives without titles
@@ -156,7 +152,7 @@ if ( ! function_exists( 'sds_post_meta' ) ) {
 					<?php echo get_comments_number(); ?>
 				</a>
 			</span>
-		<?php
+	<?php
 	}
 }
 
@@ -239,6 +235,73 @@ if ( ! function_exists( 'sds_content_layouts' ) ) {
 }
 
 /**
+ * This function registers all color schemes available in this theme.
+ */
+if ( ! function_exists( 'sds_color_schemes' ) ) {
+	function sds_color_schemes() {
+		$color_schemes = array(
+			// Default (any additional color schemes should contain all of these properties as well as a 'deps' property)
+			'default' => array( // Name used in saved option
+				'label' => __( 'Default', 'baton' ), // Label on options panel (required)
+				'stylesheet' => false, // Stylesheet URL, relative to theme directory (required)
+				'preview' => '#7cb2c2', // Preview color on options panel (required)
+				'default' => true,
+				// Customizer
+				'background_color' => '#f1f5f9', // Default background color
+			),
+			// Blue
+			'blue' => array(
+				'label' => __( 'Blue', 'baton' ),
+				'stylesheet' => '/css/blue.css',
+				'preview' => '#3f70d4',
+				'deps' => 'baton',
+				// Customizer
+				'background_color' => '#ffffff', // Default background color
+			),
+			// Green
+			'green' => array(
+				'label' => __( 'Green', 'baton' ),
+				'stylesheet' => '/css/green.css',
+				'preview' => '#66bc7d',
+				'deps' => 'baton',
+				// Customizer
+				'background_color' => '#f1f5f9', // Default background color
+			),
+			// Red
+			'red' => array(
+				'label' => __( 'Red', 'baton' ),
+				'stylesheet' => '/css/red.css',
+				'preview' => '#ff5b5d',
+				'deps' => 'baton',
+				// Customizer
+				'background_color' => '#ffffff', // Default background color
+			)
+		);
+
+		return apply_filters( 'sds_theme_options_color_schemes', $color_schemes );
+	}
+}
+
+/**
+ * This function sets a default featured image size for use in this theme.
+ */
+if ( ! function_exists( 'sds_theme_options_default_featured_image_size' ) ) {
+	add_filter( 'sds_theme_options_default_featured_image_size', 'sds_theme_options_default_featured_image_size' );
+
+	function sds_theme_options_default_featured_image_size( $default ) {
+		return 'baton-1200x9999';
+	}
+}
+
+if ( ! function_exists( 'sds_copyright_branding' ) ) {
+	add_filter( 'sds_copyright_branding', 'sds_copyright_branding', 10, 2 );
+
+	function sds_copyright_branding( $text, $theme_name ) {
+		return '<a href="http://slocumthemes.com/wordpress-themes/baton/?utm_source=' . esc_url( home_url() ) . '&amp;utm_medium=footer-plugs&amp;utm_campaign=WordPressThemes" target="_blank">' . $theme_name . ' by Slocum Studio</a>';
+	}
+}
+
+/**
  * This function modifies the global $content_width value based on content layout or page template settings.
  */
 if ( ! function_exists( 'baton_body_class' ) ) {
@@ -263,13 +326,20 @@ if ( ! function_exists( 'baton_body_class' ) ) {
 		if ( is_customize_preview() )
 			$classes['baton-customizer'] = 'customizer';
 
-		// Front Page Sidebar/Widgets
+		// Front Page
 		if ( is_front_page() ) {
 			// If the Front Page Sidebar is active
-			if ( is_active_sidebar( 'front-page-sidebar' ) )
+			if ( baton_has_static_front_page() && sds_is_front_page_sidebar_active() )
 				$classes['baton-front-page-sidebar-active'] = 'front-page-sidebar-active';
-			else
-				$classes['baton-front-page-sidebar-default-widgets'] = 'front-page-sidebar-default-widgets';
+
+			// If Baton Conductor is enabled
+			if ( baton_has_blog_front_page() && have_posts() && baton_is_baton_conductor_enabled() ) {
+				$classes['baton-baton-conductor'] = 'baton-baton-conductor';
+
+				// Enhanced Display
+				if ( baton_is_baton_conductor_display_enhanced() )
+					$classes['baton-baton-conductor-enhanced-display'] = 'baton-baton-conductor-enhanced-display';
+			}
 
 			// If Conductor is active on the Front Page
 			if ( class_exists( 'Conductor' ) && Conductor::is_conductor() ) {
@@ -277,31 +347,15 @@ if ( ! function_exists( 'baton_body_class' ) ) {
 				if ( isset( $classes['baton-front-page-sidebar-active'] ) )
 					unset( $classes['baton-front-page-sidebar-active'] );
 
-				if ( isset( $classes['baton-front-page-sidebar-default-widgets'] ) )
-					unset( $classes['baton-front-page-sidebar-default-widgets'] );
+				if ( isset( $classes['baton-baton-conductor-enhanced-display'] ) )
+					unset( $classes['baton-baton-conductor-enhanced-display'] );
+
+				if ( isset( $classes['baton-baton-conductor'] ) )
+					unset( $classes['baton-baton-conductor'] );
 			}
 		}
 
 		return $classes;
-	}
-}
-
-/**
- * This function sets a default featured image size for use in this theme.
- */
-if ( ! function_exists( 'sds_theme_options_default_featured_image_size' ) ) {
-	add_filter( 'sds_theme_options_default_featured_image_size', 'sds_theme_options_default_featured_image_size' );
-
-	function sds_theme_options_default_featured_image_size( $default ) {
-		return 'baton-1200x9999';
-	}
-}
-
-if ( ! function_exists( 'sds_copyright_branding' ) ) {
-	add_filter( 'sds_copyright_branding', 'sds_copyright_branding', 10, 2 );
-
-	function sds_copyright_branding( $text, $theme_name ) {
-		return '<a href="http://slocumthemes.com/wordpress-themes/baton/?utm_source=' . esc_url( home_url() ) . '&amp;utm_medium=footer-plugs&amp;utm_campaign=WordPressThemes" target="_blank">' . $theme_name . ' by Slocum Studio</a>';
 	}
 }
 
@@ -493,62 +547,89 @@ function baton_is_yoast_breadcrumbs_active() {
 }
 
 /**
- * This function registers all color schemes available in this theme.
+ * This determines if Baton Conductor enhanced display is enabled.
  */
-if ( ! function_exists( 'sds_color_schemes' ) ) {
-	function sds_color_schemes() {
-		$color_schemes = array(
-			// Default (any additional color schemes should contain all of these properties as well as a 'deps' property)
-			'default' => array( // Name used in saved option
-				'label' => __( 'Default', 'baton' ), // Label on options panel (required)
-				'stylesheet' => false, // Stylesheet URL, relative to theme directory (required)
-				'preview' => '#7cb2c2', // Preview color on options panel (required)
-				'default' => true,
-				// Customizer
-				'background_color' => '#f1f5f9', // Default background color
-			),
-			// Blue
-			'blue' => array(
-				'label' => __( 'Blue', 'baton' ),
-				'stylesheet' => '/css/blue.css',
-				'preview' => '#3f70d4',
-				'deps' => 'baton',
-				// Customizer
-				'background_color' => '#ffffff', // Default background color
-			),
-			// Green
-			'green' => array(
-				'label' => __( 'Green', 'baton' ),
-				'stylesheet' => '/css/green.css',
-				'preview' => '#66bc7d',
-				'deps' => 'baton',
-				// Customizer
-				'background_color' => '#f1f5f9', // Default background color
-			),
-			// Red
-			'red' => array(
-				'label' => __( 'Red', 'baton' ),
-				'stylesheet' => '/css/red.css',
-				'preview' => '#ff5b5d',
-				'deps' => 'baton',
-				// Customizer
-				'background_color' => '#ffffff', // Default background color
-			)
-		);
+function baton_is_baton_conductor_display_enhanced() {
+	// Grab the Baton_Conductor instance
+	$baton_conductor = Baton_Conductor_Instance();
 
-		return apply_filters( 'sds_theme_options_color_schemes', $color_schemes );
-	}
+	return $baton_conductor->is_baton_conductor_enhanced_display_enabled();
 }
 
 /**
- * This function displays default Front Page Sidebar widgets.
+ * This determines if Baton Conductor is enabled.
  */
-function baton_default_widgets() {
-	get_template_part( 'default-widget', 'note-baton-hero-1' ); // Note Baton Hero 1
-	get_template_part( 'default-widget', 'note-baton-features-1' ); // Note Baton Feature 1
-	get_template_part( 'default-widget', 'note-baton-hero-2' ); // Note Baton Hero 2
+function baton_is_baton_conductor_enabled() {
+	// Grab the Baton_Conductor instance
+	$baton_conductor = Baton_Conductor_Instance();
+
+	return $baton_conductor->is_baton_conductor_enabled();
 }
 
+/**
+ * This determines if a static front page is selected.
+ */
+function baton_has_static_front_page() {
+	return ( get_option( 'show_on_front' ) === 'page' && get_option( 'page_on_front' ) );
+}
+
+/**
+ * This determines if a blog front page is selected.
+ */
+function baton_has_blog_front_page() {
+	return ( ! baton_has_static_front_page() );
+}
+
+/**
+ * This is used as the active_callback for Baton Conductor customizer components.
+ */
+function baton_conductor_customizer_active_callback() {
+	return ( baton_is_baton_conductor_enabled() && baton_has_blog_front_page() );
+}
+
+/**
+ * This function outputs categories and tags.
+ */
+if ( ! function_exists( 'baton_categories_tags' ) ) {
+	function baton_categories_tags( $force_display = false ) {
+		// Grab categories and tags
+		$categories = get_the_category();
+		$tags = get_the_tags();
+
+		// CSS Classes
+		$css_classes = array(
+			( $categories ) ? 'has-categories' : 'no-categories',
+			( $tags ) ? 'has-tags' : 'no-tags'
+		);
+	?>
+		<div class="article-categories-wrap <?php echo esc_attr( implode( ' ', $css_classes ) ); ?>">
+			<?php
+				// Categories
+				if ( $categories && ( is_singular( 'post' ) || $force_display ) ) :
+			?>
+				<span class="categories">
+					<span class="fa fa-filter"></span>
+					<?php the_category( ', ' ); ?>
+				</span>
+			<?php
+				endif;
+			?>
+
+			<?php
+				// Tags
+				if ( $tags && ( is_singular( 'post' ) || $force_display ) ) :
+			?>
+				<span class="tags">
+					<span class="fa <?php echo esc_attr( ( count( $tags ) > 1 ) ? 'fa-tags' : 'fa-tag' ); ?>"></span>
+					<?php the_tags( '', ', ' ); ?>
+				</span>
+			<?php
+				endif;
+			?>
+		</div>
+	<?php
+	}
+}
 
 /*
  * SDS Core

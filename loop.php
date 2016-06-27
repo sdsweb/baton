@@ -21,7 +21,8 @@
 		<article id="post-<?php the_ID(); ?>" <?php post_class( esc_attr( 'content content-' . $post->post_type  . ' cf' ) ); ?>>
 			<!-- Article Header -->
 			<header class="article-title-wrap">
-				<div class="article-categories-wrap"><?php the_category( ', ' ); ?></div>
+				<?php baton_categories_tags(); ?>
+
 				<h1 class="article-title"><?php the_title(); ?></h1>
 			</header>
 			<!-- End Article Header -->

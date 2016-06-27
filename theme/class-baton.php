@@ -4,7 +4,7 @@
  *
  * @class Baton
  * @author Slocum Studio
- * @version 1.0.1
+ * @version 1.0.5
  * @since 1.0.0
  */
 
@@ -17,7 +17,7 @@ if ( ! class_exists( 'Baton' ) ) {
 		/**
 		 * @var string, Current version number
 		 */
-		public $version = '1.0.1';
+		public $version = '1.0.5';
 
 		/**
 		 * @var Baton, Instance of the class
@@ -92,8 +92,6 @@ if ( ! class_exists( 'Baton' ) ) {
 			add_filter( 'baton_conductor_content_wrapper_html_element', array( $this, 'conductor_widget_content_wrapper_html_element' ) ); // Adjust the content wrapper HTML element on Conductor Widgets
 			add_filter( 'baton_conductor_content_wrapper_css_classes', array( $this, 'conductor_widget_content_wrapper_css_classes' ), 10, 5 ); // Adjust the CSS classes for the content wrapper HTML element on Conductor Widgets
 			add_filter( 'baton_conductor_instance', array( $this, 'conductor_widget_instance' ), 20, 3 ); // Adjust callback functions upon Conductor Widget display
-			add_action( 'baton_conductor_pagination_before', array( $this, 'conductor_widget_pagination_before' ) ); // Output a wrapper element around Conductor Widget pagination
-			add_action( 'baton_conductor_pagination_after', array( $this, 'conductor_widget_pagination_after' ) ); // Output a wrapper element around Conductor Widget pagination
 
 			// Gravity Forms
 			add_filter( 'gform_field_input', array( $this, 'gform_field_input' ), 10, 5 ); // Add placholder to newsletter form
@@ -134,6 +132,13 @@ if ( ! class_exists( 'Baton' ) ) {
 				'default-color' => $baton_customizer->get_current_color_scheme_default( 'background_color', '#f1f5f9' )
 			) );
 
+			// Custom Logo
+			add_theme_support( 'custom-logo', array(
+				'width' => 300,
+				'height' => 100,
+				'flex-height' => true
+			) );
+
 			// Yoast WordPress SEO Breadcrumbs (automatically enables breadcrumbs)
 			//add_theme_support( 'yoast-seo-breadcrumbs', true );
 
@@ -170,7 +175,7 @@ if ( ! class_exists( 'Baton' ) ) {
 			 */
 
 			// Update Conductor Widgets
-			$this->update_conductor_widgets();
+			$this->update_conductor_widgets( true );
 		}
 
 		/**
@@ -254,33 +259,32 @@ if ( ! class_exists( 'Baton' ) ) {
 		public function pre_get_posts() {
 			global $sds_theme_options, $post;
 
+			// Determine the correct protocol
 			$protocol = is_ssl() ? 'https' : 'http';
 
-			// Admin only
-			if ( is_admin() ) {
-				add_editor_style( 'css/editor-style.css' );
+			// Core editor styles
+			add_editor_style( 'css/editor-style.css' );
 
-				// Add correct color scheme if selected
-				if ( function_exists( 'sds_color_schemes' ) && ! empty( $sds_theme_options['color_scheme'] ) && $sds_theme_options['color_scheme'] !== 'default' ) {
-					$color_schemes = sds_color_schemes();
-					add_editor_style( 'css/' . $color_schemes[$sds_theme_options['color_scheme']]['stylesheet'] );
-				}
-
-				// Open Sans Web Font (include only if a web font is not selected in Theme Options)
-				if ( ! function_exists( 'sds_web_fonts' ) || empty( $sds_theme_options['web_font'] ) )
-					add_editor_style( str_replace( ',', '%2C', $protocol . '://fonts.googleapis.com/css?family=Lato:400,700,900|Martel+Sans:400,600' ) ); // Google WebFonts (Open Sans)
-
-				// Fetch page template if any on Pages only
-				if ( ! empty( $post ) && $post->post_type === 'page' )
-					$wp_page_template = get_post_meta( $post->ID,'_wp_page_template', true );
+			// Add correct color scheme if selected
+			if ( function_exists( 'sds_color_schemes' ) && ! empty( $sds_theme_options['color_scheme'] ) && $sds_theme_options['color_scheme'] !== 'default' ) {
+				$color_schemes = sds_color_schemes();
+				add_editor_style( 'css/' . $color_schemes[$sds_theme_options['color_scheme']]['stylesheet'] );
 			}
 
-			// Admin only and if we have a post using our full page or landing page templates
-			if ( is_admin() && ! empty( $post ) && ( isset( $wp_page_template ) && ( $wp_page_template === 'template-full-width.php' || $wp_page_template === 'template-landing-page.php' ) ) )
+			// Open Sans Web Font (include only if a web font is not selected in Theme Options)
+			if ( ! function_exists( 'sds_web_fonts' ) || empty( $sds_theme_options['web_font'] ) )
+				add_editor_style( str_replace( ',', '%2C', $protocol . '://fonts.googleapis.com/css?family=Lato:400,700,900|Martel+Sans:400,600' ) ); // Google WebFonts (Open Sans)
+
+			// Fetch page template (Pages only)
+			$wp_page_template = get_page_template_slug();
+
+
+			// If we have a post using our full page or landing page templates
+			if ( ! empty( $post ) && ( $wp_page_template === 'template-full-width.php' || $wp_page_template === 'template-landing-page.php' ) )
 				add_editor_style( 'css/editor-style-full-width.css' );
 
 			// FontAwesome
-			add_editor_style( '/includes/css/font-awesome.min.css' );
+			add_editor_style( SDS_Theme_Options::sds_core_dir( true ) . '/css/font-awesome.min.css' );
 		}
 
 
@@ -361,12 +365,18 @@ if ( ! class_exists( 'Baton' ) ) {
 			// Grab the Conductor Widget instance (if it exists)
 			$note_widget = ( class_exists( 'Note' ) && function_exists( 'Note_Widget' ) ) ? Note_Widget() : false;
 
-			// Baton (main stylesheet)
-			wp_enqueue_style( 'baton', get_template_directory_uri() . '/style.css', false, $this->version );
+			// If a child theme is active
+			if ( is_child_theme() ) {
+				// Baton (main stylesheet)
+				wp_enqueue_style( 'baton', get_template_directory_uri() . '/style.css', false, $this->version );
 
-			// Enqueue the child theme stylesheet only if a child theme is active
-			if ( is_child_theme() )
+				// Baton Child Theme
 				wp_enqueue_style( 'baton-child', get_stylesheet_uri(), array( 'baton' ), $this->version );
+			}
+			// Otherwise just Baton is active
+			else
+				// Baton (main stylesheet)
+				wp_enqueue_style( 'baton', get_stylesheet_uri(), false, $this->version );
 
 			// Google Web Fonts - Lato & Martel Sans
 			wp_enqueue_style( 'baton-google-web-fonts', $protocol . '://fonts.googleapis.com/css?family=Lato:400,700,900|Martel+Sans:400,600', false, $this->version );
@@ -375,7 +385,7 @@ if ( ! class_exists( 'Baton' ) ) {
 			wp_enqueue_script( 'jquery' );
 
 			// Fitvids
-			wp_enqueue_script( 'fitvids', get_template_directory_uri() . '/js/fitvids.js', array( 'jquery' ), $this->version );
+			wp_enqueue_script( 'fitvids', get_template_directory_uri() . '/js/fitvids.min.js', array( 'jquery' ), $this->version );
 
 			// FontAwesome
 			wp_enqueue_style( 'font-awesome-css-min', get_template_directory_uri() . '/includes/css/font-awesome.min.css' );
@@ -384,7 +394,6 @@ if ( ! class_exists( 'Baton' ) ) {
 			if ( ! class_exists( 'Note' ) || ( $note_widget && is_a( $note_widget, 'Note_Widget' ) && ! is_active_widget( false, false, $note_widget->id_base, true ) ) )
 				// Note Flexbox Shim
 				wp_enqueue_style( 'baton-note-flexbox', get_template_directory_uri() . '/css/note-flexbox.css', false, $this->version );
-
 		}
 
 		/**
@@ -502,9 +511,16 @@ if ( ! class_exists( 'Baton' ) ) {
 
 					// Primary Nav
 					$primary_nav_and_button.on( 'click', function ( e ) {
-						// Prevent Propagation (bubbling) to other elements and default
-						e.stopPropagation();
-						e.preventDefault();
+						<?php
+							// If we're not in the Customizer, stop propagation and default on click
+							if ( ! is_customize_preview() ) :
+						?>
+								// Prevent Propagation (bubbling) to other elements and default
+								e.stopPropagation();
+								e.preventDefault();
+						<?php
+							endif;
+						?>
 
 						// Open
 						if ( ! $primary_nav_and_button.hasClass( 'open' ) ) {
@@ -523,9 +539,16 @@ if ( ! class_exists( 'Baton' ) ) {
 
 					// Secondary Nav
 					$secondary_nav_and_button.on( 'click', function ( e ) {
-						// Prevent Propagation (bubbling) to other elements and default
-						e.stopPropagation();
-						e.preventDefault();
+						<?php
+							// If we're not in the Customizer, stop propagation and default on click
+							if ( ! is_customize_preview() ) :
+						?>
+								// Prevent Propagation (bubbling) to other elements and default
+								e.stopPropagation();
+								e.preventDefault();
+						<?php
+							endif;
+						?>
 
 						// Open
 						if ( ! $secondary_nav_and_button.hasClass( 'open' ) ) {
@@ -1410,7 +1433,8 @@ if ( ! class_exists( 'Baton' ) ) {
 		?>
 			<!-- Article Header -->
 			<header class="article-title-wrap">
-				<div class="article-categories-wrap"><?php the_category( ', ' ); ?></div>
+				<?php baton_categories_tags( true ); ?>
+
 				<?php if ( strlen( get_the_title() ) > 0 ) : ?>
 					<h1 class="article-title">
 						<?php
@@ -1690,6 +1714,7 @@ if ( ! class_exists( 'Baton' ) ) {
 					// No key found, return the original array
 					return $where;
 				break;
+
 				// Settings Section
 				case 'settings-section':
 					global $wp_settings_sections;
@@ -1737,6 +1762,10 @@ if ( ! class_exists( 'Baton' ) ) {
 		 */
 		public function update_conductor_widgets( $after_switch_theme = false ) {
 			global $sds_theme_options;
+
+			// Bail if we don't have options stored in the database
+			if ( ! SDS_Theme_Options::has_options() )
+				return;
 
 			// Grab SDS Theme Options
 			$sds_theme_options = SDS_Theme_Options::get_sds_theme_options();

@@ -32,7 +32,7 @@ class SDS_Theme_Options_Customize_Web_Font_Control extends WP_Customize_Control 
 		if ( function_exists( 'sds_web_fonts' ) ) {
 			$google_families = $sds_theme_options_instance->get_google_font_families_list();
 
-			wp_enqueue_style( 'google-web-fonts', $protocol . '://fonts.googleapis.com/css?family=' . $google_families, false, SDS_Theme_Options::VERSION );
+			wp_enqueue_style( 'google-web-fonts', $protocol . '://fonts.googleapis.com/css?family=' . $google_families, false, SDS_Theme_Options::get_version() );
 		}
 
 		// Call the parent enqueue method here
