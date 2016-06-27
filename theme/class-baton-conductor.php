@@ -65,7 +65,7 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 				// Posts per page
 				'posts_per_page' => 13,
 				// Posts per page
-				'enhanced_display_posts_per_page_offset' => 4,
+				'enhanced_display_posts_per_page_offset' => $this->enhanced_display_offset,
 				// Category
 				'category' => 0, // All
 				// Flexbox Columns

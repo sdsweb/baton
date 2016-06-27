@@ -2,8 +2,14 @@
 Theme: Baton
 Author: Slocum Themes/Slocum Design Studio
 Author URI: https://slocumthemes.com/
-Current Version: 1.0.5
+Current Version: 1.0.6
 ==========================================
+
+
+1.0.6 // June 27 2016
+---------------------
+- Fixed a bug where page content was output on the static front page when a widget was placed
+  in the Front Page Sidebar (Front Page Sidebar overrides normal static front page output)
 
 1.0.5 // June 22 2016
 ---------------------
