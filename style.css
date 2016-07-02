@@ -2648,6 +2648,13 @@ nav .primary-nav .children .children:after {
 	width: 70%;
 }
 
+/* On Sale Icon */
+.woocommerce span.onsale {
+    height: 2em;
+    width: 2em;
+    line-height: 2.8;
+}
+
 /* Single Product Description Tab */
 .woocommerce div.product .woocommerce-tabs ul.tabs {
 	margin: 0;
@@ -2674,15 +2681,20 @@ nav .primary-nav .children .children:after {
 	background-color: #3ebbbb;
 }
 .page-template-template-full-width .cross-sells ul.products li.product .button {
-    font-size: 100%;
+    font-size: 88%;
 }
+
+/* Cart update button */
+.woocommerce .cart input.button {
+    font-size: 80%;
+}    
 
 .cross-sells ul.products li.product .button {
     font-size: 76%;
 }
 
 .woocommerce-cart .wc-proceed-to-checkout a.checkout-button {
-	font-size: 100%;
+	font-size: 88%;
 	padding: .618em 1em;
 }
 
@@ -2780,6 +2792,20 @@ nav .primary-nav .children .children:after {
 /**
  * Responsive Structure
  */
+@media only screen and (max-width: 1024px) {
+	.woocommerce .cart .button, .woocommerce .cart input.button {
+    	font-size: 70%;
+	}
+
+	.woocommerce-cart .wc-proceed-to-checkout a.checkout-button {
+    	font-size: 80%;
+	}
+
+	.cross-sells ul.products li.product .button {
+    	font-size: 52%;
+	}
+}
+
 
 @media only screen and (max-width: 960px) {
 	/**
@@ -3489,6 +3515,7 @@ nav .primary-nav .children .children:after {
 	.comments-list .children {
 		padding-left: 0.75em;
 	}
+
 
 	/* Woocommerce Coupon Button */
 	.woocommerce-page table.cart td.actions .coupon input {
