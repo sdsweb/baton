@@ -423,6 +423,9 @@ nav .primary-nav .children .children:after{
 .woocommerce ul.products li.product, .woocommerce-page ul.products li.product {
 	background-color: #FFF;
 }
+.woocommerce-cart ul.products li.product {
+	background-color: transparent;
+}	
 
 .woocommerce div.product form.cart .variations select {
 	background-color: #FFF;
@@ -456,7 +459,7 @@ nav .primary-nav .children .children:after{
 	background-color: #ff5b5d;
 }
 .woocommerce button.button.alt:hover, .woocommerce a.button.alt:hover, .woocommerce input.button.alt:hover {
-	background-color: #ff5b5d;
+	background-color: #363a42;
 }
 
 .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce input.button {
@@ -476,6 +479,17 @@ nav .primary-nav .children .children:after{
 
 .woocommerce .quantity input {
     background: #FFF;
+}
+
+.woocommerce .quantity input {
+    background: #FFF;
+}
+
+.woocommerce button.button.alt.disabled {
+	background-color: #ff5b5d;
+}
+.woocommerce button.button.alt.disabled:hover {
+	background-color: #ff5b5d;
 }
 
 

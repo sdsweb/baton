@@ -106,10 +106,10 @@ if ( ! class_exists( 'Baton' ) ) {
 			/* Woocommerce Archive product Hooks */
 			add_action( 'woocommerce_before_main_content', array( $this, 'baton_woo_main_content_before' ) );
 			add_action( 'woocommerce_after_main_content', array( $this, 'baton_woo_main_content_after' ) );
-
 			
 			remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 			
+			add_filter( 'woocommerce_pagination_args', array( $this, 'baton_woo_pagination_args' ) );
 
 		}
 
@@ -128,6 +128,24 @@ if ( ! class_exists( 'Baton' ) ) {
 			if ( ! is_cart() ) {	
 				echo '<div class="woo-baton-product-wrapper">';
 			}
+		}
+
+		public function baton_woo_pagination_args( $array ) {
+			global $wp_query;
+			$array = array(
+						'base'  => esc_url_raw( str_replace( 999999999, '%#%', remove_query_arg( 'add-to-cart', get_pagenum_link( 999999999, false ) ) ) ),
+						'format'       => '',
+						'add_args'     => false,
+						'current'      => max( 1, get_query_var( 'paged' ) ),
+						'total'        => $wp_query->max_num_pages,
+						'prev_text'    => '&#8592; Previous',
+						'next_text'    => 'Next &#8594;',
+						'type'         => 'list',
+						'end_size'     => 3,
+						'mid_size'     => 3
+					);
+
+			return $array;
 		}
 
 		public function baton_woo_main_content_before() { ?>
