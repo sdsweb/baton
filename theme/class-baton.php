@@ -107,8 +107,6 @@ if ( ! class_exists( 'Baton' ) ) {
 			add_action( 'woocommerce_before_main_content', array( $this, 'baton_woo_main_content_before' ) );
 			add_action( 'woocommerce_after_main_content', array( $this, 'baton_woo_main_content_after' ) );
 			
-			remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
-			
 			add_filter( 'woocommerce_pagination_args', array( $this, 'baton_woo_pagination_args' ) );
 
 		}
@@ -148,7 +146,11 @@ if ( ! class_exists( 'Baton' ) ) {
 			return $array;
 		}
 
-		public function baton_woo_main_content_before() { ?>
+		public function baton_woo_main_content_before() { 
+			if ( is_cart() || is_checkout() ) {
+				remove_action( 'get_sidebar', 'return_false' );
+			}
+			?>
 
 			<main role="main" class="content-wrap content-wrap-page content-wrap-full-width-page baton-flex <?php echo ( baton_is_yoast_breadcrumbs_active() ) ? 'has-breadcrumbs' : 'no-breadcrumbs'; ?>">
 				<!-- Page Content -->

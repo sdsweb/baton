@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) )
 get_header(); ?>
 
 			<!-- Main -->
-			<main role="main" class="content-wrap content-wrap-page baton-flex <?php echo ( baton_is_yoast_breadcrumbs_active() ) ? 'has-breadcrumbs' : 'no-breadcrumbs'; ?>">
+			<main role="main" class="content-wrap content-wrap-page <?php if ( is_cart() || is_checkout() ) echo 'content-wrap-full-width-page'; ?> baton-flex <?php echo ( baton_is_yoast_breadcrumbs_active() ) ? 'has-breadcrumbs' : 'no-breadcrumbs'; ?>">
 				<!-- Page Content -->
 				<div class="baton-col baton-col-content">
 					<section class="content-container content-page-container">
@@ -28,7 +28,11 @@ get_header(); ?>
 				<!-- End Page Content -->
 
 				<!-- Sidebar -->
-				<?php get_sidebar(); ?>
+				<?php
+					if ( ! is_cart() && ! is_checkout() ) {
+						get_sidebar(); 
+					}
+				?>
 				<!-- End Sidebar -->
 
 				<div class="clear"></div>

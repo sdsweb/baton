@@ -2710,6 +2710,10 @@ nav .primary-nav .children .children:after {
 	padding: .618em 1em;
 }
 
+.woocommerce input.button:disabled, .woocommerce input.button:disabled[disabled] {
+    color: #FFF;
+}    
+
 
 /* Woocommerce Pagination */
 
