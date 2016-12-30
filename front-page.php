@@ -20,37 +20,37 @@ get_header(); ?>
 						// If the Front Page Sidebar is active
 						if ( sds_is_front_page_sidebar_active() ) : // Front Page Sidebar
 				?>
-						<!-- Front Page Sidebar -->
-						<aside class="front-page-widgets <?php echo ( sds_is_front_page_sidebar_active() ) ? 'widgets' : 'no-widgets'; ?>">
-							<?php dynamic_sidebar( 'front-page-sidebar' ); ?>
-						</aside>
-						<!-- End Front Page Sidebar -->
+							<!-- Front Page Sidebar -->
+							<aside class="front-page-widgets <?php echo ( sds_is_front_page_sidebar_active() ) ? 'widgets' : 'no-widgets'; ?>">
+								<?php dynamic_sidebar( 'front-page-sidebar' ); ?>
+							</aside>
+							<!-- End Front Page Sidebar -->
 				<?php
 						// Otherwise, just show the front page
 						else:
 				?>
-						<?php // TODO: Baton conductor on the Front Page? ?>
-						<div class="in front-page-in baton-flex baton-flex-front-page <?php echo ( sds_is_front_page_sidebar_active() ) ? 'has-front-page-sidebar' : 'no-front-page-sidebar'; ?>">
-							<!-- Page Content -->
-							<div class="baton-col baton-col-content">
-								<section class="content-container content-page-container">
-									<?php get_template_part( 'yoast', 'breadcrumbs' ); // Yoast Breadcrumbs ?>
+							<?php // TODO: Baton conductor on the Front Page? ?>
+							<div class="in front-page-in baton-flex baton-flex-front-page <?php echo ( sds_is_front_page_sidebar_active() ) ? 'has-front-page-sidebar' : 'no-front-page-sidebar'; ?>">
+								<!-- Page Content -->
+								<div class="baton-col baton-col-content">
+									<section class="content-container content-page-container">
+										<?php get_template_part( 'yoast', 'breadcrumbs' ); // Yoast Breadcrumbs ?>
 
-									<?php get_template_part( 'loop', 'page' ); // Loop - Page ?>
+										<?php get_template_part( 'loop', 'page' ); // Loop - Page ?>
 
-									<!-- Comments -->
-									<?php comments_template(); // Comments ?>
-									<!-- End Comments -->
+										<!-- Comments -->
+										<?php comments_template(); // Comments ?>
+										<!-- End Comments -->
 
-									<div class="clear"></div>
-								</section>
+										<div class="clear"></div>
+									</section>
+								</div>
+								<!-- End Page Content -->
+
+								<!-- Primary Sidebar -->
+								<?php get_sidebar(); ?>
+								<!-- End Primary Sidebar -->
 							</div>
-							<!-- End Page Content -->
-
-							<!-- Primary Sidebar -->
-							<?php get_sidebar(); ?>
-							<!-- End Primary Sidebar -->
-						</div>
 				<?php
 						endif;
 					// Otherwise no Front Page is selected

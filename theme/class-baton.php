@@ -4,7 +4,7 @@
  *
  * @class Baton
  * @author Slocum Studio
- * @version 1.0.6
+ * @version 1.0.7
  * @since 1.0.0
  */
 
@@ -17,7 +17,7 @@ if ( ! class_exists( 'Baton' ) ) {
 		/**
 		 * @var string, Current version number
 		 */
-		public $version = '1.0.6';
+		public $version = '1.0.7';
 
 		/**
 		 * @var Baton, Instance of the class
@@ -40,6 +40,7 @@ if ( ! class_exists( 'Baton' ) ) {
 		 */
 		public function __construct() {
 			add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), 20 ); // Register image sizes
+			add_filter( 'theme_page_templates', array( $this, 'theme_page_templates' ) ); // Theme Page Templates
 			add_action( 'after_switch_theme', array( $this, 'after_switch_theme' ), 1, 2 ); // Early
 			add_action( 'init', array( $this, 'init' ), 20 ); // Init
 			add_action( 'widgets_init', array( $this, 'widgets_init' ), 20 ); // Register sidebars
@@ -161,6 +162,21 @@ if ( ! class_exists( 'Baton' ) ) {
 
 			// Unregister menus which are registered in SDS Core
 			unregister_nav_menu( 'top_nav' );
+		}
+
+		/**
+		 * This function adjusts the theme page templates.
+		 */
+		public function theme_page_templates( $page_templates ) {
+			// Bail if Beaver Builder exists or we should enable [allow] the Beaver Builder template [to remain in the list of page templates]
+			if ( class_exists( 'FLBuilderLoader' ) || apply_filters( 'baton_enable_beaver_builder_page_template', false ) )
+				return $page_templates;
+
+			// Remove the Beaver Builder template
+			if ( array_key_exists( 'template-beaver-builder.php', $page_templates ) )
+				unset( $page_templates['template-beaver-builder.php'] );
+
+			return $page_templates;
 		}
 
 		/**

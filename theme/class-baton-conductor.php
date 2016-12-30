@@ -172,9 +172,6 @@ if ( ! class_exists( 'Baton_Conductor' ) ) {
 
 			// Adjust the category
 			$query->set( 'cat', $this->baton_conductor_theme_mod['category'] );
-
-			// Ignore sticky posts
-			$query->set( 'ignore_sticky_posts', true );
 		}
 
 		/**
