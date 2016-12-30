@@ -2999,6 +2999,23 @@ body .mc-newsletter-confirmation .gform_confirmation_wrapper, body .mc_newslette
 
 
 /**
+ * Beaver Builder Template
+ */
+.page-template-template-beaver-builder .in.content-wrapper-in {
+	max-width: none;
+}
+
+.page-template-template-beaver-builder.fl-builder .in.content-wrapper-in  {
+	padding: 0;
+}
+
+.page-template-template-beaver-builder #footer {
+	margin-top: 0;
+}
+
+
+
+/**
  * Responsive Structure
  */
 
@@ -3768,5 +3785,13 @@ body .mc-newsletter-confirmation .gform_confirmation_wrapper, body .mc_newslette
 	 */
 	#footer {
 		margin-top: 1.5em;
+	}
+
+
+	/**
+	 * Beaver Builder Template
+	 */
+	.page-template-template-beaver-builder #footer {
+		margin-top: 0;
 	}
 }
