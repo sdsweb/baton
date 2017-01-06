@@ -1562,7 +1562,8 @@ a img.aligncenter {
 }
 
 /* Baton Conductor */
-.baton-baton-conductor .content-wrap {
+.baton-baton-conductor .content-wrap,
+.baton-baton-conductor .content-wrap.has-breadcrumbs {
 	padding-top: 0;
 }
 

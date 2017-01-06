@@ -12,6 +12,22 @@ if ( ! defined( 'ABSPATH' ) )
 
 get_header(); ?>
 
+			<?php
+				// If Baton Conductor is enabled, Baton Conductor display isn't enhanced, and the Front Page Sidebar is active
+				if ( baton_is_baton_conductor_enabled() && ! baton_is_baton_conductor_display_enhanced() && sds_is_front_page_sidebar_active() ) : // Front Page Sidebar
+			?>
+					<!-- Front Page Sidebar -->
+					<aside class="front-page-widgets <?php echo ( sds_is_front_page_sidebar_active() ) ? 'widgets' : 'no-widgets'; ?>">
+						<?php dynamic_sidebar( 'front-page-sidebar' ); ?>
+					</aside>
+					<!-- End Front Page Sidebar -->
+
+					<!-- Content Wrapper -->
+					<div class="in content-wrapper-in cf">
+			<?php
+				endif;
+			?>
+
 			<!-- Main -->
 			<main role="main" class="content-wrap content-wrap-page baton-flex <?php echo ( baton_is_yoast_breadcrumbs_active() ) ? 'has-breadcrumbs' : 'no-breadcrumbs'; ?>">
 				<?php
@@ -29,7 +45,6 @@ get_header(); ?>
 						// Otherwise, just show the front page
 						else:
 				?>
-							<?php // TODO: Baton conductor on the Front Page? ?>
 							<div class="in front-page-in baton-flex baton-flex-front-page <?php echo ( sds_is_front_page_sidebar_active() ) ? 'has-front-page-sidebar' : 'no-front-page-sidebar'; ?>">
 								<!-- Page Content -->
 								<div class="baton-col baton-col-content">
