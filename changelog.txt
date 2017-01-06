@@ -2,9 +2,17 @@
 Theme: Baton
 Author: Slocum Themes/Slocum Design Studio
 Author URI: https://slocumthemes.com/
-Current Version: 1.0.7
+Current Version: 1.0.8
 ==========================================
 
+
+1.0.8 // January 07 2017
+------------------------
+- Adjusted verbiage in Baton Conductor Customizer controls
+- Adjusted CSS to ensure the front page content wrapper element inherited the correct padding
+  when Yoast breadcrumbs were enabled
+- Added logic to output the Front Page Sidebar if Baton Conductor was enabled but enhanced
+  display was not enabled
 
 1.0.7 // December 30 2016
 -------------------------

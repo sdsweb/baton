@@ -123,5 +123,12 @@
 		<?php endif; ?>
 		<!-- End Secondary Navigation -->
 
-		<!-- Content Wrapper -->
-		<div class="in content-wrapper-in cf">
+		<?php
+			// If this isn't the front page, Baton Conductor isn't enabled, Baton Conductor display is enhanced, or the Front Page Sidebar isn't active
+			if ( ! is_front_page() || ( ! baton_is_baton_conductor_enabled() || baton_is_baton_conductor_display_enhanced() || ! sds_is_front_page_sidebar_active() ) ) :
+		?>
+			<!-- Content Wrapper -->
+			<div class="in content-wrapper-in cf">
+		<?php
+			endif;
+		?>

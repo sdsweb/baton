@@ -188,8 +188,8 @@ if ( ! class_exists( 'Baton_Conductor_Customizer' ) ) {
 					$wp_customize,
 					'baton_conductor[enhanced_display_disabled]', // IDs can have nested array keys
 					array(
-						'label' => __( 'Enhanced Blog Display', 'baton' ),
-						'description' => __( 'Use this setting to enable or disable the enhanced Blog Display <sup>by Conductor</sup>.', 'baton' ),
+						'label' => __( 'Enhanced Demo Display', 'baton' ),
+						'description' => __( 'Use this setting to enable or disable the Enhanced Demo Display <sup>by Conductor</sup>.', 'baton' ),
 						'section'  => 'baton_enable_disable_features',
 						'settings' => 'baton_conductor[enhanced_display_disabled]',
 						'priority' => 20,
