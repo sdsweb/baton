@@ -4,7 +4,7 @@
  *
  * @class Baton
  * @author Slocum Studio
- * @version 1.0.8
+ * @version 1.1.0
  * @since 1.0.0
  */
 
@@ -17,7 +17,12 @@ if ( ! class_exists( 'Baton' ) ) {
 		/**
 		 * @var string, Current version number
 		 */
-		public $version = '1.0.8';
+		public $version = '1.1.0';
+
+		/**
+		 * @var string
+         */
+		public $page_template = null;
 
 		/**
 		 * @var Baton, Instance of the class
@@ -43,11 +48,14 @@ if ( ! class_exists( 'Baton' ) ) {
 			add_filter( 'theme_page_templates', array( $this, 'theme_page_templates' ) ); // Theme Page Templates
 			add_action( 'after_switch_theme', array( $this, 'after_switch_theme' ), 1, 2 ); // Early
 			add_action( 'init', array( $this, 'init' ), 20 ); // Init
+			add_action( 'wp', array( $this, 'wp' ) ); // WordPress
 			add_action( 'widgets_init', array( $this, 'widgets_init' ), 20 ); // Register sidebars
 			add_action( 'pre_get_posts', array( $this, 'pre_get_posts' ) ); // Used to enqueue editor styles based on post type
+			add_action( 'do_meta_boxes', array( $this, 'do_meta_boxes' ), 1 ); // Do Meta Boxes (Early)
 			add_action( 'wp_head', array( $this, 'wp_head' ), 1 ); // Add <meta> tags to <head> section
 			add_action( 'tiny_mce_before_init', array( $this, 'tiny_mce_before_init' ), 10, 2 ); // Output TinyMCE Setup function
 			add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) ); // Enqueue all stylesheets (Main Stylesheet, Fonts, etc...)
+			add_filter( 'post_class', array( $this, 'post_class' ), 10, 3 ); // Post Class
 			add_filter( 'the_content_more_link', array( $this, 'the_content_more_link' ) ); // Adjust default more link
 			add_filter( 'dynamic_sidebar_params', array( $this, 'dynamic_sidebar_params' ) ); // Dynamic sidebar parameters (Note/Conductor Widgets)
 			add_filter( 'edit_post_link', array( $this, 'edit_post_link' ) ); // Adjust CSS class on post edit links
@@ -97,6 +105,36 @@ if ( ! class_exists( 'Baton' ) ) {
 			// Gravity Forms
 			add_filter( 'gform_field_input', array( $this, 'gform_field_input' ), 10, 5 ); // Add placholder to newsletter form
 			add_filter( 'gform_confirmation', array( $this, 'gform_confirmation' ), 10, 4 ); // Change confirmation message on newsletter form
+
+			// WooCommerce
+			add_filter( 'woocommerce_product_settings', array( $this, 'woocommerce_product_settings' ) ); // WooCommerce - Product Settings
+			add_filter( 'woocommerce_get_image_size_shop_catalog', array( $this, 'woocommerce_get_image_size_shop_catalog' ) ); // WooCommerce - Get Image Size - Shop Catelog
+			add_filter( 'woocommerce_get_image_size_shop_single', array( $this, 'woocommerce_get_image_size_shop_single' ) ); // WooCommerce - Get Image Size - Shop Single
+			add_filter( 'woocommerce_get_image_size_shop_thumbnail', array( $this, 'woocommerce_get_image_size_shop_thumbnail' ) ); // WooCommerce - Get Image Size - Shop Thumbnail
+			remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper' ); // Remove WooCommerce - Before Main Content
+			add_action( 'woocommerce_before_main_content', array( $this, 'woocommerce_before_main_content' ) ); // WooCommerce - Before Main Content
+			add_action( 'woocommerce_before_main_content', array( $this, 'woocommerce_before_main_content_article_content_wrapper_before' ), 30 ); // WooCommerce - Before Main Content (Article Content Wrapper Before)
+			add_filter( 'loop_shop_per_page', array( $this, 'loop_shop_per_page' ) ); // WooCommerce - Loop Shop Per Page
+			add_filter( 'loop_shop_columns', array( $this, 'loop_shop_columns' ) ); // WooCommerce - Loop Shop Columns
+			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'woocommerce_before_shop_loop_item_title_thumbnail_wrapper_before' ), 5 ); // WooCommerce - Before Shop Loop Item Title (Thumbnail Wrapper Before)
+			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'woocommerce_before_shop_loop_item_title_thumbnail_wrapper_after' ), 15 ); // WooCommerce - Before Shop Loop Item Title (Thumbnail Wrapper After)
+			add_action( 'woocommerce_shop_loop_item_title', array( $this, 'woocommerce_shop_loop_item_title' ), 5 ); // WooCommerce - Shop Loop Item Title
+			add_action( 'woocommerce_after_shop_loop_item_title', array( $this, 'woocommerce_after_shop_loop_item_title' ), 15 ); // WooCommerce - After Shop Loop Item Title
+			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'woocommerce_after_shop_loop_item_article_content_wrapper_before' ), 8 ); // WooCommerce - After Shop Loop Item (Article Content Wrapper Before)
+			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'woocommerce_after_shop_loop_item_article_content_wrapper_after' ), 15 ); // WooCommerce - After Shop Loop Item (Article Content Wrapper After)
+			add_action( 'woocommerce_before_single_product_summary', array( $this, 'woocommerce_before_single_product_summary' ), 5 ); // WooCommerce - Before Single Product Summary
+			add_filter( 'woocommerce_product_thumbnails_columns', array( $this, 'woocommerce_product_thumbnails_columns' ) ); // WooCommerce - Single Product Thumbnails Columns
+			add_action( 'woocommerce_before_single_product_summary', array( $this, 'woocommerce_before_single_product_summary_baton_col_wrappers' ), 30 ); // WooCommerce - Before Single Product Summary (Baton Column Wrapper Before)
+			add_action( 'woocommerce_single_product_summary', array( $this, 'woocommerce_single_product_summary' ), 2 ); // WooCommerce - Single Product Summary
+			add_action( 'woocommerce_single_product_summary', array( $this, 'woocommerce_single_product_summary_article_content_wrapper_after' ), 70 ); // WooCommerce - Single Product Summary (Article Content Wrapper After)
+			add_action( 'woocommerce_after_single_product_summary', array( $this, 'woocommerce_after_single_product_summary' ), 5 ); // WooCommerce - After Single Product Summary
+			add_filter( 'woocommerce_output_related_products_args', array( $this, 'woocommerce_output_related_products_args' ) ); // WooCommerce - Related Products Arguments
+			remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 ); // Remove WooCommerce - Related Products
+			add_action( 'woocommerce_after_single_product', 'woocommerce_output_related_products' ); // WooCommerce - Related Products
+			add_filter( 'single_product_archive_thumbnail_size', array( $this, 'single_product_archive_thumbnail_size' ) ); // WooCommerce - Single Product Archive Thumbnail Size
+			remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 ); // Remove WooCommerce - Sidebar
+			remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end' ); // Remove WooCommerce - After Main Content
+			add_action( 'woocommerce_after_main_content', array( $this, 'woocommerce_after_main_content' ) ); // WooCommerce - After Main Content
 		}
 
 
@@ -142,6 +180,9 @@ if ( ! class_exists( 'Baton' ) ) {
 
 			// Yoast WordPress SEO Breadcrumbs (automatically enables breadcrumbs)
 			//add_theme_support( 'yoast-seo-breadcrumbs', true );
+
+			// Add Woocommerce Support
+			add_theme_support( 'woocommerce' );
 
 			// Theme textdomain
 			load_theme_textdomain( 'baton', get_template_directory() . '/languages' );
@@ -211,6 +252,17 @@ if ( ! class_exists( 'Baton' ) ) {
 		}
 
 		/**
+		 * This function runs after the WordPress object it setup.
+		 */
+		public function wp() {
+			// Store the current page template on the class
+			$this->page_template = get_post_meta( get_queried_object_id(), '_wp_page_template', true );
+
+			// Hook into get_post_metadata
+			add_filter( 'get_post_metadata', array( $this, 'get_post_metadata' ), 10, 4 );
+		}
+
+		/**
 		 * This function registers/unregisters extra sidebars that are not used in this theme.
 		 */
 		public function widgets_init() {
@@ -269,6 +321,48 @@ if ( ! class_exists( 'Baton' ) ) {
 		}
 
 		/**
+		 * This function adjusts post meta data.
+		 */
+		public function get_post_metadata( $value, $post_id, $meta_key, $single ) {
+			// Bail if WooCommerce doesn't exist, we already have a check value, this isn't a single request, or the meta key doesn't match "_wp_page_template"
+			if ( ! class_exists( 'WooCommerce' ) || $value !== null || ! $single || $meta_key !== '_wp_page_template' )
+				return $value;
+
+			// Bail if this isn't the admin and we're not on the WooCommerce cart and the WooCommerce checkout page
+			if ( ! is_admin() && ! is_cart() && ! is_checkout() )
+				return $value;
+
+			// Bail if this is the admin and we're not on the WooCommerce cart and the WooCommerce checkout page
+			if ( is_admin() && $post_id !== wc_get_page_id( 'cart' ) && $post_id !== wc_get_page_id( 'checkout' ) )
+				return $value;
+
+			// If we don't have a page template
+			if ( $this->page_template === '' )
+				// Set the page template to the full width page template
+				$value = 'template-full-width.php';
+
+			return $value;
+		}
+
+		/**
+		 * This function adjusts post meta data while updating.
+		 */
+		public function update_post_metadata( $value, $post_id, $meta_key, $single ) {
+			// Bail if WooCommerce doesn't exist, we already have a check value, this isn't a single request, or the meta key doesn't match "_wp_page_template"
+			if ( ! class_exists( 'WooCommerce' ) || $value !== null || ! $single || $meta_key !== '_wp_page_template' )
+				return $value;
+
+			// Bail if this is the admin and we're not on the WooCommerce cart and the WooCommerce checkout page
+			if ( is_admin() && $post_id !== wc_get_page_id( 'cart' ) && $post_id !== wc_get_page_id( 'checkout' ) )
+				return $value;
+
+			// Remove the get_post_metadata adjustment
+			remove_filter( 'get_post_metadata', array( $this, 'get_post_metadata' ) );
+
+			return $value;
+		}
+
+		/**
 		 * This function adds editor styles based on post type, before TinyMCE is initalized.
 		 * It will also enqueue the correct color scheme stylesheet to better match front-end display.
 		 */
@@ -303,6 +397,21 @@ if ( ! class_exists( 'Baton' ) ) {
 			add_editor_style( SDS_Theme_Options::sds_core_dir( true ) . '/css/font-awesome.min.css' );
 		}
 
+		/**
+		 * This function runs when meta boxes are loaded.
+		 */
+		public function do_meta_boxes() {
+			global $post;
+
+			// If we have a post
+			if ( $post ) {
+				// Store the current page template on the class
+				$this->page_template = get_post_meta( get_post_field( 'ID', $post ), '_wp_page_template', true );
+
+				// Hook into get_post_metadata
+				add_filter( 'get_post_metadata', array( $this, 'get_post_metadata' ), 10, 4 );
+			}
+		}
 
 		/**
 		 * This function adds <meta> tags to the <head> element.
@@ -410,6 +519,40 @@ if ( ! class_exists( 'Baton' ) ) {
 			if ( ! class_exists( 'Note' ) || ( $note_widget && is_a( $note_widget, 'Note_Widget' ) && ! is_active_widget( false, false, $note_widget->id_base, true ) ) )
 				// Note Flexbox Shim
 				wp_enqueue_style( 'baton-note-flexbox', get_template_directory_uri() . '/css/note-flexbox.css', false, $this->version );
+		}
+
+		/**
+		 * This function adjusts the post class.
+		 */
+		public function post_class( $classes, $class, $post_id ) {
+			// Bail if WooCommerce doesn't exist, this isn't WooCommerce, we're in the cart, or we're checking out
+			if ( ! class_exists( 'WooCommerce' ) || ! is_woocommerce() || is_cart() || is_checkout() )
+				return $classes;
+
+			// Grab the post
+			$post = get_post( $post_id );
+
+			// If this isn't a single WooCommerce Product and the post type is a WooCommerce Product (i.e. archive) or this is a single WooCommerce Product and the queried object ID doesn't match the post ID
+			if ( ( ! is_product() && get_post_type( $post ) === 'product' ) || ( get_queried_object_id() !== get_post_field( 'ID', $post ) ) ) {
+				// Add the Baton content CSS class
+				$classes[] = esc_attr( 'content' );
+				$classes[] = esc_attr( 'content-woocommerce' );
+			}
+
+			// If this isn't a single WooCommerce Product
+			if ( ! is_product() ) {
+				// Add the Baton column CSS classes
+				$classes[] = esc_attr( 'baton-col' );
+				$classes[] = esc_attr( 'baton-col-woocommerce-product' );
+				$classes[] = esc_attr( 'baton-col-woocommerce-product-' . $post_id );
+			}
+			// Otherwise if this is a single WooCommerce Product and the queried object ID matches the post ID
+			else if ( get_queried_object_id() === get_post_field( 'ID', $post ) ) {
+				$classes[] = 'baton-flex';
+				$classes[] = 'baton-flex-2-columns';
+			}
+
+			return $classes;
 		}
 
 		/**
@@ -1687,6 +1830,298 @@ if ( ! class_exists( 'Baton' ) ) {
 			}
 
 			return $confirmation;
+		}
+
+
+		/***************
+		 * WooCommerce *
+		 ***************/
+
+		/**
+		 * This function adjusts the default WooCommerce Product settings.
+		 */
+		public function woocommerce_product_settings( $settings ) {
+			// Loop through the WooCommerce product settings
+			foreach ( $settings as &$setting ) {
+				// Adjust the shop catalog image size
+				if ( $setting['id'] === 'shop_catalog_image_size' ) {
+					$setting['default']['width'] = $setting['default']['height'] = 550;
+
+					$setting['default']['crop'] = 0;
+				}
+
+				// Adjust the shop single image size
+				if ( $setting['id'] === 'shop_single_image_size' ) {
+					$setting['default']['width'] = $setting['default']['height'] = 850;
+
+					$setting['default']['crop'] = 0;
+				}
+
+				// Adjust the shop thumbnail image size
+				if ( $setting['id'] === 'shop_thumbnail_image_size' ) {
+					$setting['default']['width'] = $setting['default']['height'] = 175;
+
+					$setting['default']['crop'] = 0;
+				}
+			}
+
+			return $settings;
+		}
+
+		/**
+		 * This function adjusts the WooCommerce shop catalog image size
+		 */
+		public function woocommerce_get_image_size_shop_catalog( $size ) {
+			$size['width'] = $size['height'] = '550';
+
+			return $size;
+		}
+
+		/**
+		 * This function adjusts the WooCommerce shop single image size
+		 */
+		public function woocommerce_get_image_size_shop_single( $size ) {
+			$size['width'] = $size['height'] = '850';
+
+			return $size;
+		}
+
+		/**
+		 * This function adjusts the WooCommerce shop thumbnail image size
+		 */
+		public function woocommerce_get_image_size_shop_thumbnail( $size ) {
+			$size['width'] = $size['height'] = '175';
+
+			return $size;
+		}
+
+		/**
+		 * This function outputs a content wrapper element before WooCommerce output.
+		 */
+		public function woocommerce_before_main_content() {
+		?>
+			<!-- Main -->
+			<main role="main" class="content-wrap content-wrap-page content-wrap-woocommerce content-wrap-full-width-page baton-flex baton-flex-1-columns">
+				<!-- Page Content -->
+				<div class="baton-col baton-col-content">
+					<section class="content-container content-page-container content-woocommerce-container">
+		<?php
+		}
+
+		/**
+		 * This function outputs the opening article content wrapper element before the main WooCommerce content.
+		 */
+		public function woocommerce_before_main_content_article_content_wrapper_before() {
+			// If we're not displaying a singular piece of content
+			if ( ! is_singular() ) :
+		?>
+						<!-- Article -->
+						<article id="post-<?php the_ID(); ?>" class="content-woocommerce cf">
+		<?php
+			endif;
+		}
+
+		/**
+		 * This function adjusts the number of products per page on WooCommerce pages.
+		 */
+		public function loop_shop_per_page() {
+			// Set the posts per page to 12
+			return 12;
+		}
+
+		/**
+		 * This function adjusts the number of columns per page on WooCommerce pages.
+		 */
+		public function loop_shop_columns() {
+			// Set the columns to 3
+			return 3;
+		}
+
+		/**
+		 * This function outputs the opening thumbnail wrapper element.
+		 */
+		public function woocommerce_before_shop_loop_item_title_thumbnail_wrapper_before() {
+		?>
+			<!-- Post Thumbnail/Featured Image -->
+			<div class="article-thumbnail-wrap article-featured-image-wrap post-thumbnail-wrap featured-image-wrap cf">
+		<?php
+		}
+
+		/**
+		 * This function outputs the closing thumbnail wrapper element.
+		 */
+		public function woocommerce_before_shop_loop_item_title_thumbnail_wrapper_after() {
+		?>
+			</div>
+			<!-- End Post Thumbnail/Featured Image -->
+		<?php
+		}
+
+		/**
+		 * This function outputs the opening article content wrapper element before the product title.
+		 */
+		public function woocommerce_shop_loop_item_title() {
+		?>
+			<!-- Article Content -->
+			<div class="article-content cf">
+		<?php
+		}
+
+		/**
+		 * This function outputs the closing article content wrapper element after the product title.
+		 */
+		public function woocommerce_after_shop_loop_item_title() {
+		?>
+				<div class="clear"></div>
+			</div>
+			<!-- End Article Content -->
+		<?php
+		}
+
+		/**
+		 * This function outputs the opening article content wrapper element before the add to cart link.
+		 */
+		public function woocommerce_after_shop_loop_item_article_content_wrapper_before() {
+		?>
+			<!-- Article Content -->
+			<div class="article-content cf">
+		<?php
+		}
+
+		/**
+		 * This function outputs the closing article content wrapper element after the add to cart link.
+		 */
+		public function woocommerce_after_shop_loop_item_article_content_wrapper_after() {
+		?>
+				<div class="clear"></div>
+			</div>
+			<!-- End Article Content -->
+		<?php
+		}
+
+		/**
+		 * This function outputs the opening baton column wrapper element before the single product images.
+		 */
+		public function woocommerce_before_single_product_summary() {
+		?>
+			<div class="baton-col baton-col-woocommerce-product baton-col-woocommerce-product-images">
+		<?php
+		}
+
+		/**
+		 * This function adjusts the single product thumbnails columns.
+		 */
+		public function woocommerce_product_thumbnails_columns( $columns ) {
+			// Bail if the columns are already set to three
+			if ( $columns === 3 )
+				return $columns;
+
+			// Set the columns to three
+			$columns = 3;
+
+			return $columns;
+		}
+
+		/**
+		 * This function outputs the closing and opening baton column wrapper element before
+         * the single product summary.
+		 */
+		public function woocommerce_before_single_product_summary_baton_col_wrappers() {
+		?>
+			</div>
+
+			<div class="baton-col baton-col-woocommerce-product baton-col-woocommerce-product-summary">
+				<!-- Article -->
+				<article class="content content-woocommerce-product cf">
+		<?php
+		}
+
+		/**
+		 * This function outputs the opening article content wrapper element before the product summary.
+		 */
+		public function woocommerce_single_product_summary() {
+		?>
+			<!-- Article Content -->
+			<div class="article-content cf">
+		<?php
+		}
+
+		/**
+		 * This function outputs the closing article content wrapper element after the product summary.
+		 */
+		public function woocommerce_single_product_summary_article_content_wrapper_after() {
+		?>
+				<div class="clear"></div>
+			</div>
+			<!-- End Article Content -->
+		<?php
+		}
+
+		/**
+		 * This function outputs the closing baton column wrapper element before the single product summary.
+		 */
+		public function woocommerce_after_single_product_summary() {
+		?>
+					<div class="clear"></div>
+				</article>
+				<!-- End Article -->
+			</div>
+		<?php
+		}
+
+		/**
+		 * This function adjusts the WooCommerce related products arguments.
+		 */
+		public function woocommerce_output_related_products_args( $args ) {
+			// Bail if the posts per page and columns are already set to three
+			if ( $args['posts_per_page'] === 3 && $args['columns'] === 3 )
+				return $args;
+
+			// Set the posts per page and columns arguments to three
+			$args['posts_per_page'] = $args['columns'] = 3;
+
+			return $args;
+		}
+
+		/**
+		 * This function adjusts the WooCommerce single product archive thumbnail size.
+         */
+		public function single_product_archive_thumbnail_size( $size ) {
+			// Bail if we're not on the cart and the size isn't set to the shop catalog
+			if ( ! is_cart() || $size !== 'shop_catalog' )
+				return $size;
+
+			// Set the size to shop single
+			$size = 'shop_single';
+
+			return $size;
+		}
+
+		/**
+		 * This function outputs a closing content wrapper element after WooCommerce output.
+		 */
+		public function woocommerce_after_main_content() {
+			// If we're not displaying a singular piece of content
+			if ( ! is_singular() ) :
+		?>
+							<div class="clear"></div>
+						</article>
+						<!-- End Article -->
+		<?php
+			endif;
+		?>
+
+						<div class="clear"></div>
+					</section>
+
+					<div class="clear"></div>
+				</div>
+				<!-- End Page Content -->
+
+				<div class="clear"></div>
+			</main>
+			<!-- End Main -->
+		<?php
 		}
 
 

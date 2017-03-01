@@ -1,17 +1,18 @@
-# Copyright (C) 2016 Slocum Studio
+# Copyright (C) 2017 Slocum Studio
 # This file is distributed under the GPL2+.
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Baton 1.0.5\n"
+"Project-Id-Version: Baton 1.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/baton\n"
-"POT-Creation-Date: 2016-06-22 16:55-0400\n"
+"POT-Creation-Date: 2017-03-01 12:13-0500\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-06-22 16:55-0400\n"
-"X-Generator: Poedit 1.8.7\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: Poedit 1.8.12\n"
 
 #: 404.php:21
 msgid "404 Error"
@@ -100,7 +101,7 @@ msgstr ""
 #: customizer/class-baton-customizer-conductor-control.php:188
 msgid ""
 "Specify the number of columns used when outputting widget content. Note: "
-"When the enhanced Blog Display <sup>by Conductor</sup> is enabled, this "
+"When the Enhanced Demo Display <sup>by Conductor</sup> is enabled, this "
 "value applies to posts which are output after the enhanced displays."
 msgstr ""
 
@@ -300,7 +301,7 @@ msgstr ""
 msgid "and More!"
 msgstr ""
 
-#: functions.php:654 theme/class-baton.php:668
+#: functions.php:654 theme/class-baton.php:827
 msgid "Upgrade Now!"
 msgstr ""
 
@@ -351,7 +352,7 @@ msgstr ""
 msgid "Choose the perfect font families and sizes."
 msgstr ""
 
-#: functions.php:750 theme/class-baton.php:662
+#: functions.php:750 theme/class-baton.php:821
 msgid "Header Alignment"
 msgstr ""
 
@@ -1275,7 +1276,7 @@ msgstr[1] ""
 msgid "No Content Layouts"
 msgstr ""
 
-#: includes/theme-options.php:350 theme/class-baton.php:658
+#: includes/theme-options.php:350 theme/class-baton.php:817
 msgid "Priority Support"
 msgstr ""
 
@@ -1291,7 +1292,7 @@ msgstr ""
 msgid "Adjust footer copyright &amp branding messages in the Customizer."
 msgstr ""
 
-#: includes/theme-options.php:386 theme/class-baton.php:659
+#: includes/theme-options.php:386 theme/class-baton.php:818
 msgid "Custom Scripts and Styles"
 msgstr ""
 
@@ -1390,12 +1391,12 @@ msgid ""
 msgstr ""
 
 #: theme/class-baton-conductor-customizer.php:191
-msgid "Enhanced Blog Display"
+msgid "Enhanced Demo Display"
 msgstr ""
 
 #: theme/class-baton-conductor-customizer.php:192
 msgid ""
-"Use this setting to enable or disable the enhanced Blog Display <sup>by "
+"Use this setting to enable or disable the Enhanced Demo Display <sup>by "
 "Conductor</sup>."
 msgstr ""
 
@@ -1419,7 +1420,7 @@ msgstr ""
 msgid "Author Byline"
 msgstr ""
 
-#: theme/class-baton-customizer.php:141 theme/class-baton.php:725
+#: theme/class-baton-customizer.php:141 theme/class-baton.php:884
 msgid "Baton Features"
 msgstr ""
 
@@ -1456,113 +1457,113 @@ msgstr ""
 msgid "Button Label"
 msgstr ""
 
-#: theme/class-baton.php:159
+#: theme/class-baton.php:201
 msgid "Secondary Navigation"
 msgstr ""
 
-#: theme/class-baton.php:185
+#: theme/class-baton.php:242
 msgid ""
 "<div class=\"updated\"><p>Welcome to Baton! Get started by visiting the <a "
 "href=\"%1$s\">Customizer</a>!</p></div>"
 msgstr ""
 
-#: theme/class-baton.php:238
+#: theme/class-baton.php:306
 msgid ""
 "*This widget area is only displayed if a Front Page is selected via Settings "
 "&gt; Reading in the Dashboard.* This widget area is displayed on the Front "
 "Page and will replace the Front Page content."
 msgstr ""
 
-#: theme/class-baton.php:620
+#: theme/class-baton.php:779
 msgid "Upgrade Baton"
 msgstr ""
 
-#: theme/class-baton.php:639
+#: theme/class-baton.php:798
 msgid ""
 "Receive <strong>premium support</strong>, individual Customizer options for "
 "colors and fonts, and more! %1$s. %2$s %3$s %4$s"
 msgstr ""
 
-#: theme/class-baton.php:643
+#: theme/class-baton.php:802
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: theme/class-baton.php:647
+#: theme/class-baton.php:806
 msgid "Upgrade to Baton Pro to add the following features:"
 msgstr ""
 
-#: theme/class-baton.php:660
+#: theme/class-baton.php:819
 msgid "Individual Color Customisation"
 msgstr ""
 
-#: theme/class-baton.php:661
+#: theme/class-baton.php:820
 msgid "Individual Font Families and Sizes"
 msgstr ""
 
-#: theme/class-baton.php:663
+#: theme/class-baton.php:822
 msgid "\"Features 2\" Baton Note Widget Display"
 msgstr ""
 
-#: theme/class-baton.php:721
+#: theme/class-baton.php:880
 msgid "Baton Hero"
 msgstr ""
 
-#: theme/class-baton.php:785 theme/class-baton.php:822
-#: theme/class-baton.php:857
+#: theme/class-baton.php:944 theme/class-baton.php:981
+#: theme/class-baton.php:1016
 msgid "Button"
 msgstr ""
 
-#: theme/class-baton.php:792
+#: theme/class-baton.php:951
 msgid "Button Alternate"
 msgstr ""
 
-#: theme/class-baton.php:814
+#: theme/class-baton.php:973
 msgid "Baton Hero 1"
 msgstr ""
 
-#: theme/class-baton.php:820
+#: theme/class-baton.php:979
 msgid "Hero 1"
 msgstr ""
 
-#: theme/class-baton.php:821 theme/class-baton.php:856
-#: theme/class-baton.php:890 theme/class-baton.php:907
-#: theme/class-baton.php:918 theme/class-baton.php:928
-#: theme/class-baton.php:938 theme/class-baton.php:948
+#: theme/class-baton.php:980 theme/class-baton.php:1015
+#: theme/class-baton.php:1049 theme/class-baton.php:1066
+#: theme/class-baton.php:1077 theme/class-baton.php:1087
+#: theme/class-baton.php:1097 theme/class-baton.php:1107
 msgid ""
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eros tortor, "
 "molestie eget tortor sit amet, feugiat semper ante. Aliquam a pellentesque "
 "purus, quis vulputate lacus."
 msgstr ""
 
-#: theme/class-baton.php:850
+#: theme/class-baton.php:1009
 msgid "Baton Hero 2"
 msgstr ""
 
-#: theme/class-baton.php:855
+#: theme/class-baton.php:1014
 msgid "Hero 2"
 msgstr ""
 
-#: theme/class-baton.php:885
+#: theme/class-baton.php:1044
 msgid "Baton Features 1"
 msgstr ""
 
-#: theme/class-baton.php:889
+#: theme/class-baton.php:1048
 msgid "Features"
 msgstr ""
 
-#: theme/class-baton.php:906 theme/class-baton.php:917
-#: theme/class-baton.php:927 theme/class-baton.php:937
-#: theme/class-baton.php:947
+#: theme/class-baton.php:1065 theme/class-baton.php:1076
+#: theme/class-baton.php:1086 theme/class-baton.php:1096
+#: theme/class-baton.php:1106
 msgid "Feature"
 msgstr ""
 
-#: theme/class-baton.php:908 theme/class-baton.php:919
-#: theme/class-baton.php:929 theme/class-baton.php:939
-#: theme/class-baton.php:949
+#: theme/class-baton.php:1067 theme/class-baton.php:1078
+#: theme/class-baton.php:1088 theme/class-baton.php:1098
+#: theme/class-baton.php:1108
 msgid "Read More"
 msgstr ""
 
-#: theme/class-baton.php:1063
+#: theme/class-baton.php:1222
 msgctxt "\"read more\" label for Conductor widgets"
 msgid "Continue Reading"
 msgstr ""
@@ -1577,8 +1578,8 @@ msgid ""
 "multipurpose theme with an intuitive drag-and-drop homepage layout builder "
 "for a wide range of website designs. Create your layouts using our live edit "
 "front-end widgets to perfectly match your design and content together. Baton "
-"is compatible with popular plugins like Jetpack, Yoast SEO, Gravity Forms "
-"and more."
+"is compatible with popular plugins like Jetpack, Yoast SEO, Gravity Forms, "
+"WooCommerce and more."
 msgstr ""
 
 #. Author of the plugin/theme
@@ -1587,6 +1588,10 @@ msgstr ""
 
 #. Author URI of the plugin/theme
 msgid "https://slocumthemes.com/"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Beaver Builder"
 msgstr ""
 
 #. Template Name of the plugin/theme
