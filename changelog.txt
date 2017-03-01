@@ -2,9 +2,16 @@
 Theme: Baton
 Author: Slocum Themes/Slocum Design Studio
 Author URI: https://slocumthemes.com/
-Current Version: 1.0.8
+Current Version: 1.1.0
 ==========================================
 
+
+1.1.0 // March 01 2017
+----------------------
+- Added WooCommerce support
+- Added Freemius
+- Fixed a bug where a box shadow was added to WordPress editor content
+- Updated POT file
 
 1.0.8 // January 07 2017
 ------------------------
