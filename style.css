@@ -2996,6 +2996,7 @@ body .mc-gravity-confirmation, body .mc_gravity-confirmation, body .mc-newslette
 body .mc-gravity-confirmation .gform_confirmation_wrapper, body .mc_gravity-confirmation .gform_confirmation_wrapper,
 body .mc-newsletter-confirmation .gform_confirmation_wrapper, body .mc_newsletter-confirmation .gform_confirmation_wrapper {
 	padding: 0;
+	background: transparent;
 	border: none;
 }
 
@@ -3351,6 +3352,11 @@ body .mc-newsletter-confirmation .gform_confirmation_wrapper, body .mc_newslette
 	width: 100%;
 	margin: 0;
 	padding: 0 0 2rem;
+}
+
+.woocommerce div.product .up-sells,
+.woocommerce-page div.product .up-sells {
+	width: 100%;
 }
 
 
