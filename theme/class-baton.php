@@ -4,7 +4,7 @@
  *
  * @class Baton
  * @author Slocum Studio
- * @version 1.1.1
+ * @version 1.1.2
  * @since 1.0.0
  */
 
@@ -17,7 +17,7 @@ if ( ! class_exists( 'Baton' ) ) {
 		/**
 		 * @var string, Current version number
 		 */
-		public $version = '1.1.1';
+		public $version = '1.1.2';
 
 		/**
 		 * @var string
@@ -183,6 +183,9 @@ if ( ! class_exists( 'Baton' ) ) {
 
 			// Add Woocommerce Support
 			add_theme_support( 'woocommerce' );
+			add_theme_support( 'wc-product-gallery-zoom' );
+			add_theme_support( 'wc-product-gallery-lightbox' );
+			add_theme_support( 'wc-product-gallery-slider' );
 
 			// Theme textdomain
 			load_theme_textdomain( 'baton', get_template_directory() . '/languages' );
