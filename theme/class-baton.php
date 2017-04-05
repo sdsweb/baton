@@ -183,6 +183,9 @@ if ( ! class_exists( 'Baton' ) ) {
 
 			// Add Woocommerce Support
 			add_theme_support( 'woocommerce' );
+			add_theme_support( 'wc-product-gallery-zoom' );
+			add_theme_support( 'wc-product-gallery-lightbox' );
+			add_theme_support( 'wc-product-gallery-slider' );
 
 			// Theme textdomain
 			load_theme_textdomain( 'baton', get_template_directory() . '/languages' );
