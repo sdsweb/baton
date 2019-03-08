@@ -776,45 +776,6 @@ if ( ! function_exists( 'woocommerce_pagination' ) ) {
 }
 
 
-/************
- * Freemius *
- ************/
-
-/**
- * This function initializes Freemius for the Baton theme.
- */
-function baton_fs() {
-    global $baton_fs;
-
-    if ( ! isset( $baton_fs ) ) {
-        // Include the Freemius SDK
-        require_once get_template_directory() . '/freemius/start.php';
-
-        $baton_fs = fs_dynamic_init( array(
-            'id' => '804',
-            'slug' => 'baton',
-            'type' => 'theme',
-            'public_key' => 'pk_c8cff28928d51a8f17df14c4dc864',
-            'is_premium' => false,
-            'has_premium_version' => false,
-            'has_addons' => false,
-            'has_paid_plans' => false,
-            'menu' => array(
-                'first-path' => 'themes.php',
-                'account' => false,
-                'contact' => false,
-                'support' => false,
-            ),
-        ) );
-    }
-
-    return $baton_fs;
-}
-
-// Initialize Freemius
-baton_fs();
-
-
 /**
  * Load the theme function files (options panel, theme functions, widgets, etc...).
  */
